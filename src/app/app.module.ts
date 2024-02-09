@@ -22,7 +22,8 @@ import { FooterComponent } from './layouts/footer/footer.component';
     BaseLayoutComponent,
     NavComponent,
     FooterComponent
-  ],
+    ],
+
   imports: [
     BrowserModule,
     AppRoutingModule
