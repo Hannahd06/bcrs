@@ -37,13 +37,18 @@ const routes: Routes = [
         path: 'contact',
         component: ContactComponent,
         title: 'BCRS: Contact Us'
-      }
+      },
+
     ]
   },
   {
     // path for the security module (e.g. login, register, forgot password, etc.)
     path: 'security',
     loadChildren: () => import('./security/security.module').then(m => m.SecurityModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'security/not-found'
   }
 ];
 
