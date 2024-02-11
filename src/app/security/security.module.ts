@@ -10,10 +10,14 @@ import { CommonModule } from '@angular/common';
 
 import { SecurityRoutingModule } from './security-routing.module';
 import { SecurityComponent } from './security.component';
+import { SigninComponent } from './signin/signin.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
-    SecurityComponent
+    SecurityComponent,
+    SigninComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,

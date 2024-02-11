@@ -1,10 +1,66 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <h1>Home Component Works! <span class="material-icons">thumb_up</span></h1>
+<div class="container-fluid pt-5">
+  <div class="card">
+    <div class="row d-flex home-card">
+      <div class="col-4">
+        <img src="./assets/bcrs-home.png" style="width:550px;">
+      </div>
+      <div class="col home-content">
+        <h1>Delivering Fast, Reliable, and Professional Computer Repair Services.<span class="material-icons">thumb_up</span></h1>
+        <button  class="btn btn-lg button-home" routerLink="/about">LEARN MORE ABOUT US</button>
+      </div>
+
     </div>
   </div>
 
+  <div class="services">
+    <h2>OUR SERVICES</h2>
+    <!-- Cards for each service offering -->
+  <div class="service-container row">
+    <div class="col-lg-1 col" style="margin: auto;">
+      <span class="material-icons service-icon d-flex">arrow_back_ios</span>
+    </div>
+    <div class="scrolling-wrapper col-lg-10">
+      <div class="card service-card">
+        <span class="material-icons service-icon">lock_reset</span>
+        <h3>Password Reset</h3>
+        <h4>$39.99</h4>
+      </div>
+      <div class="card service-card">
+        <span class="material-icons service-icon">visibility_off</span>
+        <h3>Spyware Removal</h3>
+        <h4>$99.99</h4>
+      </div>
+      <div class="card service-card">
+        <span class="material-icons service-icon">memory</span>
+        <h3>RAM Upgrade</h3>
+        <h4>$129.99</h4>
+        </div>
+      <div class="card service-card">
+        <span class="material-icons service-icon">install_desktop</span>
+        <h3>Software Installation</h3>
+        <h4>$49.99</h4>
+      </div>
+      <div class="card service-card">
+        <span class="material-icons service-icon">sync</span>
+        <h3>PC Tune-up</h3>
+        <h4>$89.99</h4>
+      </div>
+      <div class="card service-card">
+        <span class="material-icons service-icon">keyboard</span>
+        <h3>Keyboard Cleaning</h3>
+        <h4>$45.00</h4>
+      </div>
+      <div class="card service-card">
+        <span class="material-icons service-icon">cleaning_services</span>
+        <h3>Disk Clean-up</h3>
+        <h4>$129.99</h4>
+      </div>
+    </div>
+    <div class="col-lg-1 col" style="margin:auto">
+      <span class="material-icons service-icon d-flex">arrow_forward_ios</span>
+    </div>
+  </div>
+  </div>
   <a routerLink="/security">Test Security Module</a>
 </div>
 

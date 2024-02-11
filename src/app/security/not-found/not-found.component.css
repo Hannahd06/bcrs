@@ -1,0 +1,13 @@
+.button-home {
+  font-weight: 600;
+  font-size: 30px;
+  background-color: #EEBA35;
+   font-family: 'Teko', sans-serif;
+}
+.container-fluid {
+  background-color: #403F3C;
+}
+
+.text-align {
+  text-align: center;
+}
