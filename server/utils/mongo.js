@@ -1,7 +1,7 @@
 ///--------------------------------------------
 //Title: mongo.js
 //Author: Kyle Hochdoerfer
-//Date: 01/17/24
+//Date: 02/11/24
 //Description: File for connecting to mongoDB database
 //---------------------------------------------
 
@@ -26,7 +26,7 @@ const mongo = async(operations, next) => {
       useUnifiedTopology: true,
     });
 
-    //Set database as nodebucket
+    //Set database as bcrs
     const db = client.db(config.dbname);
     console.log("Connected to db.")
 
