@@ -1,6 +1,7 @@
 /**
  * Title: app-routing.module.ts
  * Author: Professor Krasso
+ * modified by: Hannah Del Real, Jocelyn Dupuis, Kyle Hochdoefer
  * Date: 8/5/23
  */
 
