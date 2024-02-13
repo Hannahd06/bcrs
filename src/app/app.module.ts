@@ -25,7 +25,7 @@ import { ContactComponent } from './contact/contact.component';
     NavComponent,
     FooterComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
     ],
 
   imports: [

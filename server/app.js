@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname, '../dist/bcrs')))
 app.use('/', express.static(path.join(__dirname, '../dist/bcrs')))
 
 
-app.use("/api/users", userRoute)
+app.use("/api/users", userRoute);
 
 // error handler for 404 errors
 app.use(function(req, res, next) {
