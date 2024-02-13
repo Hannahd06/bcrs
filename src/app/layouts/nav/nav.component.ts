@@ -1,7 +1,8 @@
 /**
  * Title: nav.component.ts
  * Author: Professor Krasso
- * Date: 8/5/23
+ * Modified by: Team Hufflepuff Hannah Del Real, Jocelyn Dupuis, Kyle Hochdoefer
+ * Date: 02/11/24
  */
 
 // imports statements

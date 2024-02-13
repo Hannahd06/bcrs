@@ -1,0 +1,45 @@
+/**
+    Title: about.component.css
+    Author: Professor Richard Krasso
+    Modified by: Hannah Del Real
+    Date: 01/15/24
+    Description: CSS styling for about page BCRS navbar
+*/
+
+.container-about {
+  margin: 5% 10%;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+}
+
+h1 {
+  color: rgb(255, 240, 154);
+  text-align: center;
+  font-size: 60px;
+  font-weight: 700;
+  padding-bottom: 30px;
+}
+
+.about-content {
+  font-size: 28px;
+  text-align: center;
+}
+
+h4 {
+  font-size: 35px;
+  font-weight: 600;
+}
+
+
+.about-offering {
+  padding: 30px;
+  background-color: #7F7E7D;
+
+}
+
+.material-icons {
+  font-size: 100px;
+  color: rgb(255, 240, 154);
+  margin-right: 20px;
+
+}
