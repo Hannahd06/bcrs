@@ -15,7 +15,7 @@ const db = {
 
 const config = {
   port: 3000,
-  dbUrl: `mongodb+srv://${db.username}:${db.password}@cluster0.tydee4p.mongodb.net/nodebucket?retryWrites=true&w=majority`,
+  dbUrl: `mongodb+srv://${db.username}:${db.password}@cluster0.tydee4p.mongodb.net/${db.name}?retryWrites=true&w=majority`,
   dbname: db.name
 }
 
