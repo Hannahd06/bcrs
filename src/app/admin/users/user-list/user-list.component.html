@@ -1,1 +1,41 @@
-<p>user-list works!</p>
+<div class="config-container">
+  <div class="row justify-content-center mt-5 text-center">
+    <h1>User Configuration</h1>
+
+    <div class="user-table row justify-content-center">
+      <table class="darkTable">
+        <thead>
+        <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Role</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        </tr>
+        </thead>
+        <!--*ngFor="let user of users" will go in this tbody-->
+        <tbody>
+        <tr>
+          <td>user.empId </td>
+          <td>user.email </td>
+          <td>user.firstName </td>
+          <td>user.lastName</td>
+          <td>user.role </td>
+          <!--(click)="editUser(user._id)" and (click)="deleteUser(user._id)" will be added to these buttons-->
+          <td><button class="btn">
+            <span class="material-icons">edit</span>
+          </button></td>
+          <td><button class="btn">
+            <span class="material-icons">delete</span>
+          </button></td>
+        </tr>
+        </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+<!--(click)="createUser() should go in this button"-->
+<button  class="btn btn-lg button-home create-button">+ Create User</button>
