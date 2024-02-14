@@ -60,12 +60,18 @@ color: rgb(255, 240, 154);
 .service-card {
     display: inline-block;
     padding: 30px;
+    margin: auto;
     margin-right: 20px;
     text-align: center;
     border: dashed rgb(241, 197, 20) 5px;
-    width: 350px;
+    width: 400px;
+    white-space: normal;
+    height: 400px;
 }
 
+.service-card p {
+  font-size: 18px;
+}
 .services {
   margin: auto;
 }
