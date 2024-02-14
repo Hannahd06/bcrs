@@ -81,13 +81,6 @@
  *     responses:
  *       '201':
  *         description: New User created
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 _id:
- *                   type: string
  *       '400':
  *         description: Bad Request
  *       '404':

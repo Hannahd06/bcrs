@@ -75,10 +75,10 @@ router.post("/", (req, res, next) => {
     }
 
     mongo(async db => {
-      //Check if email user inputs is already in database
+      //Check if email user inputs is already in database to ensure that empId is unique
       const emailUnavailable = await db.collection("users").findOne({ email: user.email });
 
-      //Check if empID user inputs is already in database
+      //Check if empID user inputs is already in database to ensure that email is unique
       const empIdUnavailable = await db.collection("users").findOne({ empId: user.empId });
 
 
@@ -105,8 +105,8 @@ router.post("/", (req, res, next) => {
 
       console.log("result", result);
 
-     // Return the user
-      res.json(result);
+     // Return  result insertedID
+      res.status(201).send({ id: result.insertedId });
     }, next);
   } catch (err) {
     console.error("Error:", err);
