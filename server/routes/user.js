@@ -1,4 +1,14 @@
+///--------------------------------------------
+//Title: config.js
+//Author: Kyle Hochdoerfer, Hannah Del Real, Jocelyn Dupuis
+//Date: 02/12/24
+//Description: User routing for BCRS
+//---------------------------------------------
+
+//Enable strict mode
 "use strict";
+
+//Require statements
 const express = require('express');
 const router =  express.Router();
 const { mongo } = require('../utils/mongo');
@@ -7,6 +17,7 @@ const Ajv = require('ajv');
 
 const ajv = new Ajv();
 
+//Declare a userSchema containing all user properties
 const userSchema = {
   type: 'object',
   properties: {
@@ -33,6 +44,7 @@ const userSchema = {
   ],
   additionalProperties: false
 }
+
 //findAllUsers
 router.get("/", (req, res, next) => {
   try {
@@ -53,6 +65,46 @@ router.get("/", (req, res, next) => {
     }, next);
   } catch (err) {
     console.error("Error:", err);
+    next(err);
+  }
+})
+
+//findbyId
+router.get("/:empId", (req, res, next) => {
+  try {
+    //Hold the user ID from the request in a variable
+    let { empId } = req.params;
+    empId = parseInt(empId, 10);
+
+    //If the given ID is not a number, return an error
+    if(isNaN(empId)) {
+      const err = new Error("User ID must be a number")
+      err.status = 400
+      console.log("err", err);
+      next(err);
+      return;
+    }
+
+    //Check the database to get the user document with the matching ID
+    mongo(async db => {
+      const user = await db.collection("users").findOne({empId});
+
+      //If the user is not found, return an error statement saying so
+      if (!user){
+        const err = new Error("Unable to find user with id " + empId)
+        err.status = 404;
+        console.log("err", err)
+        next(err)
+        return;
+      }
+
+      //Send the matching user document as a response
+      res.send(user)
+    });
+
+  } catch (err) {
+    //Output an error statement and pass the error to the error handler
+    console.error("Error " + err);
     next(err);
   }
 })
@@ -113,5 +165,7 @@ router.post("/", (req, res, next) => {
     next(err);
   }
 })
+
+
 
 module.exports = router;
