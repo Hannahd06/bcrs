@@ -7,15 +7,13 @@
 
 /*styling for signin container*/
 .signin-container {
-  background-color: #7F7E7D;
-  color: white;
-  padding: 30px;
+  margin: 5%;
 }
 
 /*styling for container*/
-.container-fluid {
-  padding: 10% 10% 10% 10%;
-  background-color: #7F7E7D;
+.card {
+  color: white;
+  background-color:  #7F7E7D;
 }
 
 /*styling for header 2*/
@@ -28,6 +26,11 @@ h2 {
   margin-bottom: 4%;
  }
 
+ /*styling for input field col*/
+ .col-12 {
+  margin-left: 12%;
+}
+
  /*styling for signin button*/
  .button-signin {
   font-weight: 600;
@@ -35,15 +38,13 @@ h2 {
   background-color: #EEBA35;
   font-family: 'Teko', sans-serif;
   margin-top: 4%;
-  margin-left: 35%;
-  margin-bottom: 4%;
-  padding: 10px 50px;
+  margin-bottom: 6%;
 }
 
 /*styling for forgot password ling*/
 .forgot {
   text-align: right;
-  margin-top: -5.5%;
+  margin-top: -3.5%;
 }
 
 /*styling for a link*/

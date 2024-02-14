@@ -16,7 +16,7 @@ import { NavComponent } from './layouts/nav/nav.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-import { SigninComponent } from './security/signin/signin.component';
+//import { SigninComponent } from './security/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { SigninComponent } from './security/signin/signin.component';
     FooterComponent,
     AboutComponent,
     ContactComponent,
-    SigninComponent
+    //SigninComponent
     ],
 
   imports: [

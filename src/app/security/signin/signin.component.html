@@ -3,48 +3,53 @@
 <!--Date: 02/13/2024-->
 <!--Description: HTML file for signin component-->
 
-<div class="container-fluid bg-dark">
-  <div class="signin-container">
-    <div class="row justify-content-center">
-      <div class="col-lg-4 col-md-6 col-sm-6">
-        <div class="card-title text-center">
-          <h2>Employee Sign-in</h2>
+<!--main signing container-->
+<div class="container-fluid bg-dark pt-5">
+  <div class=" row justify-content-center">
+    <div class="signin-container col-lg-6 col-md-10 col-sm-12">
+      <div class="card ">
+
+        <!--heading 2 for signin container-->
+          <div class="card-title pt-5">
+            <h2>Employee Sign-In </h2>
+          </div>
+          <div class="m-5">
+          <!--sign in form-->
+          <form>
+            <fieldset>
+            <div class=" row d-grid form-content">
+              <!--email form field-->
+              <div class=" col-12 my-3 w-75 text">
+                <label for="email">Email</label>
+                <input id="email" class="form-control" type="text" formControlName="email">
+              </div>
+              <!--password form field-->
+              <div class=" col-12 my-3 w-75">
+                <label for="password">Password</label>
+                <input id="password" class="form-control" type="text" formControlName="password">
+              </div>
+            </div>
+            </fieldset>
+            <!--signin button-->
+            <div class="row w-50 text-align mx-auto pt-3">
+                <button class="btn button-lg button-signin" id="submit">Sign In</button>
+            </div>
+          </form>
+
+          <!--new user / register link-->
+          <div class="register">
+            <a href="#">New user? Register here!</a>
+          </div>
+
+          <!--forgot password link-->
+          <div class="forgot">
+            <a href="#">Forgot password?</a>
+          </div>
         </div>
-
-        <!--error message
-        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
-            {{ errorMessage }}
-        </div>-->
-
-      <!--input for email-->
-      <div class="mb-4">
-        <label for="email" class="form-label">Email</label>
-        <input type="text" class="form-control" id="email" formControlName="email">
-      </div>
-
-      <!--input fro password-->
-      <div class="mb-4">
-        <label for="password" class="form-label">Password</label>
-        <input type="text" class="form-control" id="password" formControlName="password">
-      </div>
-
-      <!--sign in button-->
-      <button class="btn btn-lg button-signin" type="submit">Sign In</button>
-
-      <!--new user / register link-->
-      <div class="register">
-        <a href="#">New user? Register here!</a>
-      </div>
-
-      <!--forgot password link-->
-      <div class="forgot">
-        <a href="#">Forgot password?</a>
-      </div>
-
       </div>
     </div>
   </div>
-
 </div>
+
 
 
