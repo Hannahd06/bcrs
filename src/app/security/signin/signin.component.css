@@ -1,0 +1,52 @@
+/**
+    Title: signin.component.css
+    Author: Jocelyn Dupuis
+    Date: 02/13/24
+    Description: CSS styling for signin page
+*/
+
+/*styling for signin container*/
+.signin-container {
+  background-color: #7F7E7D;
+  color: white;
+  padding: 30px;
+}
+
+/*styling for container*/
+.container-fluid {
+  padding: 10% 10% 10% 10%;
+  background-color: #7F7E7D;
+}
+
+/*styling for header 2*/
+h2 {
+  font-size: 50px;
+  text-align: center;
+  padding-top: 50px;
+  font-weight: 600;
+  color: rgb(255, 240, 154);
+  margin-bottom: 4%;
+ }
+
+ /*styling for signin button*/
+ .button-signin {
+  font-weight: 600;
+  font-size: 30px;
+  background-color: #EEBA35;
+  font-family: 'Teko', sans-serif;
+  margin-top: 4%;
+  margin-left: 35%;
+  margin-bottom: 4%;
+  padding: 10px 50px;
+}
+
+/*styling for forgot password ling*/
+.forgot {
+  text-align: right;
+  margin-top: -5.5%;
+}
+
+/*styling for a link*/
+a {
+  color: white;
+}

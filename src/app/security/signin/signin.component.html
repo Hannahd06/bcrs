@@ -1,1 +1,50 @@
-<p>signin works!</p>
+<!--Name: Jocelyn Dupuis -->
+<!--File: signin.component.html -->
+<!--Date: 02/13/2024-->
+<!--Description: HTML file for signin component-->
+
+<div class="container-fluid bg-dark">
+  <div class="signin-container">
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card-title text-center">
+          <h2>Employee Sign-in</h2>
+        </div>
+
+        <!--error message
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+            {{ errorMessage }}
+        </div>-->
+
+      <!--input for email-->
+      <div class="mb-4">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" formControlName="email">
+      </div>
+
+      <!--input fro password-->
+      <div class="mb-4">
+        <label for="password" class="form-label">Password</label>
+        <input type="text" class="form-control" id="password" formControlName="password">
+      </div>
+
+      <!--sign in button-->
+      <button class="btn btn-lg button-signin" type="submit">Sign In</button>
+
+      <!--new user / register link-->
+      <div class="register">
+        <a href="#">New user? Register here!</a>
+      </div>
+
+      <!--forgot password link-->
+      <div class="forgot">
+        <a href="#">Forgot password?</a>
+      </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
