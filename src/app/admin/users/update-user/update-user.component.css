@@ -1,0 +1,36 @@
+
+
+
+.update-container {
+  margin: 5%;
+}
+.card {
+  color: white;
+  background-color:  #7F7E7D;
+  border: dashed 5px  #EEBA35;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 50px;
+}
+
+
+h2, legend {
+  color: rgb(255, 240, 146);
+  text-align: center;
+}
+
+.col-12 {
+  margin-left: 10%;
+}
+
+.button-home {
+  text-align: center;
+  font-weight: 600;
+  font-size: 30px;
+  background-color: #EEBA35;
+  font-family: 'Teko', sans-serif;
+
+}
+

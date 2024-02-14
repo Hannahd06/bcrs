@@ -13,22 +13,21 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       {
-        path: 'users',
+        path: '',
         component: UserListComponent,
         title: 'BCRS: Users list'
       },
       {
-        path: 'users/:empId/update',
+        path: ':empId/update',
         component: UpdateUserComponent,
         title: 'BCRS: Update a user'
       },
       {
-        path: 'users/new',
+        path: 'new',
         component: UserNewComponent,
         title: 'BCRS: Create a New User'
       }
-    ],
-    canActivate: [roleGuard]
+    ]
   },
 ];
 
