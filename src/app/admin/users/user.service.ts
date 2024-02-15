@@ -22,7 +22,7 @@ export class UserService {
   * @param empId
   * @returns status code 204 (no content)
   */
- updateTask(empId: number, user: UserUpdateModel) {
+ updateUser(empId: number, user: UserUpdateModel) {
   console.log('api/users/' + empId + '/update');
   // update selected user's information based on empId
   return this.http.put('api/users/' + empId + '/update', { user })

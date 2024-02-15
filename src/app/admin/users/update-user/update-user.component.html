@@ -7,8 +7,8 @@
             <h2>Update User Information</h2>
           </div>
           <div class="m-5">
-          <form>
-            <fieldset>
+          <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
+            <fieldset class="form-group">
               <legend>Please fill out the information below</legend>
 
             <div class=" row d-grid form-content">
@@ -25,7 +25,8 @@
                 <br />
                 <select name="role" id="role" ngModel class="form-select">
                   <option value="" disabled>select a role</option>
-                  <option *ngFor="let role of options" [ngValue]="role"> {{ role.role }} </option>
+                  <option value="admin" > Admin </option>
+                  <option value="standard"></option>
                 </select>
                 <br />
               </div>
