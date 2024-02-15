@@ -23,7 +23,7 @@
           <td>{{user.lastName}}</td>
           <td>{{user.role}}</td>
           <!--(click)="editUser(user._id)" and (click)="deleteUser(user._id)" will be added to these buttons-->
-          <td><button class="btn">
+          <td><button class="btn" routerLink="/admin/users/{{user.empId}}/update">
             <span class="material-icons">edit</span>
           </button></td>
           <td><button class="btn">

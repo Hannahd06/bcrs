@@ -21,7 +21,8 @@ export const roleGuard: CanActivateFn = (route, state) => {
     const router = inject(Router);
     router.navigate(['/security/signin'], { queryParams: {returnUrl: state.url} });
     return false;
- // If the signed in user does not have the admin role,
+
+ // If the signed-in user does not have the admin role,
   } if (sessionUser.role !== 'admin') {
     console.log("Oops! You do not have the credentials to view this page!")
       return false

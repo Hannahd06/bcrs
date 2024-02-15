@@ -9,6 +9,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserUpdateModel } from './user-update-model';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class UserService {
   * @param empId
   * @returns status code 204 (no content)
   */
- updateTask(empId: number, user: UserUpdateModel) {
+ updateUser(empId: number, user: UserUpdateModel) {
   console.log('api/users/' + empId + '/update');
   // update selected user's information based on empId
   return this.http.put('api/users/' + empId + '/update', { user })
@@ -31,6 +32,12 @@ export class UserService {
  //Function that returns the URL API for getting all users from the database
  getUsers(){
   return this.http.get('/api/users');
+}
+
+// Function that returns User by empId
+getUser(empId: number) {
+  return this.http.get('/api/users/' + empId)
+
 }
 
 }

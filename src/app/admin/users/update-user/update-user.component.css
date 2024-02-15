@@ -1,5 +1,11 @@
 
-
+/**
+    Title: update-user.component.css
+    Author: Professor Richard Krasso
+    Modified by: Hannah Del Real
+    Date: 02/15/24
+    Description: CSS styling for about page BCRS update user form
+*/
 
 .update-container {
   margin: 5%;
@@ -32,5 +38,14 @@ h2, legend {
   background-color: #EEBA35;
   font-family: 'Teko', sans-serif;
 
+}
+
+.return-btn {
+  color: white;
+}
+.return-btn:hover {
+  background-color: #EEBA35;
+  color: black;
+  padding: 10px;
 }
 
