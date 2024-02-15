@@ -9,6 +9,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserUpdateModel } from './user-update-model';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,12 @@ export class UserService {
  //Function that returns the URL API for getting all users from the database
  getUsers(){
   return this.http.get('/api/users');
+}
+
+// Function that returns User by empId
+getUser(empId: number) {
+  return this.http.get('/api/users/' + empId)
+
 }
 
 }

@@ -28,13 +28,37 @@ export class UpdateUserComponent {
     this.errorMessage = ''
     this.successMessage = ''
 
+    // call the getUser function in userService to get information for selected userId
+    this.userService.getUser(this.empId).subscribe( {
+      next: (user: any) => {
+        this.user = user;
+        console.log(this.user)
+      },
+      error: (err) => {
+        console.log('error', err);
+        this.errorMessage = err.message;
+      },
+
+      // preset the input fields with data values already stored for firstName, lastName, and role for selected empId.
+      complete: () => {
+        this.updateUserForm.controls['firstName'].setValue(this.user.firstName);
+        this.updateUserForm.controls['lastName'].setValue(this.user.lastName);
+        this.updateUserForm.controls['role'].setValue(this.user.role);
+      }
+
+    })
 
   }
 
+//updateUser
   updateUser() {
+    // Use the userUpdateModel interface to set parameter that will be updated
     let user = {} as UserUpdateModel;
+    // get value form user input
     user.firstName = this.updateUserForm.controls['firstName'].value;
+    // get value form user input
     user.lastName = this.updateUserForm.controls['lastName'].value;
+    // get value form user input
     user.role = this.updateUserForm.controls['role'].value;
 
     this.userService.updateUser(this.empId, user).subscribe({

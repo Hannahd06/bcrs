@@ -7,37 +7,73 @@
             <h2>Update User Information</h2>
           </div>
           <div class="m-5">
+            <!-- Start of Form-->
           <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
             <fieldset class="form-group">
               <legend>Please fill out the information below</legend>
 
-            <div class=" row d-grid form-content">
-              <div class=" col-12 my-3 w-75 text">
-                <label for="firstName">First Name</label>
-                <input class="form-control" id="firstName" type="text" formControlName="firstName">
-              </div>
-              <div class=" col-12 my-3 w-75">
-                <label for="lasttName">Last Name</label>
-                <input id="lastName" class="form-control" type="text" formControlName="lastName">
-              </div>
-              <div class="col-12 my-3 mb-3 w-50 pb-3">
-                <label for="role">Role</label>
-                <br />
-                <select name="role" id="role" ngModel class="form-select">
-                  <option value="" disabled>select a role</option>
-                  <option value="admin" > Admin </option>
-                  <option value="standard"></option>
-                </select>
-                <br />
-              </div>
+              <div class=" row d-grid form-content">
+
+                <!-- validation required field firstName -->
+                <div *ngIf="updateUserForm.controls['firstName'].touched && updateUserForm.controls['firstName'].hasError('required')">
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Please enter a first Name!</strong>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                </div>
+
+                <!--Edit selected user's first Name-->
+                <div class=" col-12 my-3 w-75 text">
+                  <label for="firstName">First Name</label>
+                  <input class="form-control" id="firstName" type="text" formControlName="firstName">
+                </div>
+
+                <!-- validation required field lastName -->
+                <div *ngIf="updateUserForm.controls['lastName'].touched && updateUserForm.controls['lastName'].hasError('required')">
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Please enter a Last Name!</strong>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                </div>
+
+                <!--Edit selected user's Last Name-->
+                <div class=" col-12 my-3 w-75">
+                  <label for="lastName">Last Name</label>
+                  <input id="lastName" class="form-control" type="text" formControlName="lastName">
+                </div>
+
+                <!-- validation required field role -->
+                <div *ngIf="updateUserForm.controls['role'].touched && updateUserForm.controls['role'].hasError('required')">
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Please select a role!</strong>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                </div>
+                <div class="col-12 my-3 mb-3 w-50 pb-3">
+                  <!-- Select User Role -->
+                  <label for="role">Role</label>
+                  <br />
+                  <select name="role" id="role" formControlName="role" class="form-select">
+                    <option value="" disabled>select a role</option>
+                    <option value="admin" > Admin </option>
+                    <option value="standard">standard</option>
+                  </select>
+                  <br />
+                </div>
             </div>
             </fieldset>
+
+            <!--Submit Button -->
             <div class="row w-50 text-align mx-auto pt-3">
-                <button class="btn button-home mx-auto" id="submit">UPDATE USER</button>
+                <button class="btn button-home mx-auto" [disabled]="!updateUserForm.valid"  id="submit" value="submit">UPDATE USER</button>
             </div>
           </form>
-         </div>
+          <!-- End of Form-->
+
+          </div>
       </div>
+      <!--Return to user Configuration Page-->
+      <a routerLink="/admin/users" class="return-btn">Return</a>
     </div>
   </div>
 </div>
