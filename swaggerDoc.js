@@ -116,3 +116,100 @@
  *         description: Server Exception
  */
 
+
+/**
+ * updateUser
+ * @openapi
+ * /api/users/{empId}:
+ *   put:
+ *     tags:
+ *       - users
+ *     name: updateUser
+ *     description: API for updating a user
+ *     summary: Updates the User document
+ *     parameters:
+ *       - name: empId
+ *         in: path
+ *         required: true
+ *         schema: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               empId:
+ *                 type: integer
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               firstName:
+ *                 type: string
+ *               lastName:
+ *                 type: string
+ *               phoneNumber:
+ *                 type: integer
+ *               address:
+ *                 type: string
+ *               selectedSecurityQuestions:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     questionText:
+ *                       type: string
+ *                     answerText:
+ *                       type: string
+ *               role:
+ *                 type: string
+ *               isDisabled:
+ *                 type: boolean
+ *             required:
+ *               - empId
+ *               - email
+ *               - password
+ *               - firstName
+ *               - lastName
+ *               - role
+ *               - isDisabled
+ *     responses:
+ *       '204':
+ *         description: New User created
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Invalid empId
+ *       '500':
+ *         description: Server Exception
+ */
+
+
+/**
+ * deleteUser
+ * @swagger
+ * /api/users/{empId}:
+ *   put:
+ *     tags:
+ *       - users
+ *     name: deleteUser
+ *     description: API for deleting / disabling a user
+ *     summary: Deletes / disables the User
+ *     parameters:
+ *       - name: empId
+ *         in: path
+ *         required: true
+ *         description: delete user by ID
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       '200':
+ *         description: Successfully disabled user
+ *       '400':
+ *         description: User ID must be a number
+ *       '404':
+ *         description: User ID not found
+ *       '500':
+ *         description: Server Exception
+ */
