@@ -15,14 +15,13 @@
         <th>Delete</th>
         </tr>
         </thead>
-        <!--*ngFor="let user of users" will go in this tbody-->
-        <tbody>
+        <tbody *ngFor="let user of userData">
         <tr>
-          <td>user.empId </td>
-          <td>user.email </td>
-          <td>user.firstName </td>
-          <td>user.lastName</td>
-          <td>user.role </td>
+          <td>{{user.empId}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.firstName}}</td>
+          <td>{{user.lastName}}</td>
+          <td>{{user.role}}</td>
           <!--(click)="editUser(user._id)" and (click)="deleteUser(user._id)" will be added to these buttons-->
           <td><button class="btn">
             <span class="material-icons">edit</span>

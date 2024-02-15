@@ -22,6 +22,33 @@
  *         description: MongoDB Exception.
  */
 
+/**
+ * findById
+ * @openapi
+ * /api/users/{empId}:
+ *   get:
+ *     tags:
+ *       - Users
+ *     description:  API for returning a user document
+ *     summary: returns an user document
+ *     parameters:
+ *       - name: empId
+ *         in: path
+ *         required: true
+ *         description: user document id
+ *         schema:
+ *           type: number
+ *     responses:
+ *       '200':
+ *         description: OK
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Not Found
+ *       '500':
+ *         description: Internal Server Error
+ */
+
 
 /**
  * createUser
@@ -88,3 +115,4 @@
  *       '500':
  *         description: Server Exception
  */
+
