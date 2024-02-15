@@ -1,7 +1,7 @@
 /**
     Title: user.service.ts
     Author: Professor Richard Krasso
-    Modified by: Hannah Del Real
+    Modified by: Hannah Del Real, Kyle Hochdoerfer
     Date: 02/14/24
     Description: Task service
 */
@@ -27,4 +27,10 @@ export class UserService {
   // update selected user's information based on empId
   return this.http.put('api/users/' + empId + '/update', { user })
  }
+
+ //Function that returns the URL API for getting all users from the database
+ getUsers(){
+  return this.http.get('/api/users');
+}
+
 }
