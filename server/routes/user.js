@@ -167,5 +167,80 @@ router.post("/", (req, res, next) => {
 })
 
 
+// Update user API
+router.put('/users/:userId', (req, res, next) => {
+  try {
+    let { userId } = req.params; // Destructure 'userId' from request parameters.
+    empId = parseInt(userId, 10); // Parse userId to ensure it is an integer
+    console.log('userId', userId); // Log userId to the console
+
+    // Check if 'userId' is not a valid number; if not,
+    // generate a 400 error response and pass it to the error handler.
+    if (isNaN(userId)) {
+      const err = new Error('input must be a number');
+      err.status = 400;
+      console.error('err', err);
+      next(err);
+      return;
+    }
+
+    // Create a validator function based on the defined 'userSchema'.
+    const validator = ajv.compile(userSchema);
+    // Use the validator to check if the request body adheres to the specified schema.
+    const isValid = validator(req.body);
+
+    // Check if the request body is not valid according to the specified schema.
+    if (!isValid) {
+      const err = new Error('Bad Request');
+      err.status = 400;
+      err.errors = validator.errors;
+      console.error('err', err);
+      next(err);
+      return; // return to exit the function
+    }
+
+    mongo(async db => {
+      // Find the user in the database based on 'userId'.
+      const user = await db.collection('users').findOne({ userId });
+      // if the user is not found, generate a 404 error response.
+      if (!user) {
+        const err = new Error('Unable to find user with userId ' + userId);
+        err.status = 404;
+        console.error('err', err);
+        next(err);
+        return;
+      }
+      console.log(user);
+
+      console.log("UserId", userId);
+      console.log("phonenumber", req.body.phonenumber);
+      console.log("address", req.body.address);
+
+      // Update the user in the database.
+      const result = await db.collection('user').updateOne(
+        { userId },
+        { $set: { phonenumber: req.body.phonenumber, address: req.body.address }}
+      )
+
+      // If the user was not updated, return a 500 status code.
+      if (!result.modifiedCount) {
+        const err = new Error('Unable to update user with userId ' + userId);
+        err.status = 500;
+        console.error('err', err);
+        next(err);
+        return;
+      }
+
+      // Send a success response with a 204 status code.
+      res.status(204).send();
+    }, next);
+  } catch (err) {
+    console.log('err', err);
+    next(err);
+  }
+});
+
+
+
 
 module.exports = router;
