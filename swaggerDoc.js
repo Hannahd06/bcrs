@@ -131,7 +131,8 @@
  *       - name: empId
  *         in: path
  *         required: true
- *         schema: integer
+ *         schema:
+ *           type: integer
  *     requestBody:
  *       required: true
  *       content:
@@ -192,7 +193,7 @@
  * /api/users/{empId}:
  *   delete:
  *     tags:
- *       - users
+ *       - Users
  *     name: deleteUser
  *     description: API for deleting / disabling a user
  *     summary: Deletes / disables the User

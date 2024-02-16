@@ -167,52 +167,80 @@ router.post("/", (req, res, next) => {
 })
 
 
-// Update user API by Jocelyn Dupuis
+// Update user schema
+const updateUserSchema = {
+  type: 'object',
+  properties: {
+    email: { type: 'string' },
+    firstName: { type: 'string' },
+    lastName: { type: 'string' },
+    phoneNumber: { type: 'string' },
+    address: { type: 'string' },
+    role: { type: 'string' },
+  },
+  required: [
+    'email',
+    'firstName',
+    'lastName',
+    'phoneNumber',
+    'address',
+    'role'
+  ],
+  additionalProperties: false
+}
+
+//update user
 router.put('/:empId', (req, res, next) => {
   try {
-    const empId = Number(req.params.empId);
-    const user = req.body;
+
+    //variable to hold user ID from request
+    let { empId } = req.params;
+    empId = parseInt(empId, 10);
 
     // validates request
-    // generate a 400 error response and pass it to the error handler.
-    if (!user || typeof user !== 'object') {
-      const err = new Error('Invalid request');
+    // generate a 400 error response and pass it to the error handler ID is not a number
+    if (isNaN(empId)) {
+      const err = new Error('User ID must be a number');
       err.status = 400;
-      console.error('err', err);
+      console.log('err', err);
       next(err);
       return; //return to exit the function
     }
 
-    // Create variable for required input fields
-    const fieldsRequired = ['email', 'password', 'firstName', 'lastName', 'phoneNumber', 'address', 'role', 'selectedSecurityQuestions'];
-    // Create variable for missing input fields
-    const fieldsMissing = requiredFields.filter(field => !user[field]);
+    // Variables create
+    const { user } = req.body;
+    const validator = ajv.compile(updateUserSchema);
+    const isValid = validator(user);
 
-    // Check if there are any input fields that are required are left blank
-    if (fieldsMissing.length > 0) {
-      const err = new Error(`You are missing these required fields: ${fieldsMissing.join(', ')}`);
+    // 400 if user input isn't validated
+    if (!isValid) {
+      const err = new Error('Bad Request');
       err.status = 400;
-      console.error('err', err);
+      err.errors = validator.errors;
+      console.log('req.body validation failed', err);
       next(err);
       return; // return to exit the function
     }
 
     mongo(async db => {
       // Update the user in the database.
-      const result = await db.collection('users').updateOne({ empId: empId }, { $set: user });
+      const result = await db.collection('users').updateOne(
+        { empId },
+        { $set: {
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          address: user.address,
+          phoneNumber: user.phoneNumber,
+          role: user.role
+        }}
+      );
+      console.log(result);
 
-      // If the user was not updated, return a 500 status code.
-      if (!result.matchedCount) {
-        const err = new Error('Unable to find user with empId ' + empId);
+      // If the user was not updated, return a 404 status code.
+      if (!result.modifiedCount) {
+        const err = new Error('Unable to update record for empId ' + empId);
         err.status = 404;
-        console.error('err', err);
-        next(err);
-        return; //return to exit the function
-      }
-
-      if (!result.matchedCount === 0) {
-        const err = new Error('Failed to update user with empId ' + empId);
-        err.status = 500;
         console.error('err', err);
         next(err);
         return; //return to exit the function
@@ -222,7 +250,7 @@ router.put('/:empId', (req, res, next) => {
       res.status(204).send();
     }, next);
   } catch (err) {
-    console.log('err', err);
+    console.error('Error:', err);
     next(err);
   }
 });
