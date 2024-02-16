@@ -167,68 +167,55 @@ router.post("/", (req, res, next) => {
 })
 
 
-// Update user API
-router.put('/users/:userId', (req, res, next) => {
+// Update user API by Jocelyn Dupuis
+router.put('/:empId', (req, res, next) => {
   try {
-    let { userId } = req.params; // Destructure 'userId' from request parameters.
-    empId = parseInt(userId, 10); // Parse userId to ensure it is an integer
-    console.log('userId', userId); // Log userId to the console
+    const empId = Number(req.params.empId);
+    const user = req.body;
 
-    // Check if 'userId' is not a valid number; if not,
+    // validates request
     // generate a 400 error response and pass it to the error handler.
-    if (isNaN(userId)) {
-      const err = new Error('input must be a number');
+    if (!user || typeof user !== 'object') {
+      const err = new Error('Invalid request');
       err.status = 400;
       console.error('err', err);
       next(err);
-      return;
+      return; //return to exit the function
     }
 
-    // Create a validator function based on the defined 'userSchema'.
-    const validator = ajv.compile(userSchema);
-    // Use the validator to check if the request body adheres to the specified schema.
-    const isValid = validator(req.body);
+    // Create variable for required input fields
+    const fieldsRequired = ['email', 'password', 'firstName', 'lastName', 'phoneNumber', 'address', 'role', 'selectedSecurityQuestions'];
+    // Create variable for missing input fields
+    const fieldsMissing = requiredFields.filter(field => !user[field]);
 
-    // Check if the request body is not valid according to the specified schema.
-    if (!isValid) {
-      const err = new Error('Bad Request');
+    // Check if there are any input fields that are required are left blank
+    if (fieldsMissing.length > 0) {
+      const err = new Error(`You are missing these required fields: ${fieldsMissing.join(', ')}`);
       err.status = 400;
-      err.errors = validator.errors;
       console.error('err', err);
       next(err);
       return; // return to exit the function
     }
 
     mongo(async db => {
-      // Find the user in the database based on 'userId'.
-      const user = await db.collection('users').findOne({ userId });
-      // if the user is not found, generate a 404 error response.
-      if (!user) {
-        const err = new Error('Unable to find user with userId ' + userId);
+      // Update the user in the database.
+      const result = await db.collection('users').updateOne({ empId: empId }, { $set: user });
+
+      // If the user was not updated, return a 500 status code.
+      if (!result.matchedCount) {
+        const err = new Error('Unable to find user with empId ' + empId);
         err.status = 404;
         console.error('err', err);
         next(err);
-        return;
+        return; //return to exit the function
       }
-      console.log(user);
 
-      console.log("UserId", userId);
-      console.log("phonenumber", req.body.phonenumber);
-      console.log("address", req.body.address);
-
-      // Update the user in the database.
-      const result = await db.collection('user').updateOne(
-        { userId },
-        { $set: { phonenumber: req.body.phonenumber, address: req.body.address }}
-      )
-
-      // If the user was not updated, return a 500 status code.
-      if (!result.modifiedCount) {
-        const err = new Error('Unable to update user with userId ' + userId);
+      if (!result.matchedCount === 0) {
+        const err = new Error('Failed to update user with empId ' + empId);
         err.status = 500;
         console.error('err', err);
         next(err);
-        return;
+        return; //return to exit the function
       }
 
       // Send a success response with a 204 status code.
@@ -236,6 +223,70 @@ router.put('/users/:userId', (req, res, next) => {
     }, next);
   } catch (err) {
     console.log('err', err);
+    next(err);
+  }
+});
+
+// Delete / disable user
+router.delete('/:empId', (req, res, next) => {
+  try {
+    // Destructure empId from request parameters
+    let { empId } = req.params;
+    // Parse 'empId' to ensure it is an integer
+    empId = parseInt(empId, 10);
+
+    // If the 'empId' is not a valid number, generate a 400 error response
+    // and pass it to the error handler.
+    if (isNaN(empId)) {
+      const err = new Error('User ID input must be a number');
+      err.status = 400;
+      console.error('err', err);
+      next(err);
+      return; //return to exit function
+    }
+
+    mongo(async db => {
+      // Find the user by empId.
+      let user = await db.collection('users').findOne(
+        { empId }
+      );
+
+      // If the user is not found, generate a 404 error response.
+      if (!user) {
+        const err = new Error('Unable to find user with empId ' + empId);
+        err.status = 404;
+        console.err('err', err);
+        next(err);
+        return; //return to exit function
+      }
+
+      // If user is already disabled will send message
+      if (user.isDisabled === true) {
+        res.send('User is disabled');
+        return; //return to exit function
+      }
+
+      // Update user document
+      // in the MongoDB 'users' collection.
+      const result = await db.collection('users').updateOne(
+        { empId },
+        { $set: { isDisabled: true }}
+      );
+
+      // if unable to update user generate error
+      if (result.matchedCount === 0) {
+        const err = new Error('Unable to find user with empId ' + empId);
+        err.status = 404;
+        console.log('err', err)
+        next(err);
+        return; //return to exit function
+      }
+
+      // Send a success response with a 204 status code.
+      res.status(204).send('Successfully disabled user with empId ' + empId);
+    }, next);
+  } catch (err) {
+    console.error('err', err);
     next(err);
   }
 });

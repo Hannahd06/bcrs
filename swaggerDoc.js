@@ -116,35 +116,100 @@
  *         description: Server Exception
  */
 
+
 /**
- * signin
+ * updateUser
  * @openapi
- * /api/security/signin:
- *   post:
+ * /api/users/{empId}:
+ *   put:
  *     tags:
- *       - Security
- *     name: signin
- *     summary: Logs the user in
+ *       - users
+ *     name: updateUser
+ *     description: API for updating a user
+ *     summary: Updates the User document
+ *     parameters:
+ *       - name: empId
+ *         in: path
+ *         required: true
+ *         schema: integer
  *     requestBody:
- *       description: Email and password
+ *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             required:
- *               - email
- *               - password
+ *             type: object
  *             properties:
+ *               empId:
+ *                 type: integer
  *               email:
  *                 type: string
  *               password:
  *                 type: string
+ *               firstName:
+ *                 type: string
+ *               lastName:
+ *                 type: string
+ *               phoneNumber:
+ *                 type: integer
+ *               address:
+ *                 type: string
+ *               selectedSecurityQuestions:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     questionText:
+ *                       type: string
+ *                     answerText:
+ *                       type: string
+ *               role:
+ *                 type: string
+ *               isDisabled:
+ *                 type: boolean
+ *             required:
+ *               - empId
+ *               - email
+ *               - password
+ *               - firstName
+ *               - lastName
+ *               - role
+ *               - isDisabled
  *     responses:
- *       '200':
- *         description: User signed in
+ *       '204':
+ *         description: New User created
  *       '400':
  *         description: Bad Request
  *       '404':
- *         description: Valid username and/or password not found
+ *         description: Invalid empId
  *       '500':
- *         description: MongoDB Exception
+ *         description: Server Exception
+ */
+
+
+/**
+ * deleteUser
+ * @swagger
+ * /api/users/{empId}:
+ *   put:
+ *     tags:
+ *       - users
+ *     name: deleteUser
+ *     description: API for deleting / disabling a user
+ *     summary: Deletes / disables the User
+ *     parameters:
+ *       - name: empId
+ *         in: path
+ *         required: true
+ *         description: delete user by ID
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       '200':
+ *         description: Successfully disabled user
+ *       '400':
+ *         description: User ID must be a number
+ *       '404':
+ *         description: User ID not found
+ *       '500':
+ *         description: Server Exception
  */
