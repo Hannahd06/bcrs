@@ -190,7 +190,7 @@
  * deleteUser
  * @swagger
  * /api/users/{empId}:
- *   put:
+ *   delete:
  *     tags:
  *       - users
  *     name: deleteUser
