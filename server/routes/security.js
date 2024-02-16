@@ -15,6 +15,7 @@ const { mongo } = require('../utils/mongo');
 const { ObjectId } = require('mongodb');
 
 const bcrypt = require('bcryptjs');
+const saltRounds = 10
 
 //signin
 router.post('/signin', async(req, res) =>{
@@ -35,29 +36,30 @@ router.post('/signin', async(req, res) =>{
 
       //If a valid email was found
       if (user) {
+
+
         //Determine if the request body password is valid and save the boolean result
         //let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-        let passwordIsValid = true
 
         //If the password is valid
-        if (passwordIsValid) {
+        if (req.body.password == user.password) {
             //Output a message stating that the user has logged in and send it as a response
             console.log('User logged in');
             res.status(200).send({
-                'message': 'User logged in'
+                'message': 'User logged in as ' + user.firstName + " " + user.lastName
             })
         } else {
             //If the password is invalid, output an error message and send it as a response
-            console.log('Invalid username and/or password');
+            console.log('Invalid email and/or password');
             res.status(404).send({
-                'message': `Invalid username and/or password`
+                'message': `Valid email and/or password not found`
             })
         }
     } else {
         //If the username is invalid, output an error message and send it as a response
-        console.log('Invalid username and/or password');
+        console.log('Invalid email and/or password');
         res.status(404).send({
-            'message': `Invalid username and/or password`
+            'message': `Valid email and/or password not found`
         })
     }
     })
