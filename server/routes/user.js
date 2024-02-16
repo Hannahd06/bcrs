@@ -273,7 +273,7 @@ router.delete('/:empId', (req, res, next) => {
         { $set: { isDisabled: true }}
       );
 
-      // if unable to update user generate error 
+      // if unable to update user generate error
       if (result.matchedCount === 0) {
         const err = new Error('Unable to find user with empId ' + empId);
         err.status = 404;

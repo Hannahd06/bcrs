@@ -14,50 +14,78 @@ const router =  express.Router();
 const { mongo } = require('../utils/mongo');
 const { ObjectId } = require('mongodb');
 
+const Ajv = require('ajv')
+
+const ajv = new Ajv()
+
 const bcrypt = require('bcryptjs');
+const saltRounds = 10
+
+const signinSchema = {
+  type: 'object',
+  properties:{
+    email: { type: 'string'},
+    password: { type: 'string'}
+  },
+  required: ["email", "password"],
+  additionalProperties: false
+}
 
 //signin
 router.post('/signin', async(req, res) =>{
   try {
+    //Get the signin data from the request
     let signinData = req.body;
 
-    //Determine if valid signin data was provided, and if not, output an error and send it as a response
-    if(!signinData){
-      console.log('Invalid username and/or password');
-            res.status(400).send({
-                'message': `Bad Request`
-            })
+    //Determine if the signinData matches the required schema
+    const validator = ajv.compile(signinSchema);
+    const isValid = validator(signinData);
+
+    //If the provided signinData does not fit the required schema, trigger a 400 Bad Request error
+    if(!isValid){
+      const err = new Error("Bad Request")
+      err.status = 400;
+      err.errors = validator.errors;
+      console.error("err", err)
+      next(err)
+      return
     }
 
     //Connect to the database and find a user with an email matching the user input
     mongo(async db => {
       let user = await db.collection("users").findOne({email: signinData.email});
+      console.log(user)
 
       //If a valid email was found
       if (user) {
         //Determine if the request body password is valid and save the boolean result
-        //let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-        let passwordIsValid = true
+        let passwordIsValid = bcrypt.compareSync(signinData.password, user.password);
 
         //If the password is valid
         if (passwordIsValid) {
-            //Output a message stating that the user has logged in and send it as a response
-            console.log('User logged in');
-            res.status(200).send({
-                'message': 'User logged in'
-            })
+          // Set time of last login
+          const time = new Date();
+          await db.collection('users').updateOne(
+            { email: signinData.email },
+            { $set: { lastSignin: time } }
+          );
+          user.lastSignin = time;
+          //Output a message stating that the user has logged in and send it as a response
+          console.log('User logged in at' + time);
+          res.send(user);
+          return;
         } else {
             //If the password is invalid, output an error message and send it as a response
-            console.log('Invalid username and/or password');
+            console.log('Invalid email and/or password');
             res.status(404).send({
-                'message': `Invalid username and/or password`
+                'message': `Valid email and/or password not found`
             })
         }
     } else {
         //If the username is invalid, output an error message and send it as a response
-        console.log('Invalid username and/or password');
+        console.log('Invalid email and/or password');
         res.status(404).send({
-            'message': `Invalid username and/or password`
+            'message': `Valid email and/or password not found`
         })
     }
     })
