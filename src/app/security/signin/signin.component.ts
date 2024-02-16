@@ -14,8 +14,6 @@ import { SecurityService } from '../security.service';
 //exports session user interface
 export interface SessionUser {
   empId: number;
-  firstName: string;
-  lastName: string;
   email: string;
 }
 
@@ -72,7 +70,7 @@ export class SigninComponent {
         this.sessionUser = user;
         //gives user two session cookies to name and Id
         this.cookieService.set('session_user', empId, 1);
-        this.cookieService.set('session_name', `${user.firstName} ${user.lastName}`, 1);
+        this.cookieService.set('session_name', `${user.email}`, 1);
 
         //returns url
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
