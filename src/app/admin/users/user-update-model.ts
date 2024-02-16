@@ -8,7 +8,10 @@
 
 // Interface to set the parameters that admin can update for any user profile
 export interface UserUpdateModel {
+  email: string;
   firstName: string;
   lastName: string;
+  address: string;
+  phoneNumber: string;
   role: string;
 }

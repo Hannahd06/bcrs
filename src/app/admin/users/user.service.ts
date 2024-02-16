@@ -26,7 +26,7 @@ export class UserService {
  updateUser(empId: number, user: UserUpdateModel) {
   console.log('api/users/' + empId + '/update');
   // update selected user's information based on empId
-  return this.http.put('api/users/' + empId + '/update', { user })
+  return this.http.put('api/users/' + empId, { user })
  }
 
  //Function that returns the URL API for getting all users from the database

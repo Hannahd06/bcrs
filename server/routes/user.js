@@ -13,9 +13,11 @@ const express = require('express');
 const router =  express.Router();
 const { mongo } = require('../utils/mongo');
 const { ObjectId } = require('mongodb');
+const bcrypt = require('bcryptjs');
 const Ajv = require('ajv');
 
 const ajv = new Ajv();
+let saltRounds = 10;
 
 //Declare a userSchema containing all user properties
 const userSchema = {
@@ -26,7 +28,7 @@ const userSchema = {
     password: { type: 'string'},
     firstName: { type: 'string'},
     lastName: { type: 'string'},
-    phoneNumber: { type: 'number'},
+    phoneNumber: { type: 'string'},
     address: { type: 'string'},
     selectedSecurityQuestions: { type: 'array' },
     role: {type: 'string'},
@@ -36,6 +38,27 @@ const userSchema = {
     'empId',
     'email',
     'password',
+    'firstName',
+    'lastName',
+    'phoneNumber',
+    'address',
+    'role'
+  ],
+  additionalProperties: false
+}
+
+const updateUserSchema = {
+  type: 'object',
+  properties: {
+    email: { type: 'string'} ,
+    firstName: { type: 'string'},
+    lastName: { type: 'string'},
+    phoneNumber: { type: 'string'},
+    address: { type: 'string'},
+    role: {type: 'string'},
+  },
+  required: [
+    'email',
     'firstName',
     'lastName',
     'phoneNumber',
@@ -126,6 +149,9 @@ router.post("/", (req, res, next) => {
       return;
     }
 
+    // hash user password
+    user.password = bcrypt.hashSync(user.password, saltRounds);
+
     mongo(async db => {
       //Check if email user inputs is already in database to ensure that empId is unique
       const emailUnavailable = await db.collection("users").findOne({ email: user.email });
@@ -166,66 +192,73 @@ router.post("/", (req, res, next) => {
   }
 })
 
-
-// Update user API by Jocelyn Dupuis
+//updateUser
 router.put('/:empId', (req, res, next) => {
   try {
-    const empId = Number(req.params.empId);
-    const user = req.body;
 
-    // validates request
-    // generate a 400 error response and pass it to the error handler.
-    if (!user || typeof user !== 'object') {
-      const err = new Error('Invalid request');
-      err.status = 400;
-      console.error('err', err);
-      next(err);
-      return; //return to exit the function
-    }
+     //Hold the user ID from the request in a variable
+     let { empId } = req.params;
+     empId = parseInt(empId, 10);
 
-    // Create variable for required input fields
-    const fieldsRequired = ['email', 'password', 'firstName', 'lastName', 'phoneNumber', 'address', 'role', 'selectedSecurityQuestions'];
-    // Create variable for missing input fields
-    const fieldsMissing = requiredFields.filter(field => !user[field]);
+     //If the given ID is not a number, return an error
+     if(isNaN(empId)) {
+       const err = new Error("User ID must be a number")
+       err.status = 400
+       console.log("err", err);
+       next(err);
+       return;
+     }
 
-    // Check if there are any input fields that are required are left blank
-    if (fieldsMissing.length > 0) {
-      const err = new Error(`You are missing these required fields: ${fieldsMissing.join(', ')}`);
-      err.status = 400;
-      console.error('err', err);
-      next(err);
-      return; // return to exit the function
-    }
+     const { user } =  req.body;
+     const validator = ajv.compile(updateUserSchema);
+     const isValid = validator(user);
 
-    mongo(async db => {
-      // Update the user in the database.
-      const result = await db.collection('users').updateOne({ empId: empId }, { $set: user });
+     // If the user input does not pass validation, return 400 error
+     if (!isValid) {
+       const err = new Error('Bad Request');
+       err.status = 400;
+       err.errors = validator.errors;
+       console.log('req.body validation failed', err)
+       next(err);
+       return;
+     }
 
-      // If the user was not updated, return a 500 status code.
-      if (!result.matchedCount) {
-        const err = new Error('Unable to find user with empId ' + empId);
-        err.status = 404;
-        console.error('err', err);
-        next(err);
-        return; //return to exit the function
-      }
+     mongo(async db => {
+      const result = await db.collection("users").updateOne(
+        {empId},
+        {$set: {
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          address: user.address,
+          phoneNumber: user.phoneNumber,
+          role: user.role
+        }}
+        );
+        console.log(result);
 
-      if (!result.matchedCount === 0) {
-        const err = new Error('Failed to update user with empId ' + empId);
-        err.status = 500;
-        console.error('err', err);
-        next(err);
-        return; //return to exit the function
-      }
+         // If user information is not updated, return 404 error
+        if (!result.modifiedCount) {
+          const err = new Error('Unable to update record for empId' + empId);
+          err.status = 404;
+          console.error('err', err);
+          next(err);
+          return;
+          }
 
-      // Send a success response with a 204 status code.
+
+
+      //Send the matching user document as a response
       res.status(204).send();
     }, next);
+
+
   } catch (err) {
-    console.log('err', err);
+    console.error("Error:", err);
     next(err);
   }
-});
+
+})
 
 // Delete / disable user
 router.delete('/:empId', (req, res, next) => {
@@ -273,7 +306,7 @@ router.delete('/:empId', (req, res, next) => {
         { $set: { isDisabled: true }}
       );
 
-      // if unable to update user generate error 
+      // if unable to update user generate error
       if (result.matchedCount === 0) {
         const err = new Error('Unable to find user with empId ' + empId);
         err.status = 404;

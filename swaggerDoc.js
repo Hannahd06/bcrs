@@ -81,7 +81,7 @@
  *                   lastName:
  *                     type: string
  *                   phoneNumber:
- *                     type: integer
+ *                     type: string
  *                   address:
  *                     type: string
  *                   selectedSecurityQuestions:
@@ -210,6 +210,38 @@
  *         description: User ID must be a number
  *       '404':
  *         description: User ID not found
+ *       '500':
+ *         description: Server Exception
+ */
+
+/**
+ * signin
+ * @openapi
+ * /api/security/signin:
+ *   post:
+ *     tags:
+ *       - Security
+ *     summary: User siginin
+ *     requestBody:
+ *       description: User login information
+ *       content:
+ *         application/json:
+ *           schema:
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *               Password:
+ *                 type: string
+ *     responses:
+ *       '204':
+ *         description: User logged in
+ *       '401':
+ *         description: Invalid username and/or password
+ *       '400':
+ *         description: Unauthorized
  *       '500':
  *         description: Server Exception
  */

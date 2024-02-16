@@ -9,11 +9,31 @@
 <div class="container-fluid pt-5">
   <div class=" row justify-content-center">
     <div class="update-container col-lg-6 col-md-10 col-sm-12">
+
+
       <div class="card ">
 
           <div class="card-title pt-5">
             <h2>Update User Information</h2>
           </div>
+
+           <!-- Display error and success messages -->
+          <div class="justify-content-center pt-4">
+            <div class="col-sml-10 col-mid-8 col-lg-6>">
+              <div class="col-sm-6 text-align" style="margin: auto;">
+                <div class="justify-content-center" ngClass="alert alert-info" *ngIf="errorMessage" role="alert">
+                  {{ errorMessage }}
+                </div>
+              </div>
+
+              <div class="col-sm-6 text-align" style="margin: auto;">
+                <div class="justify-content-center" class=" alert alert-success" *ngIf="successMessage" role="alert">
+                  {{ successMessage }}
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="m-5">
             <!-- Start of Form-->
           <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
@@ -21,6 +41,21 @@
               <legend>Please fill out the information below</legend>
 
               <div class=" row d-grid form-content">
+
+                <!-- validation required field email -->
+                <div *ngIf="updateUserForm.controls['email'].touched && updateUserForm.controls['email'].hasError('required')">
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Please enter a first Name!</strong>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                </div>
+
+                <!--Edit selected user's email -->
+                <div class=" col-12 my-3 w-75 text">
+                  <label for="firstName">email</label>
+                  <input class="form-control" id="email" type="text" formControlName="email">
+                </div>
+
 
                 <!-- validation required field firstName -->
                 <div *ngIf="updateUserForm.controls['firstName'].touched && updateUserForm.controls['firstName'].hasError('required')">
@@ -49,6 +84,37 @@
                   <label for="lastName">Last Name</label>
                   <input id="lastName" class="form-control" type="text" formControlName="lastName">
                 </div>
+
+
+                <!-- validation required field address -->
+                <div *ngIf="updateUserForm.controls['address'].touched && updateUserForm.controls['address'].hasError('required')">
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Address is required!</strong>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                </div>
+
+                <!--Edit selected user's address-->
+                <div class=" col-12 my-3 w-75 text">
+                  <label for="address">Address</label>
+                  <input class="form-control" id="address" type="text" formControlName="address">
+                </div>
+
+                 <!-- validation required field phoneNumber -->
+                 <div *ngIf="updateUserForm.controls['phoneNumber'].touched && updateUserForm.controls['phoneNumber'].hasError('required')">
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Phone Number is required!</strong>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                </div>
+
+                <!--Edit selected user's first Name-->
+                <div class=" col-12 my-3 w-75 text">
+                  <label for="phoneNumber">Phone</label>
+                  <input class="form-control" id="phoneNumber" type="text" formControlName="phoneNumber">
+                </div>
+
+
 
                 <!-- validation required field role -->
                 <div *ngIf="updateUserForm.controls['role'].touched && updateUserForm.controls['role'].hasError('required')">
