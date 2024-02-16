@@ -213,3 +213,36 @@
  *       '500':
  *         description: Server Exception
  */
+
+/**
+ * signin
+ * @openapi
+ * /api/security/signin:
+ *   post:
+ *     tags:
+ *       - Security
+ *     name: signin
+ *     summary: Logs the user in
+ *     requestBody:
+ *       description: Email and password
+ *       content:
+ *         application/json:
+ *           schema:
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       '200':
+ *         description: User signed in
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Valid username and/or password not found
+ *       '500':
+ *         description: MongoDB Exception
+ */
