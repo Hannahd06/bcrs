@@ -208,6 +208,7 @@ router.put('/:empId', (req, res, next) => {
        next(err);
        return; //return to exit the function
      }
+
      // Variables Create
      const { user } =  req.body;
      const validator = ajv.compile(updateUserSchema);

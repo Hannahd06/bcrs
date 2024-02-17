@@ -123,7 +123,7 @@
  * /api/users/{empId}:
  *   put:
  *     tags:
- *       - users
+ *       - Users
  *     name: updateUser
  *     description: API for updating a user
  *     summary: Updates the User document
@@ -140,44 +140,31 @@
  *           schema:
  *             type: object
  *             properties:
- *               empId:
- *                 type: integer
- *               email:
- *                 type: string
- *               password:
- *                 type: string
- *               firstName:
- *                 type: string
- *               lastName:
- *                 type: string
- *               phoneNumber:
- *                 type: integer
- *               address:
- *                 type: string
- *               selectedSecurityQuestions:
- *                 type: array
- *                 items:
- *                   type: object
- *                   properties:
- *                     questionText:
- *                       type: string
- *                     answerText:
- *                       type: string
- *               role:
- *                 type: string
- *               isDisabled:
- *                 type: boolean
+ *               user:
+ *                 type: object
+ *                 properties:
+ *                   email:
+ *                     type: string
+ *                   firstName:
+ *                     type: string
+ *                   lastName:
+ *                     type: string
+ *                   address:
+ *                     type: string
+ *                   phoneNumber:
+ *                     type: string
+ *                   role:
+ *                     type: string
  *             required:
- *               - empId
  *               - email
- *               - password
  *               - firstName
  *               - lastName
+ *               - address
+ *               - phoneNumber
  *               - role
- *               - isDisabled
  *     responses:
  *       '204':
- *         description: New User created
+ *         description:  User updated
  *       '400':
  *         description: Bad Request
  *       '404':
