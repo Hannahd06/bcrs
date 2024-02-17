@@ -30,6 +30,10 @@ h2, legend {
   text-align: center;
 }
 
+p {
+  text-align: center;
+}
+
 /*styling for col length*/
 .col-12 {
   margin-left: 10%;

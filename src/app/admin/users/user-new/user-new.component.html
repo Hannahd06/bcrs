@@ -18,6 +18,11 @@
             <h2>Create New User</h2>
           </div>
 
+          <!-- User Message area -->
+          <div class="newUserConfirmation">
+            <p id="newUserConfirmation">{{ message }}</p>
+          </div>
+
           <div class="m-5">
             <!--form to create new user-->
           <form [formGroup]="createNewUserForm" (ngSubmit)="createNewUser(createNewUserForm.value)">
