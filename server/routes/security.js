@@ -1,10 +1,3 @@
-//--------------------------------------------
-//Title: security.js
-//Author: Kyle Hochdoerfer
-//Date: 02/12/24
-//Description: Security routing for BCRS
-//---------------------------------------------
-
 //Enable strict mode
 "use strict";
 

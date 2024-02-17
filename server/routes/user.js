@@ -73,7 +73,7 @@ router.get("/", (req, res, next) => {
   try {
     // find all users in users collection of database
     mongo(async db => {
-      const user = await db.collection("users").find().toArray();
+      const user = await db.collection("users").find( { isDisabled: false} ).toArray();
 
       // If user input does not match database send error message
       if (!user) {
@@ -208,6 +208,7 @@ router.put('/:empId', (req, res, next) => {
        next(err);
        return; //return to exit the function
      }
+
      // Variables Create
      const { user } =  req.body;
      const validator = ajv.compile(updateUserSchema);

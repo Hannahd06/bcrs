@@ -6,10 +6,10 @@
 
 //import statements
 import { Component } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
-import { SecurityService } from '../security.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { SecurityService } from '../security.service';
 
 //exports session user interface
 export interface SessionUser {
@@ -61,7 +61,7 @@ export class SigninComponent {
     let password = this.signInForm.controls['password'].value
 
 
-    //if email and pssaword is not valid an error message is displayed
+    //if email and is not valid an error message is displayed
     if (!email || !password) {
       this.errorMessage = 'Please provide a valid email and passowrd!';
       this.isLoading = false;
