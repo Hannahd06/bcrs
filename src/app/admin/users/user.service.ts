@@ -10,6 +10,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserUpdateModel } from './user-update-model';
 import { User } from './user';
+import { NewUserModel } from './user-new-model';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +47,11 @@ export class UserService {
   //Function that returns the url for user deletion
   deleteUser(empId: string) {
     return this.http.delete(`/api/users/${empId}`);
+  }
+
+  //function to create new user
+  newUser(empId: number, user: NewUserModel) {
+    console.log('api/users/new' + empId + '/new');
+    return this.http.put('api/users' + empId, {user})
   }
 }
