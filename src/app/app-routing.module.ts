@@ -14,6 +14,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { authGuard } from './shared/auth.guard';
 import { UserListComponent } from './admin/users/user-list/user-list.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -42,14 +43,16 @@ const routes: Routes = [
         title: 'BCRS: Contact Us'
       },
       {
-        path: 'admin',
-        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+        path: 'user-profile',
+        component: UserProfileComponent,
+        title: 'BCRS: User Profile',
+        canActivate: [authGuard]
       },
       {
-        path: 'admin/users/user-list',
-        component: UserListComponent
+        path: 'admin',
+        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+        canActivate: [authGuard]
       }
-
     ]
   },
   {

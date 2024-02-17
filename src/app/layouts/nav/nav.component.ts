@@ -12,6 +12,7 @@ import { Component } from '@angular/core';
 
 export interface AppUser {
   fullName: string;
+  role: string;
 }
 
 @Component({
@@ -21,16 +22,17 @@ export interface AppUser {
 })
 export class NavComponent {
   appUser: AppUser
-  isLoggedin: boolean
+  isSignedIn: boolean
 
   constructor(private cookieService: CookieService) {
     this.appUser = {} as AppUser;
-    this.isLoggedin = this.cookieService.get('session_user') ? true : false;
+    this.isSignedIn = this.cookieService.get('session_user') ? true : false;
 
    // check if user is logged in and log user's name to console
-    if (this.isLoggedin) {
+    if (this.isSignedIn) {
       this.appUser = {
-        fullName: this.cookieService.get('session_name')
+        fullName: this.cookieService.get('session_name'),
+        role: this.cookieService.get('session_role')
       }
       console.log(this.appUser.fullName)
     }
