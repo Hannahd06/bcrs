@@ -61,7 +61,7 @@ export class SigninComponent {
     let password = this.signInForm.controls['password'].value
 
 
-    //if ID is not valid an error message is displayed
+    //if email and pssaword is not valid an error message is displayed
     if (!email || !password) {
       this.errorMessage = 'Please provide a valid email and passowrd!';
       this.isLoading = false;
