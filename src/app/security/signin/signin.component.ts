@@ -6,10 +6,10 @@
 
 //import statements
 import { Component } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
-import { SecurityService } from '../security.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { SecurityService } from '../security.service';
 
 //exports session user interface
 export interface SessionUser {
