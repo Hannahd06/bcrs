@@ -56,7 +56,7 @@
  * /api/users:
  *   post:
  *     tags:
- *       - users
+ *       - Users
  *     name: createUsers
  *     description: API for creating a new User
  *     summary: Creates a  new User document
@@ -131,7 +131,8 @@
  *       - name: empId
  *         in: path
  *         required: true
- *         schema: integer
+ *         schema:
+ *           type: integer
  *     requestBody:
  *       required: true
  *       content:
@@ -190,9 +191,9 @@
  * deleteUser
  * @swagger
  * /api/users/{empId}:
- *   put:
+ *   delete:
  *     tags:
- *       - users
+ *       - Users
  *     name: deleteUser
  *     description: API for deleting / disabling a user
  *     summary: Deletes / disables the User
@@ -221,9 +222,10 @@
  *   post:
  *     tags:
  *       - Security
- *     summary: User siginin
+ *     name: signin
+ *     summary: Logs the user in
  *     requestBody:
- *       description: User login information
+ *       description: Email and password
  *       content:
  *         application/json:
  *           schema:
@@ -233,15 +235,15 @@
  *             properties:
  *               email:
  *                 type: string
- *               Password:
+ *               password:
  *                 type: string
  *     responses:
- *       '204':
- *         description: User logged in
- *       '401':
- *         description: Invalid username and/or password
+ *       '200':
+ *         description: User signed in
  *       '400':
- *         description: Unauthorized
+ *         description: Bad Request
+ *       '404':
+ *         description: Valid username and/or password not found
  *       '500':
- *         description: Server Exception
+ *         description: MongoDB Exception
  */

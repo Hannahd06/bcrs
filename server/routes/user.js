@@ -206,14 +206,14 @@ router.put('/:empId', (req, res, next) => {
        err.status = 400
        console.log("err", err);
        next(err);
-       return;
+       return; //return to exit the function
      }
-
+     // Variables Create
      const { user } =  req.body;
      const validator = ajv.compile(updateUserSchema);
      const isValid = validator(user);
 
-     // If the user input does not pass validation, return 400 error
+     // 400 if user input isn't validated
      if (!isValid) {
        const err = new Error('Bad Request');
        err.status = 400;
@@ -237,21 +237,18 @@ router.put('/:empId', (req, res, next) => {
         );
         console.log(result);
 
-         // If user information is not updated, return 404 error
+         // If the user was not updated, return a 404 status code.
         if (!result.modifiedCount) {
           const err = new Error('Unable to update record for empId' + empId);
           err.status = 404;
           console.error('err', err);
           next(err);
-          return;
+          return; //return to exit the function
           }
 
-
-
-      //Send the matching user document as a response
+       // Send a success response with a 204 status code.
       res.status(204).send();
     }, next);
-
 
   } catch (err) {
     console.error("Error:", err);
