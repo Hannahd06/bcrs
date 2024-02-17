@@ -27,7 +27,8 @@ const routes: Routes = [
         component: UserNewComponent,
         title: 'BCRS: Create a New User'
       }
-    ]
+    ],
+    canActivate: [roleGuard]
   },
 ];
 

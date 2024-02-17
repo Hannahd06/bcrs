@@ -8,14 +8,16 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-
-import { UserService } from 'src/app/admin/users/user.service';
-import { User } from 'src/app/admin/users/user';
+import { SecurityService } from '../security.service';
 
 //exports session user interface
 export interface SessionUser {
   empId: number;
+  firstName: string;
+  lastName: string
+  role: string;
   email: string;
+
 }
 
 @Component({
@@ -26,30 +28,85 @@ export interface SessionUser {
 
 //exports class
 export class SigninComponent {
-  user: User; // User object
-  errorMessage: string; // Error message
+  //variables created
+  errorMessage: string;
+  sessionUser: SessionUser
+  isLoading: boolean = false;
 
-  // Inject the user service and router
-  constructor(private userService: UserService, private cookieService: CookieService, private router: Router) {
-    this.user = {} as User; // Initialize the user object
-    this.errorMessage = ''; // Initialize the error message
+  //form builder creates signin form that and accepts numerical values
+  signInForm = this.fb.group({
+    email: [null, Validators.compose([Validators.required, Validators.email])],
+    password: [null, Validators.compose([Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')])]
+  });
+
+  //constructor created that passes the following
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private cookieService: CookieService,
+    private securityService: SecurityService,
+    private fb: FormBuilder
+  ) {
+    this.sessionUser = {} as SessionUser; // Initialize a session user object
+    this.errorMessage = ''; //default value set
   }
 
-  // Signin method
-  signin() {
-    this.userService.login(this.user).subscribe({
-      next: () => {
-        // Add the user to a cookie using the ngx-cookie-service
-        this.cookieService.set('session_user', this.user.email, 1); // Expires in 1 day
+  //function for user to signin
+  signIn() {
+    //set isLoading to true and get Id from form
+    this.isLoading = true;
+    console.log("SigninForm:", this.signInForm.value);
+    let email = this.signInForm.controls['email'].value;
+    let password = this.signInForm.controls['password'].value
 
-        // If the login is successful, redirect to the home page
-        this.router.navigate(['/']);
+
+    //if ID is not valid an error message is displayed
+    if (!email || !password) {
+      this.errorMessage = 'Please provide a valid email and passowrd!';
+      this.isLoading = false;
+      this.hideAlert();
+      return;
+
+    }
+
+    //subscribe to security service
+    this.securityService.signIn(email, password).subscribe({
+      next: (user: any) => {
+        console.log('user', user);
+
+        this.sessionUser = user;
+
+        //gives user two session cookies to name and Id
+        this.cookieService.set('session_user', JSON.stringify(this.sessionUser), 1);
+        this.cookieService.set('session_name', `${user.firstName} ${user.lastName}`, 1);
+        this.cookieService.set('session_role', `${user.role}`, 1);
+
+        //returns url
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+
+        this.isLoading = false;
+
+        this.router.navigate([returnUrl]);
       },
-      error: () => {
-        // If the login fails, log the error
-        console.error();
-        this.errorMessage = 'The email or password is incorrect';
+      error: (err) => {
+        this.isLoading = false;
+
+        if (err.error.message) {
+          //sets value of error message
+          this.errorMessage = err.error.message;
+          console.log('err', err);
+          this.hideAlert();
+          return;
+        }
       }
     });
   }
+
+  // Set a timeout for alert displays
+  hideAlert() {
+    setTimeout( () => {
+      this.errorMessage = '';
+    }, 5000)
+  }
+
 }
