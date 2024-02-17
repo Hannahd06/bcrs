@@ -7,7 +7,7 @@
  * Description: User Interface for Admin duties
 */
 
-// Expoort  Statement
+// Export  Statement
 
 export interface User {
     empId: number;

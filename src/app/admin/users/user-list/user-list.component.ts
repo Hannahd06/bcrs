@@ -21,11 +21,39 @@ export class UserListComponent {
   userData: any;
 
   //Declare a constructor with the userService as a parameter
-  constructor(private user:UserService){
+  constructor(private userService :UserService){
 
     //Subscribe to to the database to store user document data in the data variable
-    this.user.getUsers().subscribe(data=>{
-      this.userData=data;
+    this.userService.getUsers().subscribe(data=>{
+      this.userData = data;
     })
  }
+
+ //Create a method to delete a user
+ deleteUser(empId: string | undefined) {
+
+  //Check if the id is defined
+  if (empId !== undefined) {
+
+    //Confirm the admin wants to delete the user
+    if (!confirm('Are you sure you want to delete this user?')) {
+      return;
+    }
+
+    //Log the user's ID to the console
+    console.log('Deleting user:', empId);
+
+    //Call the user service to delete the user
+    this.userService.deleteUser(empId).subscribe({
+      next: (result) => {
+        console.log('result:', result); // log the result to the console
+      },
+      error: (err) => {
+        console.error('error:', err); // log any errors to the console
+      }
+      });
+    } else {
+      console.error('User ID is undefined'); // log an error to the console
+    }
+  }
 }
