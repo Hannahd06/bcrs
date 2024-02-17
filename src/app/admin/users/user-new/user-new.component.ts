@@ -8,7 +8,7 @@
 
 //import statements
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -22,7 +22,7 @@ import { HttpClient } from '@angular/common/http';
 export class UserNewComponent implements OnInit{
   createNewUserForm: FormGroup;
   message: string = '';
-  
+
 
   //constructor that injects the HttpClient
   constructor(private http: HttpClient) {
