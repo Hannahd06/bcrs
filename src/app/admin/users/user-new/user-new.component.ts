@@ -31,10 +31,10 @@ export class UserNewComponent implements OnInit{
       'userName': new FormControl(null, Validators.required), //validators required
       'password': new FormControl(null, Validators.required), //validators required
       'email': new FormControl(null, [Validators.required, Validators.email]), //validators required
-      'firstName': new FormControl(null), //validators required
-      'lastName': new FormControl(null), //validators required
-      'phoneNumber': new FormControl(null), //validators required
-      'address': new FormControl(null) //validators required
+      'firstName': new FormControl(null), 
+      'lastName': new FormControl(null),
+      'phoneNumber': new FormControl(null),
+      'address': new FormControl(null)
     });
 
   }
