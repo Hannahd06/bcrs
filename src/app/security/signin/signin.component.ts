@@ -6,10 +6,11 @@
 
 //import statements
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { SecurityService } from '../security.service';
+
+import { UserService } from 'src/app/admin/users/user.service';
+import { User } from 'src/app/admin/users/user';
 
 //exports session user interface
 export interface SessionUser {
@@ -25,70 +26,29 @@ export interface SessionUser {
 
 //exports class
 export class SigninComponent {
-  //variables created
-  errorMessage: string;
-  sessionUser: SessionUser;
-  isLoading: boolean = false;
+  user: User; // User object
+  errorMessage: string; // Error message
 
-  //form builder creates signin form that and accepts numerical values
-  signinForm = this.fb.group({
-    empId: [null, Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])]
-  });
-
-  //constructor created that passes the following
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private cookieService: CookieService,
-    private securityService: SecurityService,
-    private fb: FormBuilder
-  ) {
-    this.sessionUser = {} as SessionUser; //default value set
-    this.errorMessage = ''; //default value set
+  // Inject the user service and router
+  constructor(private userService: UserService, private cookieService: CookieService, private router: Router) {
+    this.user = {} as User; // Initialize the user object
+    this.errorMessage = ''; // Initialize the error message
   }
 
-  //function for user to signin
+  // Signin method
   signin() {
-    //set isLoading to true and get Id from form
-    this.isLoading = true;
-    console.log("signinForm", this.signinForm.value);
-    const empId = this.signinForm.controls['empId'].value;
+    this.userService.login(this.user).subscribe({
+      next: () => {
+        // Add the user to a cookie using the ngx-cookie-service
+        this.cookieService.set('session_user', this.user.email, 1); // Expires in 1 day
 
-    //if ID is not valid an error message is displayed
-    if (!empId || isNaN(parseInt(empId, 10))) {
-      this.errorMessage = 'The user ID is invalid. Please enter a number.';
-      this.isLoading = false;
-      return;
-    }
-
-    //subscribe to security service
-    this.securityService.getUserByEmpId(empId).subscribe({
-      next: (user: any) => {
-        console.log('user', user);
-
-        //session user to the logged employee
-        this.sessionUser = user;
-        //gives user two session cookies to name and Id
-        this.cookieService.set('session_user', empId, 1);
-        this.cookieService.set('session_name', `${user.email}`, 1);
-
-        //returns url
-        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-
-        this.isLoading = false;
-
-        this.router.navigate([returnUrl]);
+        // If the login is successful, redirect to the home page
+        this.router.navigate(['/']);
       },
-      error: (err) => {
-        this.isLoading = false;
-
-        if (err.error.message) {
-          this.errorMessage = err.error.message;
-          return;
-        }
-
-        //sets value of error message
-        this.errorMessage = err.message;
+      error: () => {
+        // If the login fails, log the error
+        console.error();
+        this.errorMessage = 'The email or password is incorrect';
       }
     });
   }
