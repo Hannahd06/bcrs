@@ -1,3 +1,4 @@
+import { NewUserModel } from './user-new-model';
 /**
     Title: user.service.ts
     Author: Professor Richard Krasso
@@ -10,7 +11,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserUpdateModel } from './user-update-model';
 import { User } from './user';
-import { NewUserModel } from './user-new-model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +51,7 @@ export class UserService {
   }
 
   //function to create new user
-  newUser(empId: number, user: NewUserModel) {
+  createNewUser(empId: number, user: NewUserModel) {
     console.log('api/users/new' + empId + '/new');
     return this.http.put('api/users' + empId, {user})
   }
