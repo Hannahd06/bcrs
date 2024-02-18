@@ -63,7 +63,7 @@ export class SigninComponent {
 
     //if email and is not valid an error message is displayed
     if (!email || !password) {
-      this.errorMessage = 'Please provide a valid email and passowrd!';
+      this.errorMessage = 'Please provide a valid email and password!';
       this.isLoading = false;
       this.hideAlert();
       return;
