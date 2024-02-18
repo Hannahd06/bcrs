@@ -1,3 +1,12 @@
+
+/**
+ * Title: security.service.ts
+ * Author: Professor Richard Krasso
+ * Modified by: Jocelyn Dupuis
+ *  Date: 02/17/24
+ * Description: security service for sign in for  BcRS
+*/
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 @Injectable({

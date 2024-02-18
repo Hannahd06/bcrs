@@ -1,8 +1,7 @@
-import { NewUserModel } from './user-new-model';
 /**
     Title: user.service.ts
     Author: Professor Richard Krasso
-    Modified by: Hannah Del Real, Kyle Hochdoerfer
+    Modified by: Hannah Del Real, Kyle Hochdoerfer, Jocelyn Dupuis
     Date: 02/14/24
     Description: Task service
 */

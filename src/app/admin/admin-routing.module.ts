@@ -1,3 +1,11 @@
+/**
+    Title: admin-routing.module.ts
+    Author: Professor Richard Krasso
+    Modified by: Hannah Del Real, Kyle Hochdoerfer, Jocelyn Dupuis
+    Date: 02/14/24
+    Description: Routing for the Admin features
+*/
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';

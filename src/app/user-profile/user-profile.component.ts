@@ -1,3 +1,11 @@
+/**
+ * Title: user-profile.component.ts
+ * Author: Professor Richard Krasso
+ * Modified by: Team Hufflepuff
+ *  Date: 02/17/24
+ * Description: User profile component for BCRS
+*/
+
 import { Component } from '@angular/core';
 
 @Component({

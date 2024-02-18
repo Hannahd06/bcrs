@@ -45,7 +45,15 @@
                 <!-- validation required field email -->
                 <div *ngIf="updateUserForm.controls['email'].touched && updateUserForm.controls['email'].hasError('required')">
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Please enter a first Name!</strong>
+                    <strong>Email is Required!</strong>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                </div>
+
+                <!-- validation required field email -->
+                <div *ngIf="updateUserForm.controls['email'].touched && updateUserForm.controls['email'].hasError('email')">
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Please enter a valid email!</strong>
                     <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 </div>
@@ -60,7 +68,7 @@
                 <!-- validation required field firstName -->
                 <div *ngIf="updateUserForm.controls['firstName'].touched && updateUserForm.controls['firstName'].hasError('required')">
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Please enter a first Name!</strong>
+                    <strong> First Name is required!</strong>
                     <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 </div>
@@ -74,7 +82,7 @@
                 <!-- validation required field lastName -->
                 <div *ngIf="updateUserForm.controls['lastName'].touched && updateUserForm.controls['lastName'].hasError('required')">
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Please enter a Last Name!</strong>
+                    <strong>Last Name is required!</strong>
                     <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 </div>
@@ -130,7 +138,7 @@
                   <select name="role" id="role" formControlName="role" class="form-select">
                     <option value="" disabled>select a role</option>
                     <option value="admin" > Admin </option>
-                    <option value="standard">standard</option>
+                    <option value="standard">Standard</option>
                   </select>
                   <br />
                 </div>

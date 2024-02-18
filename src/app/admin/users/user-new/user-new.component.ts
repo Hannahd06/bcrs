@@ -1,3 +1,11 @@
+/**
+    Title: user.new.componentts
+    Author: Professor Richard Krasso
+    Modified by: Jocelyn Dupuis
+    Date: 02/17/24
+    Description: create new user component
+*/
+
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -33,7 +41,7 @@ constructor (private route: ActivatedRoute, private userService: UserService, pr
 
 createNewUser() {
 
-  // Create user to grab from form input fields
+  // Grab from form input fields to be used to create new user
   const user: User = {
     empId: parseInt(this.createNewUserForm.controls['empId'].value, 10),
     email: this.createNewUserForm.controls['email'].value,
@@ -44,10 +52,10 @@ createNewUser() {
     address: this.createNewUserForm.controls['address'].value,
     role: this.createNewUserForm.controls['role'].value,
     selectedSecurityQuestions: [],
-    isDisabled: false
+    isDisabled: false // Set to false for all new users to ensures that they are active once created.
   }
 
-
+// Create a new user and redirect back to user config page.
   this.userService.createNewUser(user).subscribe({
     next: (res) => {
       console.log(res);

@@ -1,3 +1,11 @@
+/**
+    Title: admin.module.ts
+    Author: Professor Richard Krasso
+    Modified by: Hannah Del Real, Kyle Hochdoerfer
+    Date: 02/14/24
+    Description: Admin module
+*/
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
