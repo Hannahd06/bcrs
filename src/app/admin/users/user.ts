@@ -2,8 +2,8 @@
 /**
  * Title: user.ts
  * Author: Professor Richard Krasso
- * Modified by: Hannah Del Real
- *  Date: 02/14/24
+ * Modified by: Jocelyn Dupuis
+ *  Date: 02/17/24
  * Description: User Interface for Admin duties
 */
 
@@ -18,5 +18,9 @@ export interface User {
     phoneNumber: string;
     address: string;
     role: string;
+    selectedSecurityQuestions?: {
+      questionText: string;
+      answerText: string;
+    }[];
     isDisabled: boolean;
 }

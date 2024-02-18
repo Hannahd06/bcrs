@@ -34,7 +34,7 @@ export class UpdateUserComponent {
   successMessage: string;
 
   updateUserForm: FormGroup = this.fb.group({
-    email: [null, Validators.required], // Validate firstName
+    email: [null, Validators.compose([Validators.required, Validators.email])], // Validate firstName
     firstName: [null, Validators.required], // Validate firstName
     lastName: [null, Validators.required], // Validate lastName
     address: [null, Validators.required], // Validate firstName

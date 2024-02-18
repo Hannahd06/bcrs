@@ -40,11 +40,11 @@
       </li>
 
       <!-- If user is not logged in display login link -->
-      <li *ngIf="!isLoggedin" class="nav-item">
+      <li *ngIf="!isSignedIn" class="nav-item">
         <a class="nav-link" routerLink="security/signin">Sign In</a>
       </li>
       <!-- User Icon display for signed on user with navigation to  task page -->
-      <li *ngIf="isLoggedin" class="nav-item dropdown">
+      <li *ngIf="isSignedIn" class="nav-item dropdown">
         <a href="#"
         class="nav-link pe-3"
         id="navbarDropdown"
@@ -61,8 +61,10 @@
             Signed in as {{ appUser.fullName }}
           </li>
           <li class="dropdown-item">
-            <a routerLink="task-management" class="dropdown-item link">My tasks</a>
+            <a routerLink="user-profile" class="dropdown-item link">My profile</a>
           </li>
+          <li *ngIf="appUser.role == 'admin'" class="dropdown-item">
+            <a routerLink="/admin/users" class="dropdown-item link">User Configuration</a></li>
           <li class="dropdown-item">
             <a (click)="signout()" class="dropdown-item link">Sign out</a>
           </li>

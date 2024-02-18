@@ -14,7 +14,11 @@ import { SecurityService } from '../security.service';
 //exports session user interface
 export interface SessionUser {
   empId: number;
+  firstName: string;
+  lastName: string
+  role: string;
   email: string;
+
 }
 
 @Component({
@@ -27,12 +31,13 @@ export interface SessionUser {
 export class SigninComponent {
   //variables created
   errorMessage: string;
-  sessionUser: SessionUser;
+  sessionUser: SessionUser
   isLoading: boolean = false;
 
   //form builder creates signin form that and accepts numerical values
-  signinForm = this.fb.group({
-    empId: [null, Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])]
+  signInForm = this.fb.group({
+    email: [null, Validators.compose([Validators.required, Validators.email])],
+    password: [null, Validators.compose([Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')])]
   });
 
   //constructor created that passes the following
@@ -43,34 +48,39 @@ export class SigninComponent {
     private securityService: SecurityService,
     private fb: FormBuilder
   ) {
-    this.sessionUser = {} as SessionUser; //default value set
+    this.sessionUser = {} as SessionUser; // Initialize a session user object
     this.errorMessage = ''; //default value set
   }
 
   //function for user to signin
-  signin() {
+  signIn() {
     //set isLoading to true and get Id from form
     this.isLoading = true;
-    console.log("signinForm", this.signinForm.value);
-    const empId = this.signinForm.controls['empId'].value;
+    console.log("SigninForm:", this.signInForm.value);
+    let email = this.signInForm.controls['email'].value;
+    let password = this.signInForm.controls['password'].value
 
-    //if ID is not valid an error message is displayed
-    if (!empId || isNaN(parseInt(empId, 10))) {
-      this.errorMessage = 'The user ID is invalid. Please enter a number.';
+
+    //if email and is not valid an error message is displayed
+    if (!email || !password) {
+      this.errorMessage = 'Please provide a valid email and password!';
       this.isLoading = false;
+      this.hideAlert();
       return;
+
     }
 
     //subscribe to security service
-    this.securityService.getUserByEmpId(empId).subscribe({
+    this.securityService.signIn(email, password).subscribe({
       next: (user: any) => {
         console.log('user', user);
 
-        //session user to the logged employee
         this.sessionUser = user;
+
         //gives user two session cookies to name and Id
-        this.cookieService.set('session_user', empId, 1);
-        this.cookieService.set('session_name', `${user.email}`, 1);
+        this.cookieService.set('session_user', JSON.stringify(this.sessionUser), 1);
+        this.cookieService.set('session_name', `${user.firstName} ${user.lastName}`, 1);
+        this.cookieService.set('session_role', `${user.role}`, 1);
 
         //returns url
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
@@ -83,13 +93,21 @@ export class SigninComponent {
         this.isLoading = false;
 
         if (err.error.message) {
+          //sets value of error message
           this.errorMessage = err.error.message;
+          console.log('err', err);
+          this.hideAlert();
           return;
         }
-
-        //sets value of error message
-        this.errorMessage = err.message;
       }
     });
   }
+
+  // Set a timeout for alert displays
+  hideAlert() {
+    setTimeout( () => {
+      this.errorMessage = '';
+    }, 5000)
+  }
+
 }

@@ -1,7 +1,7 @@
 /**
     Title: user.service.ts
     Author: Professor Richard Krasso
-    Modified by: Hannah Del Real, Kyle Hochdoerfer
+    Modified by: Hannah Del Real, Kyle Hochdoerfer, Jocelyn Dupuis
     Date: 02/14/24
     Description: Task service
 */
@@ -11,10 +11,15 @@ import { HttpClient } from '@angular/common/http';
 import { UserUpdateModel } from './user-update-model';
 import { User } from './user';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  login(user: User) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private http: HttpClient ) { }
 
@@ -43,5 +48,10 @@ export class UserService {
   //Function that returns the url for user deletion
   deleteUser(empId: string) {
     return this.http.delete(`/api/users/${empId}`);
+  }
+
+  //function to create new user
+  createNewUser(user: User) {
+    return this.http.post('api/users', {user})
   }
 }
