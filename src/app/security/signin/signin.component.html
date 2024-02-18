@@ -13,6 +13,13 @@
           <div class="card-title pt-5">
             <h2>Employee Sign-In </h2>
           </div>
+
+
+          <!--error message-->
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+          {{errorMessage}}
+        </div>
+
           <div class="m-5">
           <!--sign in form-->
           <form [formGroup]="signInForm" (ngSubmit)="signIn()">
