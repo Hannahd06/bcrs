@@ -18,14 +18,11 @@
             <h2>Create New User</h2>
           </div>
 
-          <!-- User Message area -->
-          <div class="newUserConfirmation">
-            <p id="newUserConfirmation">{{ message }}</p>
-          </div>
+
 
           <div class="m-5">
             <!--form to create new user-->
-          <form [formGroup]="createNewUserForm" (ngSubmit)="createNewUser(createNewUserForm.value)">
+          <form [formGroup]="createNewUserForm" (ngSubmit)="createNewUser()">
             <fieldset class="form-group">
               <legend>Please fill out all fields below</legend>
 
@@ -67,10 +64,18 @@
                   </div>
                 </div>
 
+                 <!--validation length and required character types for password -->
+                 <div *ngIf="createNewUserForm.controls['password'].touched && createNewUserForm.controls['password'].hasError('pattern')">
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Password must be at least 8 characters long and contain at a minimum on one upper case, one lower case, and number!</strong>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                </div>
+
                 <!--new user's password-->
                 <div class="col-12 my-3 w-75 text">
                   <label for="password">Password</label>
-                  <input class="form-control" id="email" type="text" formControlName="password">
+                  <input class="form-control" id="email" type="password" formControlName="password">
                 </div>
 
                 <!--validation required field for firstName -->

@@ -18,5 +18,9 @@ export interface User {
     phoneNumber: string;
     address: string;
     role: string;
+    selectedSecurityQuestions?: {
+      questionText: string;
+      answerText: string;
+    }[];
     isDisabled: boolean;
 }

@@ -51,8 +51,7 @@ export class UserService {
   }
 
   //function to create new user
-  createNewUser(empId: number, user: NewUserModel) {
-    console.log('api/users/new' + empId + '/new');
-    return this.http.put('api/users' + empId, {user})
+  createNewUser(user: User) {
+    return this.http.post('api/users', {user})
   }
 }

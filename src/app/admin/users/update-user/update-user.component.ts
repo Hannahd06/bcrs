@@ -33,6 +33,8 @@ export class UpdateUserComponent {
   // set successMessages as type string
   successMessage: string;
 
+  isLoading: boolean =  false
+
   updateUserForm: FormGroup = this.fb.group({
     email: [null, Validators.required], // Validate firstName
     firstName: [null, Validators.required], // Validate firstName

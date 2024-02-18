@@ -1,63 +1,66 @@
-/**
- *  Title: user-new.component.css
- *  Author: Professor Richard Krasso
- * Modified by: Jocelyn Dupuis
- *  Date: 02/17/24
- * Description: Ts file for new user component
-*/
-
-//import statements
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-
+import { UserService } from '../user.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-user-new',
   templateUrl: './user-new.component.html',
   styleUrls: ['./user-new.component.css']
 })
+export class UserNewComponent {
 
-//exports UserNewComponent
-export class UserNewComponent implements OnInit{
-  createNewUserForm: FormGroup;
-  message: string = '';
+  errorMessage: string;
+  isLoading: boolean = false;
+
+  createNewUserForm: FormGroup =  this.fb.group({
+    empId: [null, Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])], //Validate as number
+    email:  [null, Validators.compose([Validators.required, Validators.email ])], // validate email
+    password: [null, Validators.compose([Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')])], //Validate password to have one upper and lower case and min length of 8
+    firstName: [null, Validators.required],
+    lastName: [null, Validators.required],
+    phoneNumber: [null, Validators.compose([Validators.required,  Validators.pattern('^[0-9]*$')])], // validate numbers
+    address: [null, Validators.required],
+    role: [null, Validators.required],
+    isDisabled: false
+  })
 
 
-  //constructor that injects the HttpClient
-  constructor(private http: HttpClient) {
-    //creates new FormGroup
-    this.createNewUserForm = new FormGroup({
-      'userName': new FormControl(null, Validators.required), //validators required
-      'password': new FormControl(null, Validators.required), //validators required
-      'email': new FormControl(null, [Validators.required, Validators.email]), //validators required
-      'firstName': new FormControl(null), 
-      'lastName': new FormControl(null),
-      'phoneNumber': new FormControl(null),
-      'address': new FormControl(null)
-    });
+constructor (private route: ActivatedRoute, private userService: UserService, private router: Router, private fb: FormBuilder) {
+  this.errorMessage = ''
+}
 
+createNewUser() {
+
+  // Create user to grab from form input fields
+  const user: User = {
+    empId: parseInt(this.createNewUserForm.controls['empId'].value, 10),
+    email: this.createNewUserForm.controls['email'].value,
+    password: this.createNewUserForm.controls['password'].value,
+    firstName: this.createNewUserForm.controls['firstName'].value,
+    lastName: this.createNewUserForm.controls['lastName'].value,
+    phoneNumber: this.createNewUserForm.controls['phoneNumber'].value,
+    address: this.createNewUserForm.controls['address'].value,
+    role: this.createNewUserForm.controls['role'].value,
+    selectedSecurityQuestions: [],
+    isDisabled: false
   }
-  ngOnInit() {}
 
-  //createNewUser object to send to server
-  createNewUser(user: any) {
-    if (this.createNewUserForm.valid) {
-      this.http.post('http://localhost:3000/api/users', user)
-        .subscribe(response => {
-          console.log(response);
-          //displays message if successful
-          this.message = 'New user created successfully';
-          //resets form after submission
-          this.createNewUserForm.reset();
-        }, error => {
-          //displays message if error when creating user
-          console.error(error);
-          this.message = 'An error occurred while creating the user';
-        });
-    } else {
-      //returns error is form wasn't completely filled out
-      this.message = 'Please fill out the entire form before submitting';
+
+  this.userService.createNewUser(user).subscribe({
+    next: (res) => {
+      console.log(res);
+      this.router.navigate(['/admin/users']);
+      this.isLoading = false
+    },
+    error: (err) => {
+      console.log('error', err);
+      this.errorMessage = err.message;
+      this.isLoading = false;
     }
-  }
+  })
+}
+
+
 }
