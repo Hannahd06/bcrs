@@ -35,13 +35,13 @@ export class UserListComponent {
   //Check if the id is defined
   if (empId !== undefined) {
 
-    //Confirm the admin wants to delete the user
-    if (!confirm('Are you sure you want to delete this user?')) {
+    //Confirm the admin wants to disable the user
+    if (!confirm('Are you sure you want to disable this user?')) {
       return;
     }
 
     //Log the user's ID to the console
-    console.log('Deleting user:', empId);
+    console.log('Disabling user:', empId);
 
     //Call the user service to delete the user
     this.userService.deleteUser(empId).subscribe({
