@@ -63,7 +63,7 @@ export class SigninComponent {
 
     //if email and is not valid an error message is displayed
     if (!email || !password) {
-      this.errorMessage = 'Please provide a valid email and password!';
+      this.errorMessage = 'Please enter an email and password in the fields below!';
       this.isLoading = false;
       this.hideAlert();
       return;
@@ -92,9 +92,13 @@ export class SigninComponent {
       error: (err) => {
         this.isLoading = false;
 
+
         if (err.error.message) {
           //sets value of error message
-          this.errorMessage = err.error.message;
+          this.errorMessage = err.error.message
+          if (err.error.message ='Valid email and/or password not found') {
+            this.errorMessage = 'Invalid email and/or password! Please try again!'
+          }
           console.log('err', err);
           this.hideAlert();
           return;

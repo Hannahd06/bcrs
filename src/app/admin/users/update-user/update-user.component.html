@@ -20,7 +20,7 @@
            <!-- Display error and success messages -->
           <div class="justify-content-center pt-4">
             <div class="col-sml-10 col-mid-8 col-lg-6>">
-              <div class="col-sm-6 text-align" style="margin: auto;">
+              <div class="col-sm-6 text-align w-50 mx-auto" style="margin: auto;">
                 <div class="justify-content-center" ngClass="alert alert-info" *ngIf="errorMessage" role="alert">
                   {{ errorMessage }}
                 </div>
@@ -44,7 +44,7 @@
 
                 <!-- validation required field email -->
                 <div *ngIf="updateUserForm.controls['email'].touched && updateUserForm.controls['email'].hasError('required')">
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div class="alert alert-danger alert-dismissible fade show mx-auto w-50 text-align" role="alert">
                     <strong>Email is Required!</strong>
                     <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
@@ -52,7 +52,7 @@
 
                 <!-- validation required field email -->
                 <div *ngIf="updateUserForm.controls['email'].touched && updateUserForm.controls['email'].hasError('email')">
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div class="alert alert-danger alert-dismissible fade show mx-auto text-align w-50" role="alert">
                     <strong>Please enter a valid email!</strong>
                     <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
@@ -67,7 +67,7 @@
 
                 <!-- validation required field firstName -->
                 <div *ngIf="updateUserForm.controls['firstName'].touched && updateUserForm.controls['firstName'].hasError('required')">
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div class="alert alert-danger alert-dismissible fade show mx-auto text-align w-50" role="alert">
                     <strong> First Name is required!</strong>
                     <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
@@ -81,7 +81,7 @@
 
                 <!-- validation required field lastName -->
                 <div *ngIf="updateUserForm.controls['lastName'].touched && updateUserForm.controls['lastName'].hasError('required')">
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div class="alert alert-danger alert-dismissible fade show mx-auto text-align w-50" role="alert">
                     <strong>Last Name is required!</strong>
                     <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
@@ -96,7 +96,7 @@
 
                 <!-- validation required field address -->
                 <div *ngIf="updateUserForm.controls['address'].touched && updateUserForm.controls['address'].hasError('required')">
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div class="alert alert-danger alert-dismissible fade show mx-auto text-align w-50" role="alert">
                     <strong>Address is required!</strong>
                     <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
@@ -110,12 +110,18 @@
 
                  <!-- validation required field phoneNumber -->
                  <div *ngIf="updateUserForm.controls['phoneNumber'].touched && updateUserForm.controls['phoneNumber'].hasError('required')">
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div class="alert alert-danger alert-dismissible fade show mx-auto text-align w-50" role="alert">
                     <strong>Phone Number is required!</strong>
                     <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 </div>
-
+                 <!-- validation phoneNumber is number values -->
+                 <div *ngIf="updateUserForm.controls['phoneNumber'].touched && updateUserForm.controls['phoneNumber'].hasError('pattern')">
+                  <div class="alert alert-danger alert-dismissible fade show mx-auto text-align w-50" role="alert">
+                    <strong>Phone number must only contain numbers!</strong>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                </div>
                 <!--Edit selected user's first Name-->
                 <div class=" col-12 my-3 w-75 text">
                   <label for="phoneNumber">Phone</label>
@@ -126,7 +132,7 @@
 
                 <!-- validation required field role -->
                 <div *ngIf="updateUserForm.controls['role'].touched && updateUserForm.controls['role'].hasError('required')">
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div class="alert alert-danger alert-dismissible fade show mx-auto text-align w-50" role="alert">
                     <strong>Please select a role!</strong>
                     <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>

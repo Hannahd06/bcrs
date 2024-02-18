@@ -38,7 +38,7 @@ export class UpdateUserComponent {
     firstName: [null, Validators.required], // Validate firstName
     lastName: [null, Validators.required], // Validate lastName
     address: [null, Validators.required], // Validate firstName
-    phoneNumber: [null, Validators.required], // Validate lastName
+    phoneNumber: [null, Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])], // Validate lastName
     role: [null, Validators.required] // Validate role
   })
 

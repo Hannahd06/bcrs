@@ -8,6 +8,7 @@
 /*styling for signin container*/
 .signin-container {
   margin: 5%;
+  min-height: 80vb;
 }
 
 /*styling for container*/
