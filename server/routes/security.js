@@ -121,8 +121,6 @@ router.post('/signin', async(req, res) =>{
   }
 })
 
-module.exports = router;
-
 
 
 //verifySecurityQuestions
@@ -240,3 +238,5 @@ router.delete('/users/:email/reset-password', (req, res, next) => {
     next(err)
   }
 })
+
+module.exports = router;
