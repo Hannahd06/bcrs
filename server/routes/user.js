@@ -171,7 +171,7 @@ router.post("/", (req, res, next) => {
 
       // If user input for empId is already in database send error message
       if (empIdUnavailable) {
-        const err = new Error("This userId address is already in use");
+        const err = new Error("This userId is already in use");
         err.status = 409;
         console.log("err", err);
         next(err);

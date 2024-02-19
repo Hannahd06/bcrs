@@ -7,6 +7,7 @@
 
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+import { query } from 'express';
 import { CookieService } from 'ngx-cookie-service';
 
 export const roleGuard: CanActivateFn = (route, state) => {
@@ -24,7 +25,9 @@ export const roleGuard: CanActivateFn = (route, state) => {
 
  // If the signed-in user does not have the admin role,
   } if (sessionUser.role !== 'admin') {
+    const router = inject(Router);
     console.log("Oops! You do not have the credentials to view this page!")
+    router.navigate(['/security/not-found'])
       return false
     }
 
