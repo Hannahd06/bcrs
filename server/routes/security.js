@@ -1,6 +1,6 @@
 //--------------------------------------------
 //Title: security.js
-//Author: Kyle Hochdoerfer
+//Author: Kyle Hochdoerfer, Jocelyn Dupuis, and Hannah Del Real
 //Date: 02/12/24
 //Description: Security routing for BCRS
 //---------------------------------------------
