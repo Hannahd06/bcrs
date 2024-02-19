@@ -1,10 +1,4 @@
 /**
- * @openapi
- * tags:
- *   name: users
- */
-
-/**
  * findAllUsers
  * @openapi
  * /api/users:
@@ -233,4 +227,135 @@
  *         description: Valid username and/or password not found
  *       '500':
  *         description: MongoDB Exception
+ */
+
+
+/**
+ * verifySecurityQuestions
+ * @openapi
+ * /api/security/verify/users/{email}/security-questions:
+ *   post:
+ *     tags:
+ *       - Security
+ *     name: verifySecurityQuestions
+ *     description: Verify a user's security questions by their email address.
+ *     summary: Verify Security Questions for a User
+ *     parameters:
+ *       - name: email
+ *         in: path
+ *         required: true
+ *         description: The email address of the user to verify.
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               securityQuestions:
+ *                 type: array
+ *                 minItems: 3
+ *                 maxItems: 3
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     questionText:
+ *                       type: string
+ *                     answerText:
+ *                       type: string
+ *             required:
+ *               - securityQuestions
+ *     responses:
+ *       200:
+ *         description: User's security questions verified successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                 empId:
+ *                   type: integer
+ *                 firstName:
+ *                   type: string
+ *                 lastName:
+ *                   type: string
+ *                 phoneNumber:
+ *                   type: integer
+ *                 address:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 password:
+ *                   type: string
+ *                 selectedSecurityQuestions:
+ *                   type: array
+ *                   minItems: 3
+ *                   maxItems: 3
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       question:
+ *                         type: string
+ *                       answer:
+ *                         type: string
+ *                 role:
+ *                   type: string
+ *                 isDisabled:
+ *                   type: boolean
+ *       400:
+ *         description: Bad Request. Invalid request format.
+ *       404:
+ *         description: User not found.
+ *       500:
+ *         description: Internal Server Error.
+ */
+
+
+
+
+/**
+ * resetPassword
+ * @openapi
+ * /api/security/users/{email}/reset-password:
+ *   delete:
+ *     tags:
+ *       - Security
+ *     name: resetPassword
+ *     description: Reset a user's password by their email address.
+ *     summary: Reset a user's password by email.
+ *     parameters:
+ *       - name: email
+ *         in: path
+ *         required: true
+ *         description: The email address of the user whose password needs to be reset.
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               password:
+ *                 type: string
+ *             required:
+ *               - password
+ *     responses:
+ *       200:
+ *         description: Password reset successful.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *       400:
+ *         description: Bad Request.
+ *       404:
+ *         description: User not found.
+ *       500:
+ *         description: Internal Server Error.
  */
