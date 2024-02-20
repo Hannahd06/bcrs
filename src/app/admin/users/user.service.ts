@@ -46,7 +46,7 @@ export class UserService {
   }
 
   //Function that returns the url for user deletion
-  deleteUser(empId: string) {
+  deleteUser(empId: number) {
     return this.http.delete(`/api/users/${empId}`);
   }
 

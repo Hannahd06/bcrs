@@ -83,7 +83,7 @@ router.get("/", (req, res, next) => {
   try {
     // find all users in users collection of database
     mongo(async db => {
-      const user = await db.collection("users").find( { isDisabled: false} ).toArray();
+      const user = await db.collection("users").find( { isDisabled: false} ).sort({empId: 1}).toArray();
 
       // If user input does not match database send error message
       if (!user) {
@@ -181,7 +181,7 @@ router.post("/", (req, res, next) => {
 
       // If user input for empId is already in database send error message
       if (empIdUnavailable) {
-        const err = new Error("This userId address is already in use");
+        const err = new Error("This userId is already in use");
         err.status = 409;
         console.log("err", err);
         next(err);
