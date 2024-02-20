@@ -15,11 +15,8 @@ import { AboutComponent } from './about/about.component';
 import { authGuard } from './shared/auth.guard';
 import { UserListComponent } from './admin/users/user-list/user-list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-<<<<<<< HEAD
 import { RegistrationComponent } from './security/registration/registration.component';
-=======
 import { DirectoryComponent } from './directory/directory.component';
->>>>>>> 8e8a99326c8132f76b0ccfc4aa65447951c2af20
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [

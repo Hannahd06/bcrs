@@ -4,88 +4,17 @@
     Date: 02/19/2024
     Description:  Registration page for BCRS.
 -->
-<!--Commented out because it'll break everything in it's current state
-
   <div class="config-container">
   <div class="row justify-content-center mt-5 text-center">
     <h1>Register New Employee</h1>
-    <div class="card col-lg-5 col-md-6 col-sm-7">
-      <mat-horizontal-stepper linear>
-        <mat-step label="Personal" [stepControl]="personalForm">
-          <h2>Personal Information</h2>
-          <form [formGroup]="personalForm">
-            <div class="col-lg-4">
+    <div class="card col-lg-6 col-md-10 col-sm-11">
+     <form class="row justify-content-center" [formGroup]="registrationForm" (ngSubmit)="register()">
 
-              <div class="row justify-content-center">
-                <label for="firstName">First Name:</label>
-                <input id="firstName" class="form-control" type="text" formControlName="firstName">
-              </div>
-
-              <div class="row justify-content-center">
-                <label for="lastName">Last Name:</label>
-                <input id="lastName" class="form-control" type="text" formControlName="lastName">
-              </div>
-
-              <div class="row justify-content-center">
-                <label for="address">Address:</label>
-                <input id="address" class="form-control" type="text" formControlName="address">
-              </div>
-
-              <div class="row justify-content-center">
-                <label for="phoneNumber">Phone Number:</label>
-                <input id="phoneNumber" class="form-control" type="text" formControlName="phoneNumber">
-              </div>
-
-              <div class="row justify-content-center">
-                <button class="btn btn-lg button-register" matStepperNext>Next</button>
-              </div>
-
-
-            </div>
-          </form>
-        </mat-step>
-
-        <mat-step label="Account" [stepControl]="accountForm">
-          <h2>Account Information</h2>
-          <form [formGroup]="accountForm">
-            <div class="col-lg-4">
-
-              <div class="row justify-content-center">
-                <label for="email">Email:</label>
-                <input id="email" class="form-control" type="text" formControlName="email">
-              </div>
-
-              <div class="row justify-content-center">
-                <label for="password">Password:</label>
-                <input id="password" class="form-control" type="text" formControlName="password">
-              </div>
-
-              <div class="row justify-content-center">
-                <label for="passwordConfirm">Password:</label>
-                <input id="passwordConfirm" class="form-control" type="text" formControlName="passwordConfirm">
-              </div>
-
-              <div class="row justify-content-center">
-                <button class="btn btn-lg button-register" matStepperNext>Next</button>
-                <button class="btn btn-lg button-register" matStepperPrevious>Back</button>
-              </div>
-            </div>
-          </form>
-        </mat-step>
-
-      </mat-horizontal-stepper>
-
-
-
-
-
-
-
-
-
-
-
-    --  <form class="row justify-content-center">
+      <div *ngIf="errorMessage">
+        <div class="alert alert-danger font" role="alert">
+          {{ errorMessage }}
+        </div>
+      </div>
 
         <div class="row justify-content-center">
           <div class="col-lg-4">
@@ -122,23 +51,19 @@
           </div>
         </div>
 
-        Security Question 1
         <div class="row justify-content-center">
-          <div class="col-lg-4">
-            <label for="passwordConfirm">Confirm Password:</label>
-            <input id="passwordConfirm" class="form-control" type="text" formControlName="passwordConfirm">
+          <div class="col-lg-5">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input id="confirmPassword" class="form-control" type="text" formControlName="confirmPassword">
           </div>
         </div>
 
+         <!--Security Question 1-->
         <div class="row justify-content-center">
           <div class="col-lg-6">
             <label for="questionOne">Security Question #1:</label>
-            <select id="questionOne" name="questionOne">
-              <option value="default">--Select a Question--</option>
-              <option value="What is the name of your first pet?">What is the name of your first pet?</option>
-              <option value="What is the make and model of your first car?">What is the make and model of your first car?</option>
-              <option value="In what city were you born?">In what city were you born?</option>
-              <option value="What was the name of your elementary school?">What was the name of your elementary school?</option>
+            <select id="questionOne" name="questionOne" formControlName="questionOne">
+              <option value="{{question}}"*ngFor="let question of securityQuestions">{{question}}</option>
             </select>
           </div>
           <div class="col-lg-4">
@@ -147,12 +72,12 @@
           </div>
         </div>
 
-        Security Question 2
+        <!--Security Question 2-->
         <div class="row justify-content-center">
           <div class="col-lg-6">
             <label for="questionTwo">Security Question #2:</label>
-            <select id="questionTwo" name="questionTwo">
-              <option value="default">--Select a Question--</option>
+            <select id="questionTwo" name="questionTwo" formControlName="questionTwo">
+              <option value="{{question}}"*ngFor="let question of securityQuestions">{{question}}</option>
             </select>
           </div>
           <div class="col-lg-4">
@@ -161,12 +86,12 @@
           </div>
         </div>
 
-        Security Question 3
+        <!--Security Question 3-->
         <div class="row justify-content-center">
           <div class="col-lg-6">
             <label for="questionThree">Security Question #3:</label>
-            <select id="questionThree" name="answerThree">
-              <option value="default">--Select a Question--</option>
+            <select id="questionThree" name="questionThree" formControlName="questionThree">
+              <option value="{{question}}" *ngFor="let question of securityQuestions">{{question}}</option>
             </select>
           </div>
           <div class="col-lg-4">
@@ -174,10 +99,11 @@
             <input id="answerThree" class="form-control" type="text" formControlName="answerThree">
           </div>
         </div>
+
         <div class="row justify-content-center">
-          <button class="btn btn-lg button-register" id="submit">SUBMIT</button>
+          <button class="btn btn-lg button-register" id="submit" value="submit">SUBMIT</button>
         </div>
-      </form>--
+      </form>
     </div>
   </div>
-</div>-->
+</div>

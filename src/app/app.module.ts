@@ -18,11 +18,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-<<<<<<< HEAD
-import { MatStepperModule } from '@angular/material/stepper';
-=======
 import { DirectoryComponent } from './directory/directory.component';
->>>>>>> 8e8a99326c8132f76b0ccfc4aa65447951c2af20
 
 @NgModule({
   declarations: [
@@ -40,8 +36,7 @@ import { DirectoryComponent } from './directory/directory.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    MatStepperModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
