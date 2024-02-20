@@ -8,6 +8,7 @@
 //Import statements
 import { Component } from '@angular/core';
 import { UserService } from '../user.service';
+import { User } from '../user';
 
 //Create and export a user list component
 @Component({
@@ -18,25 +19,35 @@ import { UserService } from '../user.service';
 export class UserListComponent {
 
   //Create a variable for holding user data
-  userData: any;
+  userData: User[];
+  errorMessage: string;
 
   //Declare a constructor with the userService as a parameter
   constructor(private userService :UserService){
+    this.userData = []
+    this.errorMessage = ''
 
     //Subscribe to to the database to store user document data in the data variable
-    this.userService.getUsers().subscribe(data=>{
-      this.userData = data;
+    this.userService.getUsers().subscribe({
+      next: (userData: any ) => {
+        console.log ('List of users:', this.userData);
+        this.userData = userData;
+      },
+      error: (err) => {
+        this.errorMessage = err.message
+      },
+      complete: () => {
+      }
     })
  }
 
  //Create a method to delete a user
- deleteUser(empId: string | undefined) {
-
+ deleteUser(empId: number) {
   //Check if the id is defined
   if (empId !== undefined) {
 
     //Confirm the admin wants to disable the user
-    if (!confirm('Are you sure you want to disable this user?')) {
+    if (!confirm('Are you sure you want to disable user with empID' + empId + '?')) {
       return;
     }
 
@@ -46,6 +57,7 @@ export class UserListComponent {
     //Call the user service to delete the user
     this.userService.deleteUser(empId).subscribe({
       next: (result) => {
+        this.userData = this.userData.filter(user => user.empId !== empId)
         console.log('result:', result); // log the result to the console
       },
       error: (err) => {

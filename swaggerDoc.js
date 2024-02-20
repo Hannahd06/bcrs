@@ -295,6 +295,39 @@
 
 
 /**
+ * verifyUsers
+ * @openapi
+ * /api/security/verify/users/{email}:
+ *   post:
+ *     tags:
+ *       - Security
+ *     name: verifyUsers
+ *     description: API for verifying a user by email.
+ *     summary: Verifies if any registered user contains the inputted email.
+ *     parameters:
+ *       - name: email
+ *         in: path
+ *         required: true
+ *         description: The email address of the user to verify.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *           schema:
+ *             type: string
+ *     responses:
+ *       '200':
+ *         description: User verified by email
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Not Found - Invalid email
+ *       '500':
+ *         description: Internal Server Error
+ */
+
+
+
+/**
  * verifySecurityQuestions
  * @openapi
  * /api/security/verify/users/{email}/security-questions:

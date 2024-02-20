@@ -31,22 +31,18 @@ const signinSchema = {
   additionalProperties: false
 }
 //Declare a securityQuestionSchema containing security questions/answers for registerSchema
-const securityQuestionSchema = {
-  type:'array',
+const selectedSecurityQuestionsSchema = {
+  type: 'array',
   items: {
     type: 'object',
     properties: {
-      questionText: { type: 'string'},
-      answerText: { type: 'string'} ,
+      questionText: { type: 'string' },
+      answerText: { type: 'string' }
     },
-    required: [
-      'questionText',
-      'answerText'
-    ],
+    required: ['questionText', 'answerText'],
     additionalProperties: false
   }
 }
-
 
 
 
@@ -60,7 +56,7 @@ const registerSchema = {
     lastName: { type: 'string'},
     phoneNumber: { type: 'string'},
     address: { type: 'string'},
-    selectedSecurityQuestions: securityQuestionSchema,
+    selectedSecurityQuestions: selectedSecurityQuestionsSchema,
     isDisabled: {type: 'boolean'}
   },
   required: [
@@ -76,18 +72,7 @@ const registerSchema = {
 }
 
 
-const selectedSecurityQuestionsSchema = {
-  type: 'array',
-  items: {
-    type: 'object',
-    properties: {
-      questionText: { type: 'string' },
-      answerText: { type: 'string' }
-    },
-    required: ['questionText', 'answerText'],
-    additionalProperties: false
-  }
-}
+
 
 const resetPasswordSchema = {
   type: 'object',
@@ -97,6 +82,7 @@ const resetPasswordSchema = {
   required: ['password'],
   additionalProperties: false
 }
+
 
 //signin
 router.post('/signin', async(req, res) =>{
@@ -166,15 +152,16 @@ router.post('/signin', async(req, res) =>{
   }
 })
 
+
 // registerUser
 router.post('/register', (req, res, next) => {
   try {
     //grab input from user
     const { user } = req.body;
     // set data validation based on registerSchema
-    const validate  = ajv.compile(registerSchema);
+    const validator  = ajv.compile(registerSchema);
     // Validate user input against registerSchema
-    const isValid = validate(user);
+    const isValid = validator(user);
 
     // If user input does not pass validation, return 400 Error
     if(!isValid){
@@ -296,6 +283,38 @@ router.post('/verify/users/:email/security-questions', (req, res, next) => {
 
 })
 
+
+//verifyUser
+
+router.post('/verify/users/:email', (req, res, next) => {
+  try {
+    //grab email value from the input value for email  from form.
+    const  email  = req.params.email;
+
+   mongo(async db => {
+    // Search for all users in database and sort them in ascending order in an array
+    const verifiedUser = await db.collection('users').findOne({email: email})
+    console.log("Verifying email:", email);
+
+    if (!verifiedUser) {
+      const err = new Error("Bad Request")
+      err.status = 404;
+      err.message = 'There are no users associated with this email. Please try again';
+      console.error("err", err)
+      next(err)
+      return
+     }
+
+     console.log(verifiedUser);
+
+     res.status(200).send(verifiedUser);
+   }, next);
+
+  } catch (err) {
+    console.error("Error:", err);
+    next(err);
+  }
+})
 
 
 //resetPassword
