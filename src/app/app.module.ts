@@ -18,6 +18,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { DirectoryComponent } from './directory/directory.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     AboutComponent,
     ContactComponent,
     UserProfileComponent,
+    DirectoryComponent,
     ],
 
   imports: [
