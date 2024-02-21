@@ -7,6 +7,10 @@
     Sources: Styling for Progress bar was obtained and modified from Dev Recipes: https://devrecipes.net/step-progres-bar-with-pure-css/
 */
 
+.config-container {
+  background-color:  #403F3C;
+  min-height: 100vh;
+}
 .card{
   background-color: #7F7E7D;
   padding: 30px;

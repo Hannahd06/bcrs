@@ -5,6 +5,10 @@
     Description: CSS styling for signin page
 */
 
+.container-fluid {
+  background-color:  #403F3C;
+}
+
 /*styling for signin container*/
 .signin-container {
   margin: 5%;

@@ -10,6 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,13 @@ const routes: Routes = [
         path: 'not-found',
         component: NotFoundComponent,
         title: '404 Error'
+      },
+      {
+        path: 'registration',
+        component: RegistrationComponent,
+        title: 'register'
       }
+
     ]
   },
 ];
