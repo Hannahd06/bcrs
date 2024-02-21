@@ -456,3 +456,34 @@
  *       500:
  *         description: Internal Server Error.
  */
+
+/**
+ * findSelectedSecurityQuestions
+ * @openapi
+ * /api/users/{email}/security-questions:
+ *   post:
+ *     tags:
+ *       - Users
+ *     description:  API for returning a security questions
+ *     summary: returns user's security questions
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *             required:
+ *               - email
+ *     responses:
+ *       '200':
+ *         description: OK
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Not Found
+ *       '500':
+ *         description: Internal Server Error
+ */

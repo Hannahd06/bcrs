@@ -5,9 +5,9 @@
     Description:  Registration page for BCRS.
 -->
   <div class="config-container">
-  <div class="row justify-content-center mt-5 text-center">
+  <div class="row- justify-content-center mt-5 text-center">
     <h1>Register New Employee</h1>
-    <div class="card col-lg-6 col-md-10 col-sm-11">
+    <div class="card col-lg-6 col-md-10 col-sm-12">
      <form class="row justify-content-center" [formGroup]="registrationForm" (ngSubmit)="register()">
 
       <div *ngIf="errorMessage">
@@ -41,7 +41,7 @@
         </div>
 
         <div class="row justify-content-center">
-          <div class="col-lg-4">
+          <div class="col-lg-4 col-md-7 col-sm-10">
             <label for="password">Password:</label>
             <input id="password" class="form-control" type="text" formControlName="password">
           </div>
@@ -63,7 +63,7 @@
           <div class="col-lg-6">
             <label for="questionOne">Security Question #1:</label>
             <select id="questionOne" name="questionOne" formControlName="questionOne">
-              <option value="{{question}}"*ngFor="let question of securityQuestions">{{question}}</option>
+              <option value="{{question}}"*ngFor="let question of securityQuestions" selected>{{question}}</option>
             </select>
           </div>
           <div class="col-lg-4">
@@ -88,7 +88,7 @@
 
         <!--Security Question 3-->
         <div class="row justify-content-center">
-          <div class="col-lg-6">
+          <div class="col-lg-7">
             <label for="questionThree">Security Question #3:</label>
             <select id="questionThree" name="questionThree" formControlName="questionThree">
               <option value="{{question}}" *ngFor="let question of securityQuestions">{{question}}</option>

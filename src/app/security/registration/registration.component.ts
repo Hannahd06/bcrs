@@ -23,15 +23,12 @@ export class RegistrationComponent {
   isLoading: boolean = false;
 
   securityQuestions = [
-    "--Select a Question--",
     "What is your mother's maiden name?",
     "What is the name of your first pet?",
     "What is the make and model of your first car?",
     "In what city were you born?",
     "What was the name of your elementary school?"
   ]
-
-  defaultOption = "--Select a Question--";
 
   //Use form builder to create a registration form
   registrationForm: FormGroup = this.fb.group({
@@ -66,11 +63,9 @@ constructor(
   this.isLoading = true;
   console.log("Registration Form:", this.registrationForm.value);
 
-  const defaultQuestion = "--Select a Question--"
-
   //If either of the three security questions is the default, cause an error
-  if(this.registrationForm.controls['questionOne'].value == defaultQuestion || this.registrationForm.controls['questionTwo'].value == defaultQuestion
-   || this.registrationForm.controls['questionThree'].value == defaultQuestion){
+  if(this.registrationForm.controls['questionOne'].value == null || this.registrationForm.controls['questionTwo'].value == null
+   || this.registrationForm.controls['questionThree'].value == null){
     this.errorMessage = 'Please select three security questions';
     this.isLoading = false;
     this.hideAlert();
@@ -130,7 +125,6 @@ constructor(
       this.isLoading = false;
     }
   })
-
  }
 
 
