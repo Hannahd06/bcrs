@@ -1,5 +1,6 @@
 .card{
   background-color: #7F7E7D;
+  padding: 30px;
 }
 
 h1{
@@ -33,6 +34,13 @@ input{
   font-size: 30px;
   background-color: #EEBA35;
   font-family: 'Teko', sans-serif;
-  width: 30%;
-  margin-bottom: 5%;
+}
+
+
+.button-back {
+  text-align: center;
+  font-weight: 600;
+  font-size: 30px;
+  font-family: 'Teko', sans-serif;
+
 }
