@@ -9,7 +9,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SecurityService } from '../security.service';
-import { UserService } from 'src/app/admin/users/user.service';
 import { User } from 'src/app/admin/users/user';
 
 @Component({
@@ -18,6 +17,7 @@ import { User } from 'src/app/admin/users/user';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
+  //Create steps for separating the registration form into separate steps
   step: string ='personalInfo';
   next(nextStep: string) {
     this.step = nextStep;
@@ -27,6 +27,7 @@ export class RegistrationComponent {
   errorMessage: string;
   isLoading: boolean = false;
 
+  //Store security question text in an array
   securityQuestions = [
     "What is your mother's maiden name?",
     "What is the name of your first pet?",
@@ -77,6 +78,7 @@ constructor(
     return;
   }
 
+  //Store security question text in an array of objects
   const selectedSecurityQuestions = [
     {
       questionText: this.registrationForm.controls['questionOne'].value,
@@ -92,8 +94,10 @@ constructor(
     }
   ];
 
+  //Store the confirm password field in a variable
   const confirmPassword = this.registrationForm.controls['confirmPassword'].value
 
+  //Create a user object based on user input
   const user: User = {
     empId: 1111, //Temporary ID until the API sets it
     email: this.registrationForm.controls['email'].value,
@@ -105,6 +109,14 @@ constructor(
     selectedSecurityQuestions: selectedSecurityQuestions,
     role: "employee",
     isDisabled: false // Set to false for all new users to ensures that they are active once created.
+  }
+
+  //Verify that all fields have been filled out and display an error message in the event they are not
+  if(!user.email || !user.password || !user.firstName || !user.phoneNumber || !user.phoneNumber || !user.address){
+    this.errorMessage = 'Please fill out all form fields before submitting';
+    this.isLoading = false;
+    this.hideAlert();
+    return;
   }
 
   //If the password field does not match the confirmPassword field, trigger an error

@@ -22,15 +22,19 @@ export class SecurityService {
     return this.http.get('/api/users/' + empId);
   }
 
-  // Pathway for sigIn
+  // Pathway for signIn
  signIn(email: string, password: string) {
   return this.http.post('/api/security/signIn', { email, password })
  }
 
   //Registration function that returns an http post request with a new user object
   registerUser(user: User){
-    console.log("BIG TEST")
     return this.http.post('api/security/register', {user})
+  }
+
+  //Email verification function that returns an http get request
+  verifyUser(email: string){
+    return this.http.post('api/security/verify/users/' + email, {email})
   }
 }
 

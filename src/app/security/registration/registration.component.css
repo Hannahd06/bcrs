@@ -157,3 +157,11 @@ input{
   font-weight: 600;
   font-family: 'Teko', sans-serif;
 }
+
+.center-form{
+  margin-left: 30%;
+}
+
+.answer-input{
+  margin-bottom: 20%;
+}

@@ -1,5 +1,5 @@
 <!--
-    Title: user-list.component.html
+    Title: registration.component.html
     Authors: Hannah Del Real, Jocelyn Dupuis, Kyle Hochdoefer
     Date: 02/19/2024
     Description:  Registration page for BCRS.
@@ -122,47 +122,60 @@
 
       <!--Security  Questions-->
       <div *ngIf="step === 'securityQuestions'">
-         <!--Security Question 1-->
-         <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <label for="questionOne">Security Question #1:</label>
-            <select id="questionOne" name="questionOne" formControlName="questionOne">
-              <option value="{{question}}"*ngFor="let question of securityQuestions" selected>{{question}}</option>
-            </select>
+
+        <div class="center-form row">
+           <!--Security Question 1-->
+          <div class="row justify-content-left">
+            <div class="col-lg-7">
+              <label for="questionOne">Security Question #1:</label><br>
+              <select id="questionOne" name="questionOne" formControlName="questionOne">
+                <option value="{{question}}" *ngFor="let question of securityQuestions">{{question}}</option>
+              </select>
+            </div>
           </div>
-          <div class="col-lg-4">
-            <label for="answerOne">Answer:</label>
-            <input id="answerOne" class="form-control" type="text" formControlName="answerOne">
+
+          <div class="row justify-content-left">
+            <div class="col-lg-5">
+              <label for="answerOne" class="answer-label">Answer:</label>
+              <input id="answerOne" class="form-control answer-input" type="text" formControlName="answerOne">
+            </div>
+          </div>
+
+          <!--Security Question 2-->
+          <div class="row justify-content-left">
+            <div class="col-lg-7">
+              <label for="questionTwo">Security Question #2:</label><br>
+              <select id="questionTwo" name="questionThree" formControlName="questionTwo">
+                <option value="{{question}}" *ngFor="let question of securityQuestions">{{question}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row justify-content-left">
+            <div class="col-lg-5">
+              <label for="answerTwo" class="answer-label">Answer:</label>
+              <input id="answerTwo" class="form-control answer-input" type="text" formControlName="answerTwo">
+            </div>
+          </div>
+
+          <!--Security Question 3-->
+          <div class="row justify-content-left">
+            <div class="col-lg-7">
+              <label for="questionThree">Security Question #3:</label><br>
+              <select id="questionThree" name="questionThree" formControlName="questionThree">
+                <option value="{{question}}" *ngFor="let question of securityQuestions">{{question}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row justify-content-left">
+            <div class="col-lg-5">
+              <label for="answerThree">Answer:</label>
+              <input id="answerThree" class="form-control answer-input" type="text" formControlName="answerThree">
+            </div>
           </div>
         </div>
 
-        <!--Security Question 2-->
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <label for="questionTwo">Security Question #2:</label>
-            <select id="questionTwo" name="questionTwo" formControlName="questionTwo">
-              <option value="{{question}}"*ngFor="let question of securityQuestions">{{question}}</option>
-            </select>
-          </div>
-          <div class="col-lg-4">
-            <label for="answerTwo">Answer:</label>
-            <input id="answerTwo" class="form-control" type="text" formControlName="answerTwo">
-          </div>
-        </div>
-
-        <!--Security Question 3-->
-        <div class="row justify-content-center">
-          <div class="col-lg-7">
-            <label for="questionThree">Security Question #3:</label>
-            <select id="questionThree" name="questionThree" formControlName="questionThree">
-              <option value="{{question}}" *ngFor="let question of securityQuestions">{{question}}</option>
-            </select>
-          </div>
-          <div class="col-lg-4">
-            <label for="answerThree">Answer:</label>
-            <input id="answerThree" class="form-control" type="text" formControlName="answerThree">
-          </div>
-        </div>
 
         <div class="row column-gap-3 justify-content-center w-50 text-align mx-auto pt-3">
           <button class="col btn btn-dark mx-auto w-25 button-back" (click)="next('credentials')" >Back</button>

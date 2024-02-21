@@ -18,6 +18,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RegistrationComponent } from './security/registration/registration.component';
 import { DirectoryComponent } from './directory/directory.component';
 import { FaqComponent } from './faq/faq.component';
+import { VerifyEmailComponent } from './security/verify-email/verify-email.component';
+import { VerifySecurityQuestionsComponent } from './security/verify-security-questions/verify-security-questions.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -69,6 +71,14 @@ const routes: Routes = [
       {
         path: 'registration',
         component: RegistrationComponent
+      },
+      {
+        path: "verify-email",
+        component: VerifyEmailComponent
+      },
+      {
+        path: "verify-security-questions",
+        component: VerifySecurityQuestionsComponent
       }
     ]
   },

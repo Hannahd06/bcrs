@@ -17,6 +17,7 @@ import { SigninComponent } from './signin/signin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { VerifySecurityQuestionsComponent } from './verify-security-questions/verify-security-questions.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
     SigninComponent,
     NotFoundComponent,
     RegistrationComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    VerifySecurityQuestionsComponent
   ],
   imports: [
     CommonModule,
