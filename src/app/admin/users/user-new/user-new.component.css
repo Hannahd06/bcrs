@@ -49,6 +49,14 @@ p {
 
 }
 
+.button-back {
+  text-align: center;
+  font-weight: 600;
+  font-size: 30px;
+  font-family: 'Teko', sans-serif;
+
+}
+
 /*styling for button/link to return user home*/
 .return-btn {
   color: white;

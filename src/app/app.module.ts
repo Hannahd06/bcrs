@@ -19,6 +19,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DirectoryComponent } from './directory/directory.component';
+import { FaqComponent } from './faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { DirectoryComponent } from './directory/directory.component';
     ContactComponent,
     UserProfileComponent,
     DirectoryComponent,
+    FaqComponent,
     ],
 
   imports: [

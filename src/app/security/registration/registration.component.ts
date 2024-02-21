@@ -18,6 +18,11 @@ import { User } from 'src/app/admin/users/user';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
+  step: string ='personalInfo';
+  next(nextStep: string) {
+    this.step = nextStep;
+  };
+
   //Define variables for error message, session user, and isloading
   errorMessage: string;
   isLoading: boolean = false;

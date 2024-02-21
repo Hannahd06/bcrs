@@ -5,9 +5,57 @@
     Description:  Registration page for BCRS.
 -->
   <div class="config-container">
-  <div class="row- justify-content-center mt-5 text-center">
+  <div class="row justify-content-center mt-5 text-center">
+
     <h1>Register New Employee</h1>
-    <div class="card col-lg-6 col-md-10 col-sm-12">
+
+    <div *ngIf="step === 'personalInfo'" class="stepper-wrapper">
+      <div class="stepper-item done">
+        <div class="step-counter"></div>
+        <div class="step-name">Personal Information</div>
+      </div>
+      <div class="stepper-item">
+        <div class="step-counter"></div>
+        <div class="step-name"></div>
+      </div>
+      <div class="stepper-item">
+        <div class="step-counter"></div>
+        <div class="step-name"></div>
+      </div>
+    </div>
+
+    <div *ngIf="step === 'credentials'" class="stepper-wrapper">
+      <div class="stepper-item completed">
+        <div class="step-counter"></div>
+        <div class="step-name"></div>
+      </div>
+      <div class="stepper-item done">
+        <div class="step-counter"></div>
+        <div class="step-name">User Credentials</div>
+      </div>
+      <div class="stepper-item">
+        <div class="step-counter"></div>
+        <div class="step-name"></div>
+      </div>
+    </div>
+
+    <div *ngIf="step === 'securityQuestions'" class="stepper-wrapper">
+      <div class="stepper-item completed">
+        <div class="step-counter"></div>
+        <div class="step-name"></div>
+      </div>
+      <div class="stepper-item completed">
+        <div class="step-counter"></div>
+        <div class="step-name"></div>
+      </div>
+      <div class="stepper-item done">
+        <div class="step-counter"></div>
+        <div class="step-name">Security Questions</div>
+      </div>
+    </div>
+
+    <div class="card col-lg-6 col-md-10 col-sm-11">
+
      <form class="row justify-content-center" [formGroup]="registrationForm" (ngSubmit)="register()">
 
       <div *ngIf="errorMessage">
@@ -15,7 +63,8 @@
           {{ errorMessage }}
         </div>
       </div>
-
+      <!--Personal Information-->
+      <div *ngIf="step === 'personalInfo'">
         <div class="row justify-content-center">
           <div class="col-lg-4">
             <label for="firstName">First Name:</label>
@@ -39,15 +88,22 @@
             <input id="phoneNumber" class="form-control" type="text" formControlName="phoneNumber">
           </div>
         </div>
+        <div class="row justify-content-center w-50 text-align mx-auto pt-3">
+          <button class="btn btn-lg mx-auto button-register" (click)="next('credentials')">Next</button>
+        </div>
+      </div>
+      <!--End Personal Information-->
 
+      <!--Employee Credentials-->
+      <div *ngIf="step === 'credentials'">
         <div class="row justify-content-center">
-          <div class="col-lg-4 col-md-7 col-sm-10">
-            <label for="password">Password:</label>
-            <input id="password" class="form-control" type="text" formControlName="password">
-          </div>
           <div class="col-lg-4">
             <label for="email">Email:</label>
             <input id="email" class="form-control" type="text" formControlName="email">
+          </div>
+          <div class="col-lg-4">
+            <label for="password">Password:</label>
+            <input id="password" class="form-control" type="text" formControlName="password">
           </div>
         </div>
 
@@ -57,9 +113,17 @@
             <input id="confirmPassword" class="form-control" type="text" formControlName="confirmPassword">
           </div>
         </div>
+        <div class="row column-gap-3 justify-content-center w-50 text-align mx-auto pt-3">
+          <button class="col btn btn-dark mx-auto button-back w-25" (click)="next('personalInfo')" >Back</button>
+          <button class="btn btn-lg mx-auto button-register w-50" (click)="next('securityQuestions')">Next</button>
+        </div>
+      </div>
+      <!--End Employee Credentials-->
 
+      <!--Security  Questions-->
+      <div *ngIf="step === 'securityQuestions'">
          <!--Security Question 1-->
-        <div class="row justify-content-center">
+         <div class="row justify-content-center">
           <div class="col-lg-6">
             <label for="questionOne">Security Question #1:</label>
             <select id="questionOne" name="questionOne" formControlName="questionOne">
@@ -100,10 +164,13 @@
           </div>
         </div>
 
-        <div class="row justify-content-center">
-          <button class="btn btn-lg button-register" id="submit" value="submit">SUBMIT</button>
-        </div>
-      </form>
+        <div class="row column-gap-3 justify-content-center w-50 text-align mx-auto pt-3">
+          <button class="col btn btn-dark mx-auto w-25 button-back" (click)="next('credentials')" >Back</button>
+          <button class="col btn button-register w-50" id="submit" value="submit">SUBMIT</button>
+         </div>
+      </div>
+      <!--End Security  Questions-->
+    </form>
     </div>
   </div>
 </div>
