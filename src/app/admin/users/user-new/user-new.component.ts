@@ -17,7 +17,12 @@ import { User } from '../user';
   templateUrl: './user-new.component.html',
   styleUrls: ['./user-new.component.css']
 })
+
 export class UserNewComponent {
+  step: string ='credentials';
+  next(nextStep: string) {
+    this.step = nextStep;
+  };
 
   errorMessage: string;
   isLoading: boolean = false;

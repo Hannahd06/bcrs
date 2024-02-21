@@ -12,16 +12,16 @@
   padding: 30px;
 }
 
+.home-card {
+  padding: 2%;
+}
 .home-content {
   margin-left: 70px;
 }
 
-@media (max-width: 700px ) {
+@media (max-width: 800px ) {
   .home-card {
     flex-direction: column;
-  }
-  .home-content {
-    margin: auto;
   }
   img {
     max-width: 400px;
