@@ -1,0 +1,109 @@
+<!--
+    Title: user-list.component.html
+    Authors: Hannah Del Real, Jocelyn Dupuis, Kyle Hochdoefer
+    Date: 02/19/2024
+    Description:  Registration page for BCRS.
+-->
+  <div class="config-container">
+  <div class="row justify-content-center mt-5 text-center">
+    <h1>Register New Employee</h1>
+    <div class="card col-lg-6 col-md-10 col-sm-11">
+     <form class="row justify-content-center" [formGroup]="registrationForm" (ngSubmit)="register()">
+
+      <div *ngIf="errorMessage">
+        <div class="alert alert-danger font" role="alert">
+          {{ errorMessage }}
+        </div>
+      </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-4">
+            <label for="firstName">First Name:</label>
+            <input id="firstName" class="form-control" type="text" formControlName="firstName">
+          </div>
+
+          <div class="col-lg-4">
+            <label for="lastName">Last Name:</label>
+            <input id="lastName" class="form-control" type="text" formControlName="lastName">
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-4">
+            <label for="address">Address:</label>
+            <input id="address" class="form-control" type="text" formControlName="address">
+          </div>
+
+          <div class="col-lg-4">
+            <label for="phoneNumber">Phone Number:</label>
+            <input id="phoneNumber" class="form-control" type="text" formControlName="phoneNumber">
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-4">
+            <label for="password">Password:</label>
+            <input id="password" class="form-control" type="text" formControlName="password">
+          </div>
+          <div class="col-lg-4">
+            <label for="email">Email:</label>
+            <input id="email" class="form-control" type="text" formControlName="email">
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input id="confirmPassword" class="form-control" type="text" formControlName="confirmPassword">
+          </div>
+        </div>
+
+         <!--Security Question 1-->
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <label for="questionOne">Security Question #1:</label>
+            <select id="questionOne" name="questionOne" formControlName="questionOne">
+              <option value="{{question}}"*ngFor="let question of securityQuestions">{{question}}</option>
+            </select>
+          </div>
+          <div class="col-lg-4">
+            <label for="answerOne">Answer:</label>
+            <input id="answerOne" class="form-control" type="text" formControlName="answerOne">
+          </div>
+        </div>
+
+        <!--Security Question 2-->
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <label for="questionTwo">Security Question #2:</label>
+            <select id="questionTwo" name="questionTwo" formControlName="questionTwo">
+              <option value="{{question}}"*ngFor="let question of securityQuestions">{{question}}</option>
+            </select>
+          </div>
+          <div class="col-lg-4">
+            <label for="answerTwo">Answer:</label>
+            <input id="answerTwo" class="form-control" type="text" formControlName="answerTwo">
+          </div>
+        </div>
+
+        <!--Security Question 3-->
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <label for="questionThree">Security Question #3:</label>
+            <select id="questionThree" name="questionThree" formControlName="questionThree">
+              <option value="{{question}}" *ngFor="let question of securityQuestions">{{question}}</option>
+            </select>
+          </div>
+          <div class="col-lg-4">
+            <label for="answerThree">Answer:</label>
+            <input id="answerThree" class="form-control" type="text" formControlName="answerThree">
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <button class="btn btn-lg button-register" id="submit" value="submit">SUBMIT</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

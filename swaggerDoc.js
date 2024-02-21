@@ -229,6 +229,103 @@
  *         description: MongoDB Exception
  */
 
+/**
+ * registerUser
+ * @openapi
+ * /api/security/register:
+ *   post:
+ *     tags:
+ *       - Security
+ *     name: registerUser
+ *     description: API for registering a new User
+ *     summary: Creates a  new User document
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               user:
+ *                 type: object
+ *                 properties:
+ *                   email:
+ *                     type: string
+ *                   password:
+ *                     type: string
+ *                   firstName:
+ *                     type: string
+ *                   lastName:
+ *                     type: string
+ *                   phoneNumber:
+ *                     type: string
+ *                   address:
+ *                     type: string
+ *                   selectedSecurityQuestions:
+ *                     minItems: 3
+ *                     maxItems: 3
+ *                     type: array
+ *                     items:
+ *                       type: object
+ *                       properties:
+ *                         questionText:
+ *                           type: string
+ *                         answerText:
+ *                           type: string
+ *                   isDisabled:
+ *                     type: boolean
+ *             required:
+ *               - email
+ *               - password
+ *               - firstName
+ *               - lastName
+ *               - phoneNumber
+ *               - address
+ *               - isDisabled
+ *     responses:
+ *       '201':
+ *         description: New User created
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Invalid empId
+ *       '500':
+ *         description: Server Exception
+ */
+
+
+/**
+ * verifyUsers
+ * @openapi
+ * /api/security/verify/users/{email}:
+ *   post:
+ *     tags:
+ *       - Security
+ *     name: verifyUsers
+ *     description: API for verifying a user by email.
+ *     summary: Verifies if any registered user contains the inputted email.
+ *     parameters:
+ *       - name: email
+ *         in: path
+ *         required: true
+ *         description: The email address of the user to verify.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *           schema:
+ *             type: string
+ *     responses:
+ *       '200':
+ *         description: User verified by email
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Not Found - Invalid email
+ *       '500':
+ *         description: Internal Server Error
+ */
+
+
 
 /**
  * verifySecurityQuestions

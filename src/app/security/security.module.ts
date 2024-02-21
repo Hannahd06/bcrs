@@ -15,12 +15,14 @@ import { SecurityRoutingModule } from './security-routing.module';
 import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
     SecurityComponent,
     SigninComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    RegistrationComponent
   ],
   imports: [
     CommonModule,
