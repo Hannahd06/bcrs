@@ -6,8 +6,56 @@
 -->
   <div class="config-container">
   <div class="row justify-content-center mt-5 text-center">
+
     <h1>Register New Employee</h1>
+
+    <div *ngIf="step === 'personalInfo'" class="stepper-wrapper">
+      <div class="stepper-item done">
+        <div class="step-counter"></div>
+        <div class="step-name">Personal Information</div>
+      </div>
+      <div class="stepper-item">
+        <div class="step-counter"></div>
+        <div class="step-name"></div>
+      </div>
+      <div class="stepper-item">
+        <div class="step-counter"></div>
+        <div class="step-name"></div>
+      </div>
+    </div>
+
+    <div *ngIf="step === 'credentials'" class="stepper-wrapper">
+      <div class="stepper-item completed">
+        <div class="step-counter"></div>
+        <div class="step-name"></div>
+      </div>
+      <div class="stepper-item done">
+        <div class="step-counter"></div>
+        <div class="step-name">User Credentials</div>
+      </div>
+      <div class="stepper-item">
+        <div class="step-counter"></div>
+        <div class="step-name"></div>
+      </div>
+    </div>
+
+    <div *ngIf="step === 'securityQuestions'" class="stepper-wrapper">
+      <div class="stepper-item completed">
+        <div class="step-counter"></div>
+        <div class="step-name"></div>
+      </div>
+      <div class="stepper-item completed">
+        <div class="step-counter"></div>
+        <div class="step-name"></div>
+      </div>
+      <div class="stepper-item done">
+        <div class="step-counter"></div>
+        <div class="step-name">Security Questions</div>
+      </div>
+    </div>
+
     <div class="card col-lg-6 col-md-10 col-sm-11">
+
      <form class="row justify-content-center" [formGroup]="registrationForm" (ngSubmit)="register()">
 
       <div *ngIf="errorMessage">
