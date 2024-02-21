@@ -17,8 +17,6 @@ import { UserListComponent } from './admin/users/user-list/user-list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DirectoryComponent } from './directory/directory.component';
 import { FaqComponent } from './faq/faq.component';
-import { VerifyEmailComponent } from './security/verify-email/verify-email.component';
-import { VerifySecurityQuestionsComponent } from './security/verify-security-questions/verify-security-questions.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [

@@ -11,6 +11,8 @@ import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { VerifySecurityQuestionsComponent } from './verify-security-questions/verify-security-questions.component';
 
 const routes: Routes = [
   {
@@ -31,6 +33,14 @@ const routes: Routes = [
         path: 'registration',
         component: RegistrationComponent,
         title: 'register'
+      },
+      {
+        path: 'verify-email',
+        component: VerifyEmailComponent
+      },
+      {
+        path: 'verify-security-questions',
+        component: VerifySecurityQuestionsComponent
       }
 
     ]
