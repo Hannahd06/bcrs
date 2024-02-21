@@ -57,7 +57,9 @@ const registerSchema = {
     phoneNumber: { type: 'string'},
     address: { type: 'string'},
     selectedSecurityQuestions: selectedSecurityQuestionsSchema,
-    isDisabled: {type: 'boolean'}
+    isDisabled: {type: 'boolean'},
+    role: {type: 'string'},
+    empId: {type: 'number'}
   },
   required: [
     'email',
@@ -158,6 +160,7 @@ router.post('/register', (req, res, next) => {
   try {
     //grab input from user
     const { user } = req.body;
+
     // set data validation based on registerSchema
     const validator  = ajv.compile(registerSchema);
     // Validate user input against registerSchema
@@ -318,7 +321,7 @@ router.post('/verify/users/:email', (req, res, next) => {
 
 
 //resetPassword
-router.delete('/users/:email/reset-password', (req, res, next) => {
+router.post('/users/:email/reset-password', (req, res, next) => {
   try {
     //gets user and their email
     const email = req.params.email

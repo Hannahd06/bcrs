@@ -15,6 +15,7 @@ import { AboutComponent } from './about/about.component';
 import { authGuard } from './shared/auth.guard';
 import { UserListComponent } from './admin/users/user-list/user-list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { RegistrationComponent } from './security/registration/registration.component';
 import { DirectoryComponent } from './directory/directory.component';
 import { FaqComponent } from './faq/faq.component';
 
@@ -64,6 +65,10 @@ const routes: Routes = [
         path: 'admin',
         loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
         canActivate: [authGuard]
+      },
+      {
+        path: 'registration',
+        component: RegistrationComponent
       }
     ]
   },

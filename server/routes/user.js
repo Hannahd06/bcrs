@@ -68,6 +68,16 @@ const updateUserSchema = {
   additionalProperties: false
 }
 
+//Create an email schema for request validation
+let emailSchema = {
+  type: 'object',
+  properties:{
+    email: { type: 'string'}
+  },
+  required: ["email"],
+  additionalProperties: false
+}
+
 //findAllUsers
 router.get("/", (req, res, next) => {
   try {
@@ -321,6 +331,44 @@ router.delete('/:empId', (req, res, next) => {
     next(err);
   }
 });
+
+//findSelectedSecurityQuestions
+router.post('/:email/security-questions', (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const validator = ajv.compile(emailSchema)
+    const isValid = validator({ email })
+
+    if(!isValid){
+      const err = new Error("Bad Request")
+      err.status = 400;
+      err.errors = validator.errors;
+      console.error("err", err)
+      next(err)
+      return
+    }
+
+    //Check the database to get the user document with the matching email
+    mongo(async db => {
+      const user = await db.collection("users").findOne({email});
+
+      //If the user is not found, return an error statement saying so
+      if (!user){
+        const err = new Error("Unable to find user with email " + email)
+        err.status = 404;
+        console.log("err", err)
+        next(err)
+        return;
+      }
+
+      //Send the matching user's selected security questions as a response
+      res.send(user.selectedSecurityQuestions)
+    })
+  } catch (err) {
+    console.error('err', err);
+    next(err);
+  }
+})
 
 
 module.exports = router;
