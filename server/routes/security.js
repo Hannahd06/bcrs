@@ -183,7 +183,7 @@ router.post('/verify/users/:email/security-questions', (req, res, next) => {
 
 
 //resetPassword
-router.delete('/users/:email/reset-password', (req, res, next) => {
+router.post('/users/:email/reset-password', (req, res, next) => {
   try {
     //gets user and their email
     const email = req.params.email

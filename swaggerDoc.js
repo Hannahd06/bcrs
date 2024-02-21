@@ -270,42 +270,6 @@
  *     responses:
  *       200:
  *         description: User's security questions verified successfully.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 _id:
- *                   type: string
- *                 empId:
- *                   type: integer
- *                 firstName:
- *                   type: string
- *                 lastName:
- *                   type: string
- *                 phoneNumber:
- *                   type: integer
- *                 address:
- *                   type: string
- *                 email:
- *                   type: string
- *                 password:
- *                   type: string
- *                 selectedSecurityQuestions:
- *                   type: array
- *                   minItems: 3
- *                   maxItems: 3
- *                   items:
- *                     type: object
- *                     properties:
- *                       question:
- *                         type: string
- *                       answer:
- *                         type: string
- *                 role:
- *                   type: string
- *                 isDisabled:
- *                   type: boolean
  *       400:
  *         description: Bad Request. Invalid request format.
  *       404:
@@ -321,7 +285,7 @@
  * resetPassword
  * @openapi
  * /api/security/users/{email}/reset-password:
- *   delete:
+ *   post:
  *     tags:
  *       - Security
  *     name: resetPassword
@@ -348,10 +312,6 @@
  *     responses:
  *       200:
  *         description: Password reset successful.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
  *       400:
  *         description: Bad Request.
  *       404:
