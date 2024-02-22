@@ -51,6 +51,11 @@ export class SecurityService {
     return this.http.post(`/api/security/verify/users/${email}/security-questions`, {securityQuestions})
   }
 
+  //Password reset function that returns an http request
+  resetPassword(email: string, password: Object){
+    return this.http.post(`/api/security/users/${email}/reset-password`, password)
+  }
+
 }
 
 
