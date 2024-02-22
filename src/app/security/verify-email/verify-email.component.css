@@ -6,13 +6,19 @@
 .card{
   background-color: #7F7E7D;
   padding: 30px;
-  margin-bottom: 10%;
   margin-top: 2%;
 }
+
 
 h1{
   color: rgb(255, 240, 154);
   margin-bottom: 1%;
+}
+
+h3{
+  text-align: center;
+  color: rgb(255, 253, 227);
+  padding-bottom: 20px;
 }
 
 form{
@@ -36,3 +42,4 @@ input{
   background-color: #EEBA35;
   font-family: 'Teko', sans-serif;
 }
+

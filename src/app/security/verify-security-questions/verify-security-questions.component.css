@@ -6,13 +6,18 @@
 .card{
   background-color: #7F7E7D;
   padding: 30px;
-  margin-bottom: 10%;
   margin-top: 2%;
 }
 
-h1{
-  color: rgb(255, 240, 154);
-  margin-bottom: 1%;
+
+
+legend {
+  text-align: center;
+  color: rgb(255, 253, 227);
+  padding-bottom: 20px;
+  font-size: 30px;
+  font-weight: 600;
+
 }
 
 form{
@@ -23,10 +28,11 @@ form{
 label{
   margin-bottom: 1%;
   color: white;
+  font-size: 18px;
 }
 
 input{
-  margin-bottom: 10%;
+  margin-bottom: 5%;
   font-size: 20px;
 }
 
@@ -35,4 +41,10 @@ input{
   font-size: 30px;
   background-color: #EEBA35;
   font-family: 'Teko', sans-serif;
+  margin-bottom: 30px;
+}
+
+label, input {
+  margin-left: 12%;
+  margin-right: 12%;
 }
