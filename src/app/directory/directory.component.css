@@ -21,15 +21,19 @@ h1 {
   padding-bottom: 30px;
 }
 
-.job-name {
-  color: rgb(255, 240, 154);
-}
-
 .directory-card {
   border: dashed rgb(241, 197, 20) 4px;
   border-radius: 10px;
 }
 
-.employee-discription {
+.employee-name {
+  color: rgb(255, 240, 154);
+}
+
+.employee-description {
   color: white;
+}
+
+.email-text {
+  color: rgb(255, 240, 154);
 }

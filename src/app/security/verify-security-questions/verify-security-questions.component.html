@@ -4,9 +4,9 @@
       <div class="card shadow p-4">
         <form [formGroup]="sqForm" (ngSubmit)="verifySecurityQuestions()" class="form row g-3">
 
-          <div *ngIf="errorMessage" class="row">
+          <div *ngIf="errorMessage" class="row text-align">
             <div class="col-12">
-              <div class="alert alert-danger">
+              <div class="alert alert-danger w-50 mx-auto">
                 {{ errorMessage }}
               </div>
             </div>

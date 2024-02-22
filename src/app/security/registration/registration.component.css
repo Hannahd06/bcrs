@@ -23,8 +23,9 @@ h1{
 
 h2{
   color: rgb(255, 240, 154);
-  margin-top: 1%;
-  margin-bottom: 2%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
 }
 
 form{
@@ -163,7 +164,9 @@ input{
 }
 
 .center-form{
-  margin-left: 30%;
+  padding-top: 20px;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 .answer-input{
