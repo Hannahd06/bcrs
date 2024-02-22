@@ -271,7 +271,7 @@ router.post('/verify/users/:email/security-questions', (req, res, next) => {
         securityQuestions[2].answerText !== user.selectedSecurityQuestions[2].answerText) {
           const err = new Error ('Unauthorized')
           err.status = 401
-          err.message = 'Unauthorized: Security questions do not match.'
+          err.message = 'One or more Security questions do not match our records! Please try again!'
           console.log('Unauthorized: Security questions do not match, err')
           next(err)
           return
@@ -327,6 +327,7 @@ router.post('/users/:email/reset-password', (req, res, next) => {
     const email = req.params.email
     const user = req.body
     console.log('Employee email', email)
+    console.log('Password: ' + user)
 
     //validates user and password
     const validate = ajv.compile(resetPasswordSchema)
