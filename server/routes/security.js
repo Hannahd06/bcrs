@@ -327,6 +327,7 @@ router.post('/users/:email/reset-password', (req, res, next) => {
     const email = req.params.email
     const user = req.body
     console.log('Employee email', email)
+    console.log('Password: ' + user)
 
     //validates user and password
     const validate = ajv.compile(resetPasswordSchema)
