@@ -18,6 +18,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { VerifySecurityQuestionsComponent } from './verify-security-questions/verify-security-questions.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { VerifySecurityQuestionsComponent } from './verify-security-questions/ve
     NotFoundComponent,
     RegistrationComponent,
     VerifyEmailComponent,
-    VerifySecurityQuestionsComponent
+    VerifySecurityQuestionsComponent,
+    PasswordResetComponent
   ],
   imports: [
     CommonModule,

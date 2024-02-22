@@ -47,8 +47,8 @@ export class SecurityService {
 
 
   //Email verification function that returns an http get request
-  verifysecurityQuestions(email: string, selectedSecurityQuestions: SecurityQuestionModel[]){
-    return this.http.post(`/api/security/verify/users/${email}/security-questions`, selectedSecurityQuestions)
+  verifysecurityQuestions(email: string, securityQuestions: SecurityQuestionModel[]){
+    return this.http.post(`/api/security/verify/users/${email}/security-questions`, {securityQuestions})
   }
 
 }

@@ -229,23 +229,6 @@ router.post('/register', (req, res, next) => {
 
 
 
-router.get('/verify/users/:email/', async (req, res, next) => {
-  try  {
-    const email = req.params.email;
-    const user = await db.collection('users').findOne({email: email});
-    if (!user ) {
-      console.error ('uer not found');
-      next({status: 404, message: "user not found"});
-      return
-    }
-    res.send(user.selectedSecurityQuestions);
-  } catch (err) {
-    console.error('err', err);
-    next(err);
-
-  }
-})
-
 //verifySecurityQuestions
 router.post('/verify/users/:email/security-questions', (req, res, next) => {
   try {
@@ -283,9 +266,9 @@ router.post('/verify/users/:email/security-questions', (req, res, next) => {
 
       console.log('Selected User', user)
 
-      if (securityQuestions[0].answer !== user.selectedSecurityQuestions[0].answer ||
-        securityQuestions[1].answer !== user.selectedSecurityQuestions[1].answer ||
-        securityQuestions[2].answer !== user.selectedSecurityQuestions[2].answer) {
+      if (securityQuestions[0].answerText !== user.selectedSecurityQuestions[0].answerText ||
+        securityQuestions[1].answerText !== user.selectedSecurityQuestions[1].answerText ||
+        securityQuestions[2].answerText !== user.selectedSecurityQuestions[2].answerText) {
           const err = new Error ('Unauthorized')
           err.status = 401
           err.message = 'Unauthorized: Security questions do not match.'
@@ -393,6 +376,5 @@ router.post('/users/:email/reset-password', (req, res, next) => {
     next(err)
   }
 })
-
 
 module.exports = router;
