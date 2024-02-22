@@ -335,7 +335,7 @@ router.delete('/:empId', (req, res, next) => {
 //findSelectedSecurityQuestions
 router.post('/:email/security-questions', (req, res, next) => {
   try {
-    const { email } = req.body;
+    const  email = req.params.email;
     const validator = ajv.compile(emailSchema)
     const isValid = validator({ email })
 
@@ -350,7 +350,9 @@ router.post('/:email/security-questions', (req, res, next) => {
 
     //Check the database to get the user document with the matching email
     mongo(async db => {
-      const user = await db.collection("users").findOne({email});
+      const user = await db.collection("users").findOne(
+         {email: email},
+         {projection: {email: 1, selectedSecurityQuestions: 1 }});
 
       //If the user is not found, return an error statement saying so
       if (!user){
@@ -362,7 +364,7 @@ router.post('/:email/security-questions', (req, res, next) => {
       }
 
       //Send the matching user's selected security questions as a response
-      res.send(user.selectedSecurityQuestions)
+      res.send(user)
     })
   } catch (err) {
     console.error('err', err);

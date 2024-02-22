@@ -6,10 +6,10 @@
 
 //import statements
 import { Component } from '@angular/core';
+import { SecurityQuestionModel } from '../security-question-model';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SecurityService } from '../security.service';
-import { UserService } from 'src/app/admin/users/user.service';
 
 @Component({
   selector: 'app-verify-security-questions',
@@ -17,32 +17,100 @@ import { UserService } from 'src/app/admin/users/user.service';
   styleUrls: ['./verify-security-questions.component.css']
 })
 export class VerifySecurityQuestionsComponent {
-  //Define variables for error message, session user, and isloading
+  selectedSecurityQuestions: SecurityQuestionModel[];
+  email: string;
   errorMessage: string;
-  isLoading: boolean = false;
-
-  //Use form builder to create a email verification form
-  verifyQuestionsForm: FormGroup = this.fb.group({
-    answerOne: [null, Validators.compose([Validators.required])],
-    answerTwo: [null, Validators.compose([Validators.required])],
-    answerThree: [null, Validators.compose([Validators.required])]
-  });
+  isLoadingLabels: boolean;
+  isLoadingSubmit: boolean;
+  question1: string;
+  question2: string;
+  question3: string;
 
 
+  sqForm: FormGroup = this.fb.group({
+    answer1: [null, Validators.compose([Validators.required])],
+    answer2: [null, Validators.compose([Validators.required])],
+    answer3: [null, Validators.compose([Validators.required])]
+  })
 
-  //Define a constructor that passes in routing, form builder, and security service
   constructor(
-    private securityService: SecurityService,
-    private userService: UserService,
+    private route: ActivatedRoute,
     private router: Router,
+    private securityService: SecurityService,
     private fb: FormBuilder
   ) {
-    //Set default values for error message
+    this.selectedSecurityQuestions = [];
+    this.question1 = '';
+    this.question2 ='';
+    this.question3 = '';
     this.errorMessage = '';
+    this.isLoadingLabels = true;
+    this.isLoadingSubmit = false;
+    this.email = this.route.snapshot.queryParamMap.get('email') ?? '';
+
+    if (!this.email) {
+      this.router.navigate(['/forgot-password'])
+    }
+    this.securityService.findsecurityQuestions(this.email).subscribe({
+      next: (data: any) => {
+        this.selectedSecurityQuestions = data.selectedSecurityQuestions;
+        console.log('data:', this.selectedSecurityQuestions)
+      },
+      error: (err) => {
+        if (err.status === 404) {
+          this.errorMessage = 'email address you entered was not found';
+          return;
+        } else {
+          this.errorMessage = ' there was a problem verifying your security questions'
+        }
+        this.isLoadingLabels = false;
+      } , complete: () => {
+        this.question1 = this.selectedSecurityQuestions[0].questionText;
+        this.question2 = this.selectedSecurityQuestions[1].questionText;
+        this.question3 = this.selectedSecurityQuestions[2].questionText;
+
+        this.isLoadingLabels = false;
+      }
+    });
+  }
+  verifySecurityQuestions() {
+    this.isLoadingSubmit = true;
+    let securityQuestions = [
+      {
+        questionText: this.question1,
+        answerText: this.sqForm.controls['answer1'].value
+      },
+      {
+        questionText: this.question2,
+        answerText: this.sqForm.controls['answer2'].value
+      },{
+        questionText: this.question3,
+        answerText: this.sqForm.controls['answer3'].value
+      }
+    ];
+    console.log( securityQuestions);
+    this.securityService.verifysecurityQuestions(this.email, securityQuestions).subscribe({
+      next: (res) => {
+        this.router.navigate(['security/password-reset'], {
+          queryParams: { email: this.email },
+          skipLocationChange: true
+        });
+      },
+      error: (err) => {
+        if(err.error.message) {
+          this.errorMessage = err.error.message;
+          return
+        } else {
+          this.errorMessage = 'There was a problem verifying your security questions. Please try again';
+          this.isLoadingSubmit = false;
+        }
+      },
+      complete: () => {
+        this.isLoadingSubmit =false;
+
+      }
+    })
   }
 
-  verifyQuestions(){
-    const userAnswers = this.userService.findSelectedSecurityQuestions
-    const inputAnswers = []
-  }
 }
+

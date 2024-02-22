@@ -229,6 +229,23 @@ router.post('/register', (req, res, next) => {
 
 
 
+router.get('/verify/users/:email/', async (req, res, next) => {
+  try  {
+    const email = req.params.email;
+    const user = await db.collection('users').findOne({email: email});
+    if (!user ) {
+      console.error ('uer not found');
+      next({status: 404, message: "user not found"});
+      return
+    }
+    res.send(user.selectedSecurityQuestions);
+  } catch (err) {
+    console.error('err', err);
+    next(err);
+
+  }
+})
+
 //verifySecurityQuestions
 router.post('/verify/users/:email/security-questions', (req, res, next) => {
   try {
@@ -376,5 +393,6 @@ router.post('/users/:email/reset-password', (req, res, next) => {
     next(err)
   }
 })
+
 
 module.exports = router;
