@@ -363,6 +363,15 @@ router.post('/:email/security-questions', (req, res, next) => {
         return;
       }
 
+      if(user.selectedSecurityQuestions.length === 0) {
+        const err = new Error("Unable to find security questions associated with " + email)
+        err.status = 404;
+        console.log("err", err)
+        next(err)
+        err.message = 'No security Questions are associated with this email! Please contact the help desk at ITsupport@bcrs.com'
+        return;
+      }
+
       //Send the matching user's selected security questions as a response
       res.send(user)
     })

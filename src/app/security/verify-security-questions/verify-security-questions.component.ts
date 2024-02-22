@@ -58,7 +58,12 @@ export class VerifySecurityQuestionsComponent {
       },
       error: (err) => {
         if (err.status === 404) {
-          this.errorMessage = 'email address you entered was not found';
+          if (this.errorMessage = 'No security Questions are associated with this email! Please contact the help desk at ITsupport@bcrs.com') {
+            this.errorMessage
+           } else {
+            this.errorMessage = 'email address you entered was not found';
+           }
+
           return;
         } else {
           this.errorMessage = ' there was a problem verifying your security questions'
