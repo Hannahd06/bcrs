@@ -36,7 +36,7 @@ const routes: Routes = [
         title: 'register'
       },
       {
-        path: 'verify-email',
+        path: 'forgot-password',
         component: VerifyEmailComponent
       },
       {

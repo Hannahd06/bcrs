@@ -1,3 +1,10 @@
+/**
+ * Title: verify-email.component.ts
+ * Author: Kyle Hochdoerfer
+ * Date: 02/21/2024
+ */
+
+//import statements
 import { Component } from '@angular/core';
 import { SecurityQuestionModel } from '../security-question-model';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';

@@ -1,7 +1,7 @@
 /**
  * Title: verify-email.component.ts
  * Author: Kyle Hochdoerfer
- * Date: 02/19/2024
+ * Date: 02/21/2024
  */
 
 //import statements
@@ -9,7 +9,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SecurityService } from '../security.service';
-import { User } from 'src/app/admin/users/user';
 
 @Component({
   selector: 'app-verify-email',
