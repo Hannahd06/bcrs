@@ -46,7 +46,10 @@ export class VerifyEmailComponent {
     this.securityService.verifyUser(email).subscribe({
       next: (res) => {
         console.log(res);
-        this.router.navigate(['/security/verify-security-questions']);
+        this.router.navigate(['/security/verify-security-questions'], {
+          queryParams: { email },
+          skipLocationChange: true,
+        });
         this.isLoading = false
       },
       error: (err) => {
