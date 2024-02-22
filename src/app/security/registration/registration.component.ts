@@ -23,18 +23,15 @@ export class RegistrationComponent {
     this.step = nextStep;
   };
 
+  // variables for the register component
+  securityQuestions: string[]
+  qArr1: string[]
+  qArr2: string[]
+  qArr3: string[]
+
   //Define variables for error message, session user, and isloading
   errorMessage: string;
   isLoading: boolean = false;
-
-  //Store security question text in an array
-  securityQuestions = [
-    "What is your mother's maiden name?",
-    "What is the name of your first pet?",
-    "What is the make and model of your first car?",
-    "In what city were you born?",
-    "What was the name of your elementary school?"
-  ]
 
   //Use form builder to create a registration form
   registrationForm: FormGroup = this.fb.group({
@@ -59,8 +56,39 @@ constructor(
   private router: Router,
   private fb: FormBuilder
 ) {
+
+    //Store security question text in an array
+    this.securityQuestions = [
+      "What is your mother's maiden name?",
+      "What is the name of your first pet?",
+      "What is the make and model of your first car?",
+      "In what city were you born?",
+      "What was the name of your elementary school?"
+    ]
+
+    this.qArr1 = this.securityQuestions // initialize the first array of questions to the security questions array
+    this.qArr2 = [] // initialize the second array of questions to an empty array
+    this.qArr3 = [] // initialize the third array of questions to an empty array
+
+
     //Set default values for error message
     this.errorMessage = '';
+}
+
+ngOnInit(): void {
+  // subscribe to the value changes of question 1
+  this.registrationForm.get('questionOne')?.valueChanges.subscribe(val => {
+    console.log('Value changed from question 1', val)
+    this.qArr2 = this.qArr1.filter(q => q !== val) // filter the first array of questions to remove the selected question
+    console.log(this.qArr2)
+  })
+
+  // subscribe to the value changes of question 2
+  this.registrationForm.get('questionTwo')?.valueChanges.subscribe(val => {
+    console.log('Value changed from question 2', val)
+    this.qArr3 = this.qArr2.filter(q => q !== val) // filter the second array of questions to remove the selected question
+    console.log(this.qArr3)
+  })
 }
 
  //function for user to signin

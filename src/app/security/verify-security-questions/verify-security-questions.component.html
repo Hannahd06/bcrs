@@ -1,1 +1,73 @@
-<p>verify-security-questions works!</p>
+<!--<div class="verify-container">
+  <div class="row justify-content-center mt-5 text-center">
+
+    <h1>Verify Security Questions</h1>
+
+    <div class="card col-lg-6 col-md-10 col-sm-11">
+
+      <form class="row justify-content-center" [formGroup]="verifyQuestionsForm" (ngSubmit)="verifyQuestions()">
+
+       <div *ngIf="errorMessage">
+         <div class="alert alert-danger font" role="alert">
+           {{ errorMessage }}
+         </div>
+       </div>
+
+       <div class="center-form row">
+        --Security Question 1--
+        <div class="row justify-content-left">
+         <div class="col-lg-7">
+           <label for="questionOne">Security Question #1:</label><br>
+           <select id="questionOne" name="questionOne" formControlName="questionOne">
+             <option value="{{question}}" *ngFor="let question of securityQuestions">{{question}}</option>
+           </select>
+         </div>
+       </div>
+
+        <div class="row justify-content-left">
+         <div class="col-lg-5">
+           <label for="answerOne" class="answer-label">Answer:</label>
+           <input id="answerOne" class="form-control answer-input" type="text" formControlName="answerOne">
+         </div>
+       </div>
+
+       Security Question 2
+       <div class="row justify-content-left">
+         <div class="col-lg-7">
+           <label for="questionTwo">Security Question #2:</label><br>
+           <select id="questionTwo" name="questionThree" formControlName="questionTwo">
+             <option value="{{question}}" *ngFor="let question of securityQuestions">{{question}}</option>
+           </select>
+         </div>
+       </div>
+
+       <div class="row justify-content-left">
+         <div class="col-lg-5">
+           <label for="answerTwo" class="answer-label">Answer:</label>
+           <input id="answerTwo" class="form-control answer-input" type="text" formControlName="answerTwo">
+         </div>
+       </div>
+
+       <Security Question 3--
+       <div class="row justify-content-left">
+         <div class="col-lg-7">
+           <label for="questionThree">Security Question #3:</label><br>
+           <select id="questionThree" name="questionThree" formControlName="questionThree">
+             <option value="{{question}}" *ngFor="let question of securityQuestions">{{question}}</option>
+           </select>
+         </div>
+       </div>
+
+       <div class="row justify-content-left">
+         <div class="col-lg-5">
+           <label for="answerThree">Answer:</label>
+           <input id="answerThree" class="form-control answer-input" type="text" formControlName="answerThree">
+         </div>
+       </div>
+     </div>
+
+       <div class="row justify-content-center">
+        <button class="col-2 btn button-register w-50" id="submit" value="submit">SUBMIT</button>
+       </div>
+    </form>
+</div>-->

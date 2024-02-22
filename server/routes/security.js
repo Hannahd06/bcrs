@@ -310,7 +310,7 @@ router.post('/verify/users/:email', (req, res, next) => {
 
      console.log(verifiedUser);
 
-     res.status(200).send(verifiedUser);
+     res.status(200).send(verifiedUser.selectedSecurityQuestions);
    }, next);
 
   } catch (err) {

@@ -29,12 +29,12 @@ export class SecurityService {
 
   //Registration function that returns an http post request with a new user object
   registerUser(user: User){
-    return this.http.post('api/security/register', {user})
+    return this.http.post('/api/security/register', {user})
   }
 
   //Email verification function that returns an http get request
   verifyUser(email: string){
-    return this.http.post('api/security/verify/users/' + email, {email})
+    return this.http.post('/api/security/verify/users/' + email, {email})
   }
 }
 

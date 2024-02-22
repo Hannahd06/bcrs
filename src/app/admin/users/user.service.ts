@@ -54,4 +54,9 @@ export class UserService {
   createNewUser(user: User) {
     return this.http.post('api/users', {user})
   }
+
+  //function to find securityQuestions
+  findSelectedSecurityQuestions(email: string){
+    return this.http.post(`api/users/${email}/security-questions`, {email})
+  }
 }

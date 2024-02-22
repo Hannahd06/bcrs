@@ -103,14 +103,14 @@
           </div>
           <div class="col-lg-4">
             <label for="password">Password:</label>
-            <input id="password" class="form-control" type="text" formControlName="password">
+            <input id="password" class="form-control" type="password" formControlName="password">
           </div>
         </div>
 
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <label for="confirmPassword">Confirm Password:</label>
-            <input id="confirmPassword" class="form-control" type="text" formControlName="confirmPassword">
+            <input id="confirmPassword" class="form-control" type="password" formControlName="confirmPassword">
           </div>
         </div>
         <div class="row column-gap-3 justify-content-center w-50 text-align mx-auto pt-3">
@@ -129,7 +129,7 @@
             <div class="col-lg-7">
               <label for="questionOne">Security Question #1:</label><br>
               <select id="questionOne" name="questionOne" formControlName="questionOne">
-                <option value="{{question}}" *ngFor="let question of securityQuestions">{{question}}</option>
+                <option *ngFor="let question of qArr1" [value]="question">{{ question }}</option>
               </select>
             </div>
           </div>
@@ -145,8 +145,8 @@
           <div class="row justify-content-left">
             <div class="col-lg-7">
               <label for="questionTwo">Security Question #2:</label><br>
-              <select id="questionTwo" name="questionThree" formControlName="questionTwo">
-                <option value="{{question}}" *ngFor="let question of securityQuestions">{{question}}</option>
+              <select id="questionTwo" name="questionTwo" formControlName="questionTwo">
+                <option *ngFor="let question of qArr2" [value]="question">{{ question }}</option>
               </select>
             </div>
           </div>
@@ -163,7 +163,7 @@
             <div class="col-lg-7">
               <label for="questionThree">Security Question #3:</label><br>
               <select id="questionThree" name="questionThree" formControlName="questionThree">
-                <option value="{{question}}" *ngFor="let question of securityQuestions">{{question}}</option>
+                <option *ngFor="let question of qArr3" [value]="question">{{ question }}</option>
               </select>
             </div>
           </div>
