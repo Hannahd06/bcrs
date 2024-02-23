@@ -426,17 +426,12 @@
  *       - Users
  *     description:  API for returning a security questions
  *     summary: returns user's security questions
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *             required:
- *               - email
+ *     parameters:
+ *       - name: email
+ *         required: true
+ *         description: email entered by user to get associated security questions
+ *         schema:
+ *           type: string
  *     responses:
  *       '200':
  *         description: OK

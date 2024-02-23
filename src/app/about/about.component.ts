@@ -1,11 +1,10 @@
-//--------------------------------------------
-//Title: about.js
-//Author: Kyle Hochdoerfer, Jocelyn Dupuis, and Hannah Del Real
-//Date: 02/12/24
-//Description: About component for BCRS
-//---------------------------------------------
+/**
+ * Title: home.component.ts
+ * Author: Professor Krasso
+ * Modified by: Hannah Del Real
+ * Date: 02/15/24
+ */
 
-//Import component
 import { Component } from '@angular/core';
 
 //Create and export about component
