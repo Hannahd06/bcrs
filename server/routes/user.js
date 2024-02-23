@@ -1,5 +1,5 @@
 ///--------------------------------------------
-//Title: config.js
+//Title: user.js
 //Author: Kyle Hochdoerfer, Hannah Del Real, Jocelyn Dupuis
 //Date: 02/12/24
 //Description: User routing for BCRS

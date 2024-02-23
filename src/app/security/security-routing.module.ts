@@ -15,6 +15,7 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { VerifySecurityQuestionsComponent } from './verify-security-questions/verify-security-questions.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 
+//Security routing
 const routes: Routes = [
   {
     path: '',
@@ -52,6 +53,7 @@ const routes: Routes = [
   },
 ];
 
+//Create and export ngmodule
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

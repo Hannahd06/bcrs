@@ -24,6 +24,7 @@ export class NavComponent {
   appUser: AppUser
   isSignedIn: boolean
 
+  //Declare a constructor that passed in cookie service, checks is the user is signed in, and sets appuser
   constructor(private cookieService: CookieService) {
     this.appUser = {} as AppUser;
     this.isSignedIn = this.cookieService.get('session_user') ? true : false;
