@@ -13,14 +13,16 @@ const express = require('express');
 const router =  express.Router();
 const { mongo } = require('../utils/mongo');
 const { ObjectId } = require('mongodb');
-
 const Ajv = require('ajv')
 
+//Create a variable for ajv validation
 const ajv = new Ajv()
 
+//Require bcrypt and set a saltRounds variable for salting passwords
 const bcrypt = require('bcryptjs');
 const saltRounds = 10
 
+//Schema for singin user input
 const signinSchema = {
   type: 'object',
   properties:{
@@ -73,9 +75,7 @@ const registerSchema = {
   additionalProperties: false
 }
 
-
-
-
+//Schema for password reset
 const resetPasswordSchema = {
   type: 'object',
   properties: {
@@ -266,6 +266,7 @@ router.post('/verify/users/:email/security-questions', (req, res, next) => {
 
       console.log('Selected User', user)
 
+      //If the saved security question answers do not match the user input answers, display an error message stating that they don't match
       if (securityQuestions[0].answerText !== user.selectedSecurityQuestions[0].answerText ||
         securityQuestions[1].answerText !== user.selectedSecurityQuestions[1].answerText ||
         securityQuestions[2].answerText !== user.selectedSecurityQuestions[2].answerText) {
@@ -276,6 +277,7 @@ router.post('/verify/users/:email/security-questions', (req, res, next) => {
           next(err)
           return
         }
+        //Otherwise, send the user as a response
         res.send(user)
     }, next)
 
@@ -288,7 +290,6 @@ router.post('/verify/users/:email/security-questions', (req, res, next) => {
 
 
 //verifyUser
-
 router.post('/verify/users/:email', (req, res, next) => {
   try {
     //grab email value from the input value for email  from form.
@@ -299,6 +300,7 @@ router.post('/verify/users/:email', (req, res, next) => {
     const verifiedUser = await db.collection('users').findOne({email: email})
     console.log("Verifying email:", email);
 
+    //If the user cannot be found, display an error message stating so
     if (!verifiedUser) {
       const err = new Error("Bad Request")
       err.status = 404;
@@ -310,6 +312,7 @@ router.post('/verify/users/:email', (req, res, next) => {
 
      console.log(verifiedUser);
 
+     //Send a response with the verified user's security questions
      res.status(200).send(verifiedUser.selectedSecurityQuestions);
    }, next);
 
@@ -333,6 +336,7 @@ router.post('/users/:email/reset-password', (req, res, next) => {
     const validate = ajv.compile(resetPasswordSchema)
     const valid = validate(user)
 
+    //Determine if the request is valid based on the password schema
     if (!valid) {
       const err = new Error('Bad Request')
       err.status = 400
@@ -345,8 +349,10 @@ router.post('/users/:email/reset-password', (req, res, next) => {
     //connects to the database
     mongo (async db => {
 
+      //Find the user with the email that was provided by the request
       const trick = await db.collection('users').findOne({ email: email })
 
+      //If the user cannot be found, display an error stating so
       if (!trick) {
         const err = new Error('Not Found')
         err.status = 404
@@ -357,8 +363,10 @@ router.post('/users/:email/reset-password', (req, res, next) => {
 
       console.log('Selected User', user)
 
+      //Salt the password using bcrypt
       const hashedPassword = bcrypt.hashSync(user.password, saltRounds)
 
+      //Update the password of the user with the provided email
       const result = await db.collection('users').updateOne(
         { email: email},
         {
@@ -368,6 +376,7 @@ router.post('/users/:email/reset-password', (req, res, next) => {
 
       console.log('MongoDB update result', result)
 
+      //Send a positive 204 response
       res.status(204).send()
 
     }, next)

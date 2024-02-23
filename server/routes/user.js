@@ -1,5 +1,5 @@
 ///--------------------------------------------
-//Title: config.js
+//Title: user.js
 //Author: Kyle Hochdoerfer, Hannah Del Real, Jocelyn Dupuis
 //Date: 02/12/24
 //Description: User routing for BCRS
@@ -16,6 +16,7 @@ const { ObjectId } = require('mongodb');
 const bcrypt = require('bcryptjs');
 const Ajv = require('ajv');
 
+//Declare an ajv variable for validation and set saltRounds to 10
 const ajv = new Ajv();
 let saltRounds = 10;
 
@@ -47,6 +48,7 @@ const userSchema = {
   additionalProperties: false
 }
 
+//Schema for the user object for updating the user
 const updateUserSchema = {
   type: 'object',
   properties: {
@@ -145,6 +147,7 @@ router.get("/:empId", (req, res, next) => {
 // createUser
 router.post("/", (req, res, next) => {
   try {
+    //Get the user from the request and determine if they are valid
     const { user } =  req.body;
     const validator = ajv.compile(userSchema);
     const isValid = validator(user);
@@ -234,6 +237,7 @@ router.put('/:empId', (req, res, next) => {
        return;
      }
 
+     //Query the database and update user with the provided ID
      mongo(async db => {
       const result = await db.collection("users").updateOne(
         {empId},
@@ -335,10 +339,12 @@ router.delete('/:empId', (req, res, next) => {
 //findSelectedSecurityQuestions
 router.post('/:email/security-questions', (req, res, next) => {
   try {
+    //Get the email from the request and determine if it's valid
     const  email = req.params.email;
     const validator = ajv.compile(emailSchema)
     const isValid = validator({ email })
 
+    //If the email is not valid, display an error message stating so
     if(!isValid){
       const err = new Error("Bad Request")
       err.status = 400;
@@ -363,6 +369,7 @@ router.post('/:email/security-questions', (req, res, next) => {
         return;
       }
 
+      //If the selected security questions have a length of 0, display a message stating that they could not be found
       if(user.selectedSecurityQuestions.length === 0) {
         const err = new Error("Unable to find security questions associated with " + email)
         err.status = 404;

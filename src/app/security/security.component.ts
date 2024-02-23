@@ -7,6 +7,7 @@
 // imports statements
 import { Component } from '@angular/core';
 
+//Create and export security component
 @Component({
   selector: 'app-security',
   // router outlet for the security module

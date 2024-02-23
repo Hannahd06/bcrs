@@ -6,8 +6,10 @@
  * Description: User profile component for BCRS
 */
 
+//Import component from angular
 import { Component } from '@angular/core';
 
+//Create and export the user profile component
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',

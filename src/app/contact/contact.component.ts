@@ -4,8 +4,10 @@
  * Date: 02/14/24
  */
 
+//Import Component
 import { Component } from '@angular/core';
 
+//Create and export contact component
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',

@@ -9,6 +9,7 @@
 
 import { SecurityQuestionModel } from "./security-question-model";
 
+//Create and export the user model
 export interface UserModel {
   email: string;
   password: string;

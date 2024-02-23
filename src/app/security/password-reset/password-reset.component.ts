@@ -41,6 +41,7 @@ export class PasswordResetComponent {
     }
   }
 
+  //Function for password reset
   passwordReset(){
     //Get the password and confirm password values from the form
     const password = this.passwordResetForm.controls['password'].value
@@ -56,6 +57,7 @@ export class PasswordResetComponent {
       return;
     }
 
+    //Create a password object to pass to the security service
     const passwordObject: Object = {
       password: password
     }
