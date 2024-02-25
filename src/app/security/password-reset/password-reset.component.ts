@@ -47,7 +47,7 @@ export class PasswordResetComponent {
     const password = this.passwordResetForm.controls['password'].value
     const confirmPassword = this.passwordResetForm.controls['confirmPassword'].value
 
-    console.log(password + "   " + confirmPassword)
+    console.log('Password has been successfully reset!')
 
     //If the passwords do not match, call return and change the value of error message
     if(password !== confirmPassword){

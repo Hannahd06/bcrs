@@ -2,10 +2,11 @@
  * Title: verify-email.component.ts
  * Author: Kyle Hochdoerfer
  * Date: 02/21/2024
+ * Sources: Code was adopted an modified from Web-450 example project: https://github.com/buwebdev/web-450/tree/master/examples/week-7/mean-auth-demo
  */
 
 //import statements
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SecurityQuestionModel } from '../security-question-model';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -58,37 +59,38 @@ export class VerifySecurityQuestionsComponent {
     if (!this.email) {
       this.router.navigate(['/forgot-password'])
     }
+  }
 
-    //Call the security service to pass in the email address and set the security question data
-    this.securityService.findsecurityQuestions(this.email).subscribe({
-      next: (data: any) => {
-        this.selectedSecurityQuestions = data.selectedSecurityQuestions;
-        console.log('data:', this.selectedSecurityQuestions)
-      },
-      error: (err) => {
-        //Set error handing for if no security questions are found, or if the email was not found
-        if (err.status === 404) {
-          if (this.errorMessage = 'No security Questions are associated with this email! Please contact the help desk at ITsupport@bcrs.com') {
-            this.errorMessage
-           } else {
-            this.errorMessage = 'email address you entered was not found';
-           }
+  ngOnInit(): void {
+       //Call the security service to pass in the email address and set the security question data
+       this.securityService.findsecurityQuestions(this.email).subscribe({
+        next: (data: any) => {
+          this.selectedSecurityQuestions = data.selectedSecurityQuestions;
+          console.log('data:', this.selectedSecurityQuestions)
+        },
+        error: (err) => {
+          //Set error handing for if no security questions are found, or if the email was not found
+          if (err.status === 404) {
+            if (this.errorMessage = 'No security Questions are associated with this email! Please contact the help desk at ITsupport@bcrs.com') {
+              this.errorMessage
+             } else {
+              this.errorMessage = 'email address you entered was not found';
+             }
+            return;
+          } else {
+            this.errorMessage = ' there was a problem verifying your security questions'
+          }
+          this.isLoadingLabels = false;
+        } , complete: () => {
+          //If the process is successful, set the question variables to the security question text
+          this.question1 = this.selectedSecurityQuestions[0].questionText;
+          this.question2 = this.selectedSecurityQuestions[1].questionText;
+          this.question3 = this.selectedSecurityQuestions[2].questionText;
 
-          return;
-        } else {
-          this.errorMessage = ' there was a problem verifying your security questions'
+          //Set isloading to false
+          this.isLoadingLabels = false;
         }
-        this.isLoadingLabels = false;
-      } , complete: () => {
-        //If the process is successful, set the question variables to the security question text
-        this.question1 = this.selectedSecurityQuestions[0].questionText;
-        this.question2 = this.selectedSecurityQuestions[1].questionText;
-        this.question3 = this.selectedSecurityQuestions[2].questionText;
-
-        //Set isloading to false
-        this.isLoadingLabels = false;
-      }
-    });
+      });
   }
 
   //Function for verifying security questions
@@ -134,7 +136,7 @@ export class VerifySecurityQuestionsComponent {
       },
       complete: () => {
         //Once complete, set isloading to false
-        this.isLoadingSubmit =false;
+        this.isLoadingSubmit = false;
 
       }
     })
