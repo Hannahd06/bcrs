@@ -13,6 +13,7 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import { UpdateUserComponent } from './users/update-user/update-user.component';
 import { UserNewComponent } from './users/user-new/user-new.component';
 import { roleGuard } from '../shared/role.guard';
+import { GraphComponent } from './graph/graph.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,11 @@ const routes: Routes = [
     ],
     canActivate: [roleGuard]
   },
+  {
+    path: 'graph',
+    component: GraphComponent,
+    title: 'BCRS: Purchases by Service Graph'
+  }
 ];
 
 
