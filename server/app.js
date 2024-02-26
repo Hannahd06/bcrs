@@ -14,7 +14,8 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
 
 const userRoute = require("./routes/user")
-const securityRoute = require("./routes/security")
+const securityRoute = require("./routes/security");
+const invoiceRoute = require('./routes/invoices');
 
 // Create the Express app
 const app = express();
@@ -46,6 +47,7 @@ app.use('/', express.static(path.join(__dirname, '../dist/bcrs')))
 
 app.use("/api/users", userRoute);
 app.use("/api/security", securityRoute);
+app.use("/api/invoices", invoiceRoute)
 
 // error handler for 404 errors
 app.use(function(req, res, next) {

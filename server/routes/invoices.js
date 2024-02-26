@@ -18,6 +18,19 @@ const Ajv = require('ajv');
 //Create a variable for ajv validation
 const ajv = new Ajv()
 
+//declares lineItemsSchema for invoice items
+const lineItemsSchema = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      title: { type: 'string' },
+      price: { type: 'number' }
+    }
+  }
+}
+
+
 //declares a invoiceSchema for all invoice properties
 const invoiceSchema = {
   type: 'object',
@@ -32,18 +45,6 @@ const invoiceSchema = {
   }
 }
 
-//declares lineItemsSchema for invoice items
-const lineItemsSchema = {
-  type: 'array',
-  items: {
-    type: 'object',
-    properties: {
-      title: { type: 'string' },
-      price: { type: 'number' }
-    }
-  }
-}
-
 
 //createInvoice
 router.post('/', (req, res, next) => {
@@ -51,11 +52,13 @@ router.post('/', (req, res, next) => {
     //invoice from request body
     const invoice = req.body;
 
+    //Determine if the invoice data matches the required schema
     const validate = ajv.compile(invoiceSchema);
     const isValid = validate(invoice);
 
+    //if provided invoice data doesn't match the required invoiceSchema
     if (!isValid) {
-      //400 message if request isn't valid
+      //400 message 
       res.status(400).json({
         message: 'Bad Request',
         errors: validate.errors,
@@ -72,7 +75,7 @@ router.post('/', (req, res, next) => {
         message: 'Invoice created successfully',
       });
     }, next);
-    //catch any other error 
+    //catch any other error
   } catch (err) {
     console.log('err', err);
     next(err);
