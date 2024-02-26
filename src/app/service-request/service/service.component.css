@@ -1,0 +1,48 @@
+/**
+ Source: Code for sizing for checkbox was obtained from Stack overflow :  https://stackoverflow.com/questions/306924/can-i-change-the-checkbox-size-using-css
+*/
+.container-fluid {
+  padding: 10%;
+}
+
+legend {
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.card {
+  background-color: #7F7E7D;
+  color: white;
+  text-align: center;
+  border: 5px dashed #EEBA35;
+}
+
+.service-icon {
+  color: rgb(245, 244, 181);
+  font-size: 100px;
+}
+
+.price input {
+  margin: 20px;
+
+}
+
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  padding: 10px;
+}
+
+label {
+  font-size: 24px;
+}
+
+.card-footer {
+  color: #eeba35;
+}

@@ -1,0 +1,89 @@
+<div class="container-fluid">
+  <form #serviceRequestForm="ngForm">
+    <div class="row mx-auto">
+       <!-- PRODUCT ARRAY -->
+       <div class="col-lg-4 col-sm-8 mx-auto mb-3" *ngFor="let service of services">
+        <div class="d-flex card shadow">
+          <div class="card-title">
+
+            <fieldset class="p-3">
+              <figure>
+                <span class="material-icons service-icon">{{service.image}}</span>
+              </figure>
+
+              <legend>{{ service.name }}</legend>
+
+              <div class="price justify-content-around">
+                <input type="checkbox" [value]="service.price" [(ngModel)]="service.checked" [name]="service.name">
+                <label for="checkbox">{{ service.price | currency:'USD' }}</label>
+              </div>
+
+            </fieldset>
+
+          </div>
+
+
+        </div>
+      </div>
+      <!-- PRODUCT ARRAY -->
+
+
+
+      <!-- PARTS -->
+      <div class="col-lg-4 col-sm-8 mx-auto mb-3 d-flex">
+        <div class="card shadow">
+          <div class="card-title">
+
+            <fieldset class="p-3">
+              <legend>Parts</legend>
+
+              <div class="d-flex justify-content-around">
+                <input type="text" id="parts" name="parts" [(ngModel)]="order.partsAmount">
+                <br>
+              </div>
+
+            </fieldset>
+
+          </div>
+
+          <figure>
+            <img class="img-fluid" src="../../../assets/service/parts.png" alt="Parts Icon">
+          </figure>
+
+          <div class="card-footer">Please indicate any additional fees for service parts in USD (ex. 50.00)</div>
+        </div>
+      </div>
+      <!-- PARTS -->
+
+
+
+      <!-- LABOR -->
+      <div class="col-lg-4 col-sm-8 mx-auto mb-3">
+        <div class="card shadow">
+          <div class="card-title">
+
+            <fieldset class="p-3">
+              <legend>Labor</legend>
+
+              <div class="d-flex justify-content-around">
+                <input type="text" id="labor" name="labor" [(ngModel)]="order.laborAmount">
+                <br>
+              </div>
+
+            </fieldset>
+
+          </div>
+
+          <figure>
+            <img class="img-fluid" src="../../../assets/service/labor.png" alt="Labor Icon">
+          </figure>
+
+          <div class="card-footer">***Rates for labor are $50/Hour. Please make sure that you are entering the <strong>number of hours</strong> required.***</div>
+          <br>
+        </div>
+      </div>
+      <!-- LABOR -->
+    </div>
+  </form>
+
+</div>

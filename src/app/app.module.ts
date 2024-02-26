@@ -8,6 +8,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { ContactComponent } from './contact/contact.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DirectoryComponent } from './directory/directory.component';
 import { FaqComponent } from './faq/faq.component';
+import { ServiceComponent } from './service-request/service/service.component';
 
 //Create and export the app module with all declarations and imports
 @NgModule({
@@ -34,12 +36,15 @@ import { FaqComponent } from './faq/faq.component';
     UserProfileComponent,
     DirectoryComponent,
     FaqComponent,
+    ServiceComponent
     ],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
