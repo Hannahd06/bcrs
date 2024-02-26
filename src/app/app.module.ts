@@ -20,6 +20,7 @@ import { ContactComponent } from './contact/contact.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DirectoryComponent } from './directory/directory.component';
 import { FaqComponent } from './faq/faq.component';
+import { GraphComponent } from './graph/graph.component';
 
 //Create and export the app module with all declarations and imports
 @NgModule({
@@ -34,6 +35,7 @@ import { FaqComponent } from './faq/faq.component';
     UserProfileComponent,
     DirectoryComponent,
     FaqComponent,
+    GraphComponent,
     ],
 
   imports: [
