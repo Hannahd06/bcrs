@@ -21,9 +21,10 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent {
-  //Create app user and isSigned in variables for cookie service
+  //Create isSigned in variable for cookie service
   isSignedIn: boolean
 
+  //Create a variable for the user's status
   userStatus: string
 
   // set errorMessages as type string
@@ -65,8 +66,10 @@ export class UserProfileComponent {
     //Parse the user JSON to get the a user object
     const userData = JSON.parse(userJSON)
 
+    //Call get user to get the user's information using the ID
     this.userService.getUser(userData.empId).subscribe( {
       next: (user: any) => {
+        //Set user to hold the user's data
         this.user = user;
         console.log(this.user)
       },
@@ -76,13 +79,13 @@ export class UserProfileComponent {
       },
 
       complete: () => {
+        //Set the value of userStatus depending on if the user is currently disabled or not
         if(this.user.isDisabled){
           this.userStatus = "Disabled"
         } else {
           this.userStatus = "Active"
         }
       }
-
     })
 
     //Initialize isEditing to false
@@ -103,20 +106,17 @@ export class UserProfileComponent {
     // Use the userUpdateModel interface to set parameter that will be updated
     let user = {} as UserUpdateModel;
 
+    //Set the user email, first name, last name, and role to their pre-existing value
     user.email = this.user.email
-    // get value form user input
     user.firstName = this.user.firstName
-    // get value form user input
     user.lastName = this.user.lastName
-    // get value form user input
-    user.address = this.profileForm.controls['address'].value;
-
-    console.log(this.profileForm.controls['phoneNumber'].value)
-    // get value form user input
-    user.phoneNumber = this.profileForm.controls['phoneNumber'].value;
-    // get value form user input
     user.role = this.user.role
 
+    //Set the user's address and phone number to the values from the profile form
+    user.address = this.profileForm.controls['address'].value;
+    user.phoneNumber = this.profileForm.controls['phoneNumber'].value;
+
+    //Update the user, set isEditing to false, and handle the error and success messages
     this.userService.updateUser(this.user.empId, user).subscribe({
       next:(res) => {
         console.log(res);
@@ -132,13 +132,9 @@ export class UserProfileComponent {
           if (err = new Error('Unable to update user record for empId' + this.user.empId) ) {
             this.errorMessage = 'User information was not changed!';
           }
-
           this.hideAlert();
-
         }
-
     })
-
   }
 
   // Set a timeout for alert displays
