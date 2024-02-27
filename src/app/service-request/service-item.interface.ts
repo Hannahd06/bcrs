@@ -1,6 +1,6 @@
 export interface ServiceItem {
   id: number;
-  name: string;
+  title: string;
   image: string;
   price: number;
   checked: boolean;

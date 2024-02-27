@@ -11,49 +11,49 @@ export class ServicesListService {
     this.ServiceList = [
       {
         id: 801,
-        name: 'Password Reset',
+        title: 'Password Reset',
         image: 'lock_reset',
         price: 39.99,
         checked: false
       },
       {
         id: 802,
-        name: 'Spyware Removal',
+        title: 'Spyware Removal',
         image: 'visibility_off',
         price: 99.99,
         checked: false
       },
       {
         id: 803,
-        name: 'Ram Upgrade',
+        title: 'Ram Upgrade',
         image: 'memory',
         price: 129.99,
         checked: false
       },
       {
         id: 804,
-        name: 'Software Installation',
+        title: 'Software Installation',
         image: 'install_desktop',
         price: 49.99,
         checked: false
       },
       {
         id: 805,
-        name: 'PC Tune-up',
+        title: 'PC Tune-up',
         image: 'sync',
         price: 89.99,
         checked: false
       },
       {
         id: 806,
-        name: 'Disc Clean-up',
+        title: 'Disc Clean-up',
         image: 'cleaning_services',
         price: 129.99,
         checked: false
       },
       {
         id: 807,
-        name: 'Keyboard Cleaning',
+        title: 'Keyboard Cleaning',
         image: 'keyboard',
         price: 45.00,
         checked: false

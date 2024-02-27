@@ -73,8 +73,8 @@ export class ServiceComponent {
     // For each checked service, grab the name and price and push it to the lineItems array of the order.
     for (let item of this.services) {
       if (item.checked) {
-        const {name, price} = item;
-        this.order.lineItems.push({name, price} as any)
+        const {title, price} = item;
+        this.order.lineItems.push({title, price} as any)
       }
     }
     // Call the servicesTotal() function from the Order Class to calculate the total cost for  lineItems.
