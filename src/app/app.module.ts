@@ -20,7 +20,7 @@ import { ContactComponent } from './contact/contact.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DirectoryComponent } from './directory/directory.component';
 import { FaqComponent } from './faq/faq.component';
-import { GraphComponent } from './graph/graph.component';
+import { GraphComponent } from './admin/graph/graph.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Create and export the app module with all declarations and imports
