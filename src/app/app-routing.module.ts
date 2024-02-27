@@ -18,6 +18,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DirectoryComponent } from './directory/directory.component';
 import { FaqComponent } from './faq/faq.component';
 import { ServiceComponent } from './service-request/service/service.component';
+import { InvoiceComponent } from './service-request/invoice/invoice.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -64,6 +65,12 @@ const routes: Routes = [
       {
         path: 'service-request',
         component: ServiceComponent,
+        title: 'BCRS: User Profile',
+        canActivate: [authGuard]
+      },
+      {
+        path: 'invoice-summary',
+        component: InvoiceComponent,
         title: 'BCRS: User Profile',
       },
       {

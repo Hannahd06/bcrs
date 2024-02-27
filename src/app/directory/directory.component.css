@@ -1,11 +1,11 @@
 /**
     Title: directory.component.css
-    Author: Professor Richard Krasso
-    Modified by: Jocelyn Dupuis
-    Date: 01/15/24
-    Description: CSS styling for employee directory page BCRS navbar
+    Author: Jocelyn Dupuis
+    Date: 02/23/2024
+    Description: CSS styling for employee directory page for BCRS
 */
 
+/*styling for container*/
 .container-about {
   margin: 5% 10%;
   color: rgb(255, 255, 255);
@@ -21,19 +21,23 @@ h1 {
   padding-bottom: 30px;
 }
 
+/*styling for employee directory's card*/
 .directory-card {
   border: dashed rgb(241, 197, 20) 4px;
   border-radius: 10px;
 }
 
+/*styling for employee name*/
 .employee-name {
   color: rgb(255, 240, 154);
 }
 
+/*styling for employee description*/
 .employee-description {
   color: white;
 }
 
+/*styling for email text*/
 .email-text {
   color: rgb(255, 240, 154);
 }

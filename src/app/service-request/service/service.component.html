@@ -1,10 +1,10 @@
 <div class="container-fluid">
-  <form #serviceRequestForm="ngForm">
+  <form #serviceRequestForm="ngForm" (submit)="createOrder(); serviceRequestForm.reset()">
     <div class="row mx-auto">
        <!-- PRODUCT ARRAY -->
        <div class="col-lg-4 col-sm-8 mx-auto mb-3" *ngFor="let service of services">
-        <div class="d-flex card shadow">
-          <div class="card-title">
+        <div class="d-flex card shadow service-card">
+          <div class="card-title my-auto"  style="padding: 10px;">
 
             <fieldset class="p-3">
               <figure>
@@ -29,61 +29,119 @@
 
 
 
-      <!-- PARTS -->
+      <!--Card for Parts Cost-->
       <div class="col-lg-4 col-sm-8 mx-auto mb-3 d-flex">
-        <div class="card shadow">
+        <div class="card shadow service-card">
           <div class="card-title">
 
             <fieldset class="p-3">
+              <figure>
+                <span class="material-icons service-icon">construction</span>
+              </figure>
               <legend>Parts</legend>
 
               <div class="d-flex justify-content-around">
-                <input type="text" id="parts" name="parts" [(ngModel)]="order.partsAmount">
+                <input class="mx-auto" type="text" id="parts" name="parts" [(ngModel)]="order.partsAmount">
                 <br>
               </div>
 
             </fieldset>
-
           </div>
-
-          <figure>
-            <img class="img-fluid" src="../../../assets/service/parts.png" alt="Parts Icon">
-          </figure>
-
-          <div class="card-footer">Please indicate any additional fees for service parts in USD (ex. 50.00)</div>
+            <p style="padding: 10px;">Please enter any additional fees for parts that apply. Enter a numerical value USD amount. ( $50 should be entered as 50).</p>
         </div>
       </div>
-      <!-- PARTS -->
+      <!--End Card for Parts Cost-->
 
 
 
-      <!-- LABOR -->
+      <!--Card for Labor Cost-->
       <div class="col-lg-4 col-sm-8 mx-auto mb-3">
-        <div class="card shadow">
+        <div class="card shadow service-card">
           <div class="card-title">
 
             <fieldset class="p-3">
+              <figure>
+                <span class="material-icons service-icon">engineering</span>
+              </figure>
               <legend>Labor</legend>
 
               <div class="d-flex justify-content-around">
-                <input type="text" id="labor" name="labor" [(ngModel)]="order.laborAmount">
+                <input class="mx-auto" type="text" id="labor" name="labor" [(ngModel)]="order.laborAmount">
                 <br>
               </div>
 
             </fieldset>
 
           </div>
-
-          <figure>
-            <img class="img-fluid" src="../../../assets/service/labor.png" alt="Labor Icon">
-          </figure>
-
-          <div class="card-footer">***Rates for labor are $50/Hour. Please make sure that you are entering the <strong>number of hours</strong> required.***</div>
+          <p style="padding: 10px;">Labor is priced at a rate of $50/hour. Please ensure that you are entering the <strong>Number of hours</strong> required.</p>
           <br>
         </div>
       </div>
+      </div>
       <!-- LABOR -->
-    </div>
+
+      <div class="m-5 card p-3">
+        <div class="card-title">
+          <legend>Enter Customer Information</legend>
+        </div>
+        <div class="row d-grid pb-5">
+          <div class="col-md-6 p-3 mx-auto">
+
+
+            <label class="form-label float-md-start" for="fullName">Full Name:</label>
+            <input class="form-control" type="text" id="fullName" name="fullName" [(ngModel)]="order.fullName" required #fullName="ngModel">
+
+            <div *ngIf="fullName.errors?.['required'] && fullName.touched">
+              <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                A name is required.
+                <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ng>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="col-md-6 p-3 mx-auto">
+
+            <label class="form-label float-start" for="email">Email:</label>
+            <input class="form-control" type="text" id="email" name="email" [(ngModel)]="order.email" required email #email="ngModel">
+
+            <div *ngIf="email.errors?.['required'] && email.touched">
+              <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                Email is required.
+                <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+              </div>
+            </div>
+
+            <div *ngIf="email.errors?.['email']">
+              <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                Please enter a valid email address.
+                <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+              </div>
+            </div>
+
+
+          </div>
+
+
+
+
+        </div>
+        <div class="text-center">
+          <button class="btn button-register" type="submit" id="submit"  value="Place Order">
+            <span *ngIf="!isLoading" class="text-hp">Create Service Request</span>
+
+
+            <div *ngIf="isLoading">
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...
+            </div>
+
+          </button>
+        </div>
+        </div>
+
+
+
   </form>
 
 </div>

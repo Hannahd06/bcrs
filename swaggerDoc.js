@@ -442,3 +442,68 @@
  *       '500':
  *         description: Internal Server Error
  */
+
+
+
+/**
+ * createInvoice
+ * @openapi
+ * /api/invoices:
+ *   post:
+ *     tags:
+ *       - Invoices
+ *     description: API for creating a new invoice.
+ *     summary: Creates a new invoice
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: Customers email address.
+ *               fullName:
+ *                 type: string
+ *                 description: Customers full name.
+ *               lineItems:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     title:
+ *                       type: string
+ *                       description: Service title of the line item.
+ *                     price:
+ *                       type: number
+ *                       description: Price/amount of the line item.
+ *                 description: An array of line items for the invoice.
+ *               partsAmount:
+ *                 type: number
+ *                 description: Total amount for the parts.
+ *               laborAmount:
+ *                 type: number
+ *                 description: Total amount for the labor.
+ *               lineItemTotal:
+ *                 type: number
+ *                 description: Total amount for the line items.
+ *               invoiceTotal:
+ *                 type: number
+ *                 description: Total amount for the entire invoice.
+ *             required:
+ *               - email
+ *               - fullName
+ *               - lineItems
+ *               - partsAmount
+ *               - laborAmount
+ *               - lineItemTotal
+ *               - invoiceTotal
+ *     responses:
+ *       201:
+ *         description: Invoice created successfully.
+ *       400:
+ *         description: Bad Request/invalid request format.
+ *       500:
+ *         description: Internal Server Error.
+ */

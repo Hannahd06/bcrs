@@ -5,6 +5,10 @@
   padding: 10%;
 }
 
+.service-card{
+  height: 350px;
+}
+
 legend {
   font-weight: 600;
   font-size: 30px;
@@ -45,4 +49,11 @@ label {
 
 .card-footer {
   color: #eeba35;
+}
+
+.button-register {
+  font-weight: 600;
+  font-size: 30px;
+  background-color: #EEBA35;
+  font-family: 'Teko', sans-serif;
 }

@@ -84,7 +84,11 @@
             <a routerLink="user-profile" class="dropdown-item link">My profile</a>
           </li>
           <li *ngIf="appUser.role == 'admin'" class="dropdown-item">
-            <a routerLink="/admin/users" class="dropdown-item link">User Configuration</a></li>
+            <a routerLink="/admin/users" class="dropdown-item link">User Configuration</a>
+          </li>
+          <li *ngIf="appUser.role == 'admin'" class="dropdown-item">
+            <a routerLink="/admin/graph" class="dropdown-item link">Purchases by Service Graph</a>
+          </li>
           <li class="dropdown-item">
             <a (click)="signout()" class="dropdown-item link">Sign out</a>
           </li>
