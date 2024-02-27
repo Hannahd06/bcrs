@@ -81,6 +81,7 @@ export class SigninComponent {
         this.cookieService.set('session_user', JSON.stringify(this.sessionUser), 1);
         this.cookieService.set('session_name', `${user.firstName} ${user.lastName}`, 1);
         this.cookieService.set('session_role', `${user.role}`, 1);
+        this.cookieService.set('session_userId', `${user._id}`, 1);
 
         //returns url
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
