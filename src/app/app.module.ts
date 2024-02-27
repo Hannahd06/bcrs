@@ -21,6 +21,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DirectoryComponent } from './directory/directory.component';
 import { FaqComponent } from './faq/faq.component';
 import { GraphComponent } from './graph/graph.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Create and export the app module with all declarations and imports
 @NgModule({
@@ -41,7 +42,9 @@ import { GraphComponent } from './graph/graph.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
