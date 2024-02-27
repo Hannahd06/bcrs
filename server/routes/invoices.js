@@ -58,7 +58,7 @@ router.post('/', (req, res, next) => {
 
     //if provided invoice data doesn't match the required invoiceSchema
     if (!isValid) {
-      //400 message 
+      //400 message
       res.status(400).json({
         message: 'Bad Request',
         errors: validate.errors,
@@ -81,9 +81,6 @@ router.post('/', (req, res, next) => {
     next(err);
   }
 });
-
-
-
 
 
 module.exports = router;
