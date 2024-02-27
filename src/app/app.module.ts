@@ -22,7 +22,6 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DirectoryComponent } from './directory/directory.component';
 import { FaqComponent } from './faq/faq.component';
 import { GraphComponent } from './admin/graph/graph.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceComponent } from './service-request/service/service.component';
 import { InvoiceComponent } from './service-request/invoice/invoice.component';
 
