@@ -1,0 +1,94 @@
+.container-fluid {
+  min-height: 100vh;
+  background-color: #403F3C;
+  font-family: 'Ubuntu', sans-serif;
+
+
+}
+
+.invoice-container {
+  margin: 5% 10%;
+}
+
+.card {
+  padding: 30px;
+  margin: auto;
+  background-color: #7F7E7D;
+  color: white;
+  text-align: center;
+  border: 5px dashed #EEBA35;
+}
+
+hr {
+  border: white 2px solid;
+}
+
+ th, td {
+  padding: 15px;
+  font-size: 18px;
+}
+
+th {
+  font-weight: 600;
+
+}
+
+.total .label {
+  font-size: 30px;
+}
+
+.total .value {
+  font-size: 24px;
+}
+
+h2 {
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.header {
+  text-align: left;
+  font-size: 20px;
+}
+
+.button-register {
+  font-weight: 600;
+  font-size: 30px;
+  background-color: #EEBA35;
+  font-family: 'Teko', sans-serif;
+}
+
+a{
+  color: white;
+  padding: 10px;
+  font: 15px;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: #EEBA35;
+  color: black;
+  text-decoration: underline;
+
+}
+
+/** Hide items such as buttons and links so they don't display when user tries to print invoice */
+@media print {
+  .hide-on-print {
+    display: none;
+  }
+  .card {
+    padding: 10px;
+    color: black;
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+  }
+
+  hr {
+    border: black 2px solid;
+  }
+}
+
+
