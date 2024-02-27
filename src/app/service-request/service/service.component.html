@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <form #serviceRequestForm="ngForm" (submit)="createOrder(); serviceRequestForm.reset()">
     <div class="row mx-auto">
-       <!-- PRODUCT ARRAY -->
+       <!-- Creates an array of service cards -->
        <div class="col-lg-4 col-sm-8 mx-auto mb-3" *ngFor="let service of services">
         <div class="d-flex card shadow service-card">
           <div class="card-title my-auto"  style="padding: 10px;">
@@ -25,7 +25,7 @@
 
         </div>
       </div>
-      <!-- PRODUCT ARRAY -->
+      <!-- End of array of service cards-->
 
 
 
@@ -78,8 +78,9 @@
         </div>
       </div>
       </div>
-      <!-- LABOR -->
+      <!-- End of Card for Labor Cost -->
 
+      <!-- Card for Customer information-->
       <div class="m-5 card p-3">
         <div class="card-title">
           <legend>Enter Customer Information</legend>
@@ -87,50 +88,47 @@
         <div class="row d-grid pb-5">
           <div class="col-md-6 p-3 mx-auto">
 
-
-            <label class="form-label float-md-start" for="fullName">Full Name:</label>
-            <input class="form-control" type="text" id="fullName" name="fullName" [(ngModel)]="order.fullName" required #fullName="ngModel">
-
+            <!--Error Message for fullName required-->
             <div *ngIf="fullName.errors?.['required'] && fullName.touched">
               <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
                 A name is required.
                 <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ng>
               </div>
             </div>
+            <!--End Error Message for fullName required-->
 
-
+            <label class="form-label float-md-start" for="fullName">Full Name:</label>
+            <input class="form-control" type="text" id="fullName" name="fullName" [(ngModel)]="order.fullName" required #fullName="ngModel">
           </div>
 
+
           <div class="col-md-6 p-3 mx-auto">
-
-            <label class="form-label float-start" for="email">Email:</label>
-            <input class="form-control" type="text" id="email" name="email" [(ngModel)]="order.email" required email #email="ngModel">
-
+            <!-- Error Message for email format validation -->
             <div *ngIf="email.errors?.['required'] && email.touched">
               <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
                 Email is required.
                 <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
               </div>
             </div>
+            <!-- End error Message for email format validation -->
 
+            <!-- Error Message for email required validation -->
             <div *ngIf="email.errors?.['email']">
               <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
                 Please enter a valid email address.
                 <input type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
               </div>
             </div>
+            <!-- Error Message for email required validation -->
 
-
+            <label class="form-label float-start" for="email">Email:</label>
+            <input class="form-control" type="text" id="email" name="email" [(ngModel)]="order.email" required email #email="ngModel">
           </div>
-
-
-
-
         </div>
+        <!--Submit Button -->
         <div class="text-center">
           <button class="btn button-register" type="submit" id="submit"  value="Place Order">
             <span *ngIf="!isLoading" class="text-hp">Create Service Request</span>
-
 
             <div *ngIf="isLoading">
               <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...
@@ -138,10 +136,7 @@
 
           </button>
         </div>
-        </div>
-
-
-
+      </div>
   </form>
 
 </div>

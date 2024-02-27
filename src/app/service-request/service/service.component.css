@@ -6,12 +6,12 @@
 }
 
 .service-card{
-  height: 350px;
+  height: 325px;
 }
 
 legend {
   font-weight: 600;
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .card {
@@ -23,7 +23,7 @@ legend {
 
 .service-icon {
   color: rgb(245, 244, 181);
-  font-size: 100px;
+  font-size: 80px;
 }
 
 .price input {
@@ -44,7 +44,7 @@ input[type=checkbox]
 }
 
 label {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .card-footer {

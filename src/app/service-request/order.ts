@@ -1,3 +1,4 @@
+//Import Statement
 import { ServiceItem } from "./service-item.interface";
 export class Order {
   email: string ='';
@@ -11,6 +12,7 @@ export class Order {
   invoiceTotal: number;
 
   constructor() {
+    // Set baseline values for Order properties
     this.lineItems = []
     this.lineItemTotal = 0
     this.partsAmount = 0
@@ -21,8 +23,8 @@ export class Order {
     this.date = new Date().toLocaleDateString();
   }
 
-
-  itemsTotal() {
+  // Create serviceTotal function to get total cost of selected services.
+  servicesTotal() {
     let servicesTotal = 0;
     for (const lineItem of this.lineItems) {
       servicesTotal += lineItem.price
@@ -30,6 +32,7 @@ export class Order {
     this.lineItemTotal = parseFloat(servicesTotal.toFixed(2));
   }
 
+  // Create a getORderTotal to calculate the invoiceTotal
   getOrderTotal() {
     let total = 0;
     for (let item of this.lineItems) {

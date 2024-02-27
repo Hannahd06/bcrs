@@ -54,7 +54,7 @@ export class ServicesListService {
       {
         id: 807,
         name: 'Keyboard Cleaning',
-        image: 'arrow_forward_ios',
+        image: 'keyboard',
         price: 45.00,
         checked: false
       }
