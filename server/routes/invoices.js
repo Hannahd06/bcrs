@@ -1,6 +1,6 @@
 //--------------------------------------------
 //Title: invoices.js
-//Author: Jocelyn Dupuis, Kyle Hochdoerfer, and  Hannah Del Real
+//Author: Jocelyn Dupuis, Kyle Hochdoerfer, and Hannah Del Real
 //Date: 02/26/24
 //Description: Invoice routing for BCRS
 //---------------------------------------------
@@ -52,7 +52,7 @@ router.post('/', (req, res, next) => {
     //invoice from request body
     const invoice = req.body;
 
-    //Determine if the invoice data matches the required schema
+    //determine if the invoice data matches the required schema
     const validate = ajv.compile(invoiceSchema);
     const isValid = validate(invoice);
 
