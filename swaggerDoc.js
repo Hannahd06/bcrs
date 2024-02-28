@@ -1,3 +1,5 @@
+/**  =========================================================Users===================================================================================== */
+
 /**
  * findAllUsers
  * @openapi
@@ -195,6 +197,8 @@
  *       '500':
  *         description: Server Exception
  */
+
+/**  =========================================================Security===================================================================================== */
 
 /**
  * signin
@@ -443,6 +447,7 @@
  *         description: Internal Server Error
  */
 
+/**  =========================================================Invoices===================================================================================== */
 
 
 /**
@@ -506,4 +511,31 @@
  *         description: Bad Request/invalid request format.
  *       500:
  *         description: Internal Server Error.
+ */
+
+/**
+ * findInvoiceById
+ * @openapi
+ * /api/invoices/{id}/invoice:
+ *   get:
+ *     tags:
+ *       - Invoices
+ *     description:  API for returning an invoice document
+ *     summary: returns an invoice document
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: invoice id
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: OK
+ *       '400':
+ *         description: Bad Request
+ *       '404':
+ *         description: Not Found
+ *       '500':
+ *         description: Internal Server Error
  */

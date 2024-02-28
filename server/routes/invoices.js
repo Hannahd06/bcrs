@@ -134,7 +134,7 @@ router.get('/purchases-graph', (req, res, next) => {
 })
 
 
-//getInvoice
+//getInvoiceById
 router.get('/:id/invoice', (req, res, next) => {
   try {
     //invoice from request body
