@@ -20,7 +20,7 @@
 .accordion-body {
   background-color: #74706c;
   color: rgb(239, 239, 238);
-  font-size: 18px;
+  font-size: 20px;
 }
 
 h3{
@@ -50,7 +50,7 @@ button {
 }
 
 img {
-  width: 300px;
+  width: 350px;
   background-color: black;
   padding: 10px;
 }

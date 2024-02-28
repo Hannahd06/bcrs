@@ -24,4 +24,8 @@ export class InvoiceService {
   getInvoice(id: string) {
     return this.http.get(`/api/invoices/${id}/invoice`)
   }
+
+  findPurchasesByServiceGraph() {
+    return this.http.get(`/api/invoices/purchases-graph`)
+  }
 }

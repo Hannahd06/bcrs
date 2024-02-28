@@ -81,6 +81,8 @@ export class GraphComponent implements OnInit {
           },
 
         });
+        Chart.defaults.color = '#ffffff ';
+        Chart.defaults.font.size = 20;
       },
     });
   }
