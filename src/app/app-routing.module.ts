@@ -69,11 +69,6 @@ const routes: Routes = [
         canActivate: [authGuard]
       },
       {
-        path: 'invoice-summary',
-        component: InvoiceComponent,
-        title: 'BCRS: User Profile',
-      },
-      {
         path: 'admin',
         loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
         canActivate: [authGuard]
@@ -84,6 +79,11 @@ const routes: Routes = [
     // path for the security module (e.g. login, register, forgot password, etc.)
     path: 'security',
     loadChildren: () => import('./security/security.module').then(m => m.SecurityModule)
+  },
+  {
+    path: 'invoice-summary',
+    component: InvoiceComponent,
+    title: 'BCRS: User Profile',
   },
   {
     path: '**',

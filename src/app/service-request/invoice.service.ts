@@ -8,6 +8,7 @@
 //import statements
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Order } from './order';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +21,7 @@ export class InvoiceService {
     return this.http.post(`/api/invoices`, formData )
   }
 
-  //function to get and return invoices
-  getInvoices() {
-    return this.http.get('/api/invoices/');
-  }
-
-  //function to find and return purchases by service graph
-  findPurchasesByServiceGraph() {
-    return this.http.get('/api/invoices/purchases-graph');
+  getInvoice(id: string) {
+    return this.http.get(`/api/invoices/${id}/invoice`)
   }
 }

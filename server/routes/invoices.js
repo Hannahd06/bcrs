@@ -133,4 +133,42 @@ router.get('/purchases-graph', (req, res, next) => {
   }
 })
 
+
+//getInvoiceById
+router.get('/:id/invoice', (req, res, next) => {
+  try {
+    //invoice from request body
+    const id = req.params.id;
+
+    //if id is not found, error message
+    if (!id) {
+      //400 message
+      res.status(400).json({
+        message: 'Bad Request',
+      });
+      return;
+    }
+
+    //connect to database
+    mongo(async (db) => {
+      const invoice = await db.collection('invoices').findOne({id: parseInt(id)});
+
+      if(!invoice) {
+        const err = new Error('Could not find an invoice for id:' + id);
+        err.status = 404;
+        console.log('err', err);
+        next(err);
+        return;
+      }
+
+      //displays 201 message if invoice is found
+      res.status(201).json(invoice);
+    }, next);
+    //catch any other error
+  } catch (err) {
+    console.log('err', err);
+    next(err);
+  }
+});
+
 module.exports = router;

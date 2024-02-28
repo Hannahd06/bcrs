@@ -69,6 +69,8 @@ export class ServiceComponent {
     // When user clicks the submit button, formSubmitted is true.
     this.formSubmitted = true;
 
+    this.isLoading = true;
+
     // Search the array of services where checked property is true
     // For each checked service, grab the name and price and push it to the lineItems array of the order.
     for (let item of this.services) {
@@ -76,7 +78,7 @@ export class ServiceComponent {
         const {title, price} = item;
         this.order.lineItems.push({title, price} as any)
       }
-    }
+    };
     // Call the servicesTotal() function from the Order Class to calculate the total cost for  lineItems.
     this.order.servicesTotal();
 
@@ -90,7 +92,7 @@ export class ServiceComponent {
     // Call the getOrderTotal to calculate the total cost of services, parts, and labor.
     this.order.invoiceTotal = parseFloat(this.order.getOrderTotal());
 
-     console.log("invoiceTotal:", this.order.invoiceTotal)
+     console.log("invoiceTotal:", this.order.invoiceTotal);
      // Set order form created to variable formData
      let formData = this.order;
 
@@ -100,7 +102,9 @@ export class ServiceComponent {
       next: (res) => {
         this.isLoading = false;
         // Route to the invoice summary page
-        this.router.navigate(['invoice-summary'])
+        this.router.navigate(['invoice-summary'], {
+          queryParams: {id: this.order.id}
+        })
       },
        error: (err) => {
         if (err.errorMessage.message) {
@@ -108,10 +112,10 @@ export class ServiceComponent {
           this.isLoading = false;
         } else {
           this.errorMessage= 'Something went wrong';
-          this.isLoading = false
+          this.isLoading = false;
         }
       }
-     })
+     });
 
 
   }
