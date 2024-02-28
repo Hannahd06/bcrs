@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <div class="card mx-auto" *ngIf="!isLoading">
+    <div class="card mx-auto" *ngIf="!isLoading" id="invoice-summary">
       <div class="card-title">
         <div class="row" >
           <div class="d-flex">
@@ -19,14 +19,15 @@
           <div class="row">
             <div class="header"><strong>Order #: </strong>{{order.id}}</div>
             <div class="header"><strong>Date: </strong>{{ order.date | date  }}</div>
-            <div class="header">
-              <div class="header pt-">{{order.fullName}}</div>
-              <div class="header">{{order.email}}</div>
-              <br>
-              <hr>
-            </div>
+            <div class="header pt-">{{order.fullName}}</div>
+            <div class="header">{{order.email}}</div>
+            <br>
+            <br>
+            <hr>
+          </div>
         </div>
       </div>
+      <!-- Display table summary of service items and prices -->
       <div class="card-body">
         <table class="col-lg-10">
           <tr >
@@ -53,22 +54,26 @@
         </table>
         <br>
         <hr>
-      </div>
-      <div class="float-end total">
-        <div class="row">
-          <div class="col">
-            <div class="label"><strong>Order Total:</strong></div>
-            <div class="value">{{order.invoiceTotal | currency }}</div>
+        <!-- Display table summary of service items and prices -->
+
+        <!--Total -->
+        <div class="float-end total">
+          <div class="row">
+            <div class="col">
+              <div class="label"><strong>Order Total:</strong></div>
+              <div class="value">{{order.invoiceTotal | currency }}</div>
+            </div>
+          </div>
+          <!--Print Invoice-->
+          <div class="col mt-2">
+            <button (click)="printInvoice()" class="btn button-register hide-print">Print</button>
           </div>
         </div>
-        <div class="col mt-2">
-          <button (click)="printPage()" class="btn button-register hide-on-print">Print</button>
-        </div>
       </div>
     </div>
-    </div>
-    <div>
-      <a routerLink="/service-request" class="hide-on-print">Create a new Service Request</a>
-    </div>
+    <!--Link back to Service REquest Page-->
+  <div class="pt-3">
+    <a routerLink="/service-request" class="hide-print">Create a new Service Request</a>
   </div>
+ </div>
 </div>
