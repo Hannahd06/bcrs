@@ -64,6 +64,7 @@ a{
   padding: 10px;
   font: 15px;
   text-decoration: none;
+  font-weight: 600;
 }
 
 a:hover {
@@ -75,7 +76,7 @@ a:hover {
 
 /** Hide items such as buttons and links so they don't display when user tries to print invoice */
 @media print {
-  .hide-on-print {
+  .hide-print {
     display: none;
   }
   .card {
