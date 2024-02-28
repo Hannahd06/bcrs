@@ -12,7 +12,6 @@ import { error } from 'ajv/dist/vocabularies/applicator/dependencies';
 })
 export class InvoiceComponent implements OnInit {
   order: Order;
-  printing = false;
   isLoading: boolean;
   id: string;
 
@@ -29,8 +28,10 @@ export class InvoiceComponent implements OnInit {
 
     }
   ngOnInit() {
+    // Call API to get invoice by Id.
     this.invoiceService.getInvoice(this.id).subscribe({
       next: (invoice: any) => {
+        // set Order values to values obtain for invoice with matching id in database
         this.order = invoice;
         this.isLoading = false;
       },
@@ -42,11 +43,9 @@ export class InvoiceComponent implements OnInit {
     }
   });
     }
-
-    printPage() {
-      this.printing = true;
+    // Create a function to allow user to print invoice page.
+    printInvoice() {
       window.print();
-      this.printing = false;
     }
 
   }
