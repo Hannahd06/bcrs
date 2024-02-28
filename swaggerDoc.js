@@ -539,3 +539,21 @@
  *       '500':
  *         description: Internal Server Error
  */
+
+/**
+ * findPurchasesByService
+ * @openapi
+ * /api/invoices/purchases-graph:
+ *   get:
+ *     tags:
+ *       - Invoices
+ *     description: API for an array containing the purchases for each service
+ *     summary: Returns an array of objects containing the price, title, and count for each purchase.
+ *     responses:
+ *       '200':
+ *         description: Array of invoice objects
+ *       '400':
+ *         description: Bad Request.
+ *       '500':
+ *         description: Internal Server Error.
+ */

@@ -8,7 +8,7 @@
 //import statements
 import { Component, OnInit } from '@angular/core';
 import { InvoiceService } from 'src/app/service-request/invoice.service';
-import { Chart, registerables } from 'chart.js';
+import { Chart, Legend, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 //create and export graph component
@@ -38,21 +38,26 @@ export class GraphComponent implements OnInit {
         this.labels.length = 0;
         this.itemCount.length = 0;
 
+        //for statement for service items in purchase
         for (let item of this.purchases) {
           let title = item._id.title;
           let count = item.count;
 
+          //pushes service labels and total service item count to graph
           this.labels.push(title);
           this.itemCount.push(count);
         }
 
-        //creates pie chart and inserts service data
+        //creates pie chart and passes service data and options objects to the chart constructor
         const hufflepuffPie = new Chart('hufflepuffPieChart', {
           //type of chart: pie
           type: 'pie',
           data: {
+            //displays data labels
+            labels: this.labels,
             datasets: [
               {
+                //data for dataset
                 data: this.itemCount,
                 //background color for label blocks and pie slices
                 backgroundColor: [
@@ -77,13 +82,15 @@ export class GraphComponent implements OnInit {
 
               },
             ],
-            //displays data labels
-            labels: this.labels,
+
           },
 
         });
-        Chart.defaults.color = '#ffffff ';
+        //set the chart labels default color to white
+        Chart.defaults.color = '#ffffff';
+        //set the chart labels default size to 20
         Chart.defaults.font.size = 20;
+
       },
     });
   }
