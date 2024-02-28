@@ -11,7 +11,7 @@ import { InvoiceService } from 'src/app/service-request/invoice.service';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
-//Create and export graph component
+//create and export graph component
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
@@ -24,6 +24,7 @@ export class GraphComponent implements OnInit {
   itemCount: string[] = [];
   labels: string[] = [];
 
+  //initializes InvoiceService
   constructor(private invoiceService: InvoiceService) {
     this.purchases = [];
   }

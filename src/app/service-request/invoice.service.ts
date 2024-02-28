@@ -25,7 +25,13 @@ export class InvoiceService {
     return this.http.get(`/api/invoices/${id}/invoice`)
   }
 
-  findPurchasesByServiceGraph() {
-    return this.http.get(`/api/invoices/purchases-graph`)
+  //function to get and return invoices
+  getInvoices() {
+    return this.http.get('/api/invoices/');
+  }
+
+  //function to get and return purchases by service graph
+  findPurchasesByServiceGraph(){
+    return this.http.get('/api/invoices/purchases-graph');
   }
 }
