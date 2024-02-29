@@ -1,6 +1,6 @@
 //--------------------------------------------
 //Title: graph.component.js
-//Author: Jocelyn Dupuis, Kyle Dochdoerfer, and Hannah Del Real
+//Author: Jocelyn Dupuis, Hannah Del REal, and Kyle Hochdoerfer
 //Date: 02/26/24
 //Description: ts file for the graph component for BCRS
 //---------------------------------------------
@@ -8,7 +8,7 @@
 //import statements
 import { Component, OnInit } from '@angular/core';
 import { InvoiceService } from 'src/app/service-request/invoice.service';
-import { Chart, Legend, registerables } from 'chart.js';
+import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 //create and export graph component
@@ -88,21 +88,20 @@ export class GraphComponent implements OnInit {
             ],
 
           },
+          //plugin options to change font color and size
           options: {
             plugins: {
               legend: {
                 labels: {
+                  font: {
+                    size: 18
+                  },
                   color: 'white'
                 }
               }
             }
           }
         });
-        //set the chart labels default color to white
-        //Chart.defaults.color = '#fff';
-        //set the chart labels default size to 20
-        //Chart.defaults.font.size = 20;
-
       },
     });
   }
