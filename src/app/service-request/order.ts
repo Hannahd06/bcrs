@@ -1,3 +1,11 @@
+/**
+ * Title: ordert.ts
+ * Author: Professor Richard Krasso
+ * Modified by: Team Hufflepuff
+ *  Date: 02/27/24
+ * Description: Order template
+*/
+
 //Import Statement
 import { ServiceItem } from "./service-item.interface";
 export class Order {

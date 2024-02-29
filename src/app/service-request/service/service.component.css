@@ -1,10 +1,11 @@
 /**
-* Title: not-found.component.css
+* Title: service.component.css
  * Author: Hannah Del Real
  * Date: 02/26/24
  * Description: CSS Styling for Service Request Page
  * Source: Code for sizing for checkbox was obtained from Stack overflow :  https://stackoverflow.com/questions/306924/can-i-change-the-checkbox-size-using-css
 */
+
 .container-fluid {
   padding: 10%;
 }

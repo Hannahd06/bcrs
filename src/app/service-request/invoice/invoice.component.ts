@@ -1,3 +1,11 @@
+/**
+ * Title: user-profile.component.ts
+ * Author: Professor Richard Krasso
+ * Modified by: Team Hufflepuff
+ *  Date: 02/28/24
+ * Description: Invoice Summary component for BCRS
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from '../order';
