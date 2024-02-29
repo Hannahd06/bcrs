@@ -30,6 +30,7 @@ export class GraphComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //calls the findPurchasesByServiceGraph and subscribes to the observable
     this.invoiceService.findPurchasesByServiceGraph().subscribe({
       next: (res) => {
         this.purchases = res;
