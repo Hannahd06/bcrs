@@ -14,6 +14,7 @@ export class InvoiceComponent implements OnInit {
   order: Order;
   isLoading: boolean;
   id: string;
+  errorMessage: string
 
   constructor(
     private cookieService: CookieService,
@@ -24,6 +25,7 @@ export class InvoiceComponent implements OnInit {
       this.isLoading = true;
       this.order = {} as Order;
       this.id = this.route.snapshot.queryParamMap.get('id') ?? '';
+      this.errorMessage = '';
 
 
     }
@@ -36,6 +38,9 @@ export class InvoiceComponent implements OnInit {
         this.isLoading = false;
       },
       error: (err) => {
+        if (err.status === 404) {
+          this.errorMessage = `Invoice #${this.id} does not exist in our records. Please try again or contact customer service.`
+        }
         //Set error handing for if no security questions are found, or if the email was not found
         console.error('Could not get invoice! Please try again.', err)
       }, complete: () => {
