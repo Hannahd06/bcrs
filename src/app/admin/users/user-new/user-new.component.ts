@@ -57,7 +57,8 @@ createNewUser() {
     address: this.createNewUserForm.controls['address'].value,
     role: this.createNewUserForm.controls['role'].value,
     selectedSecurityQuestions: [],
-    isDisabled: false // Set to false for all new users to ensures that they are active once created.
+    isDisabled: false,
+    lastSignin: Date.now() // Set to false for all new users to ensures that they are active once created.
   }
 
 // Create a new user and redirect back to user config page.

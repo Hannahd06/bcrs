@@ -18,5 +18,5 @@ export interface UserModel {
   phoneNumber: string;
   address: string;
   selectedSecurityQuestions: SecurityQuestionModel[];
-
+  lastSignin: string;
 }

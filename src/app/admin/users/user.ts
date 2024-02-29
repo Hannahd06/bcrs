@@ -23,4 +23,5 @@ export interface User {
       answerText: string;
     }[];
     isDisabled: boolean;
+    lastSignin: number;
 }

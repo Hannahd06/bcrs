@@ -39,6 +39,8 @@ export class UserProfileComponent {
   //Set a variable to toggle profile editing
   isEditing: Boolean
 
+  date: String;
+
   //Create a form for editing user address and phone number
   profileForm: FormGroup = this.fb.group({
     address: [null, Validators.compose([Validators.required])],
@@ -60,6 +62,8 @@ export class UserProfileComponent {
     this.errorMessage = ''
     this.successMessage = ''
 
+    this.date = ''
+
     //Get the current session user's JSON data
     const userJSON = this.cookieService.get('session_user');
 
@@ -71,7 +75,7 @@ export class UserProfileComponent {
       next: (user: any) => {
         //Set user to hold the user's data
         this.user = user;
-        console.log(this.user)
+        this.date = new Date(this.user.lastSignin).toLocaleString()
       },
       error: (err) => {
         console.log('error', err);
@@ -112,6 +116,11 @@ export class UserProfileComponent {
     user.lastName = this.user.lastName
     user.role = this.user.role
 
+    //Trigger an error if either field is left blank
+    if(this.profileForm.controls['address'].value == '' || this.profileForm.controls['phoneNumber'].value == ''){
+      return;
+    }
+
     //Set the user's address and phone number to the values from the profile form
     user.address = this.profileForm.controls['address'].value;
     user.phoneNumber = this.profileForm.controls['phoneNumber'].value;
@@ -123,6 +132,11 @@ export class UserProfileComponent {
         this.successMessage = "User has been updated successfully";
         this.isEditing = false
         console.log(this.successMessage);
+
+        //Change the displayed user information on the profile page
+        this.user.address = this.profileForm.controls['address'].value;
+        this.user.phoneNumber = this.profileForm.controls['phoneNumber'].value;
+
         this.hideAlert();
         },
         // Error message
