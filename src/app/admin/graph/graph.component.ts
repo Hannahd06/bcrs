@@ -39,8 +39,9 @@ export class GraphComponent implements OnInit {
         this.labels.length = 0;
         this.itemCount.length = 0;
 
-        //for statement for service items in purchase
+        //for loop over data
         for (let item of this.purchases) {
+          //gets title and service item count
           let title = item._id.title;
           let count = item.count;
 
@@ -53,13 +54,15 @@ export class GraphComponent implements OnInit {
         const hufflepuffPie = new Chart('hufflepuffPieChart', {
           //type of chart: pie
           type: 'pie',
+          //build object literal for the pie graph
           data: {
-            //displays data labels
+            //displays data labels for services
             labels: this.labels,
             datasets: [
               {
                 //data for dataset
                 data: this.itemCount,
+                //graph object
                 //background color for label blocks and pie slices
                 backgroundColor: [
                   '#EEBA35',
@@ -85,12 +88,20 @@ export class GraphComponent implements OnInit {
             ],
 
           },
-
+          options: {
+            plugins: {
+              legend: {
+                labels: {
+                  color: 'white'
+                }
+              }
+            }
+          }
         });
         //set the chart labels default color to white
-        Chart.defaults.color = '#ffffff';
+        //Chart.defaults.color = '#fff';
         //set the chart labels default size to 20
-        Chart.defaults.font.size = 20;
+        //Chart.defaults.font.size = 20;
 
       },
     });
