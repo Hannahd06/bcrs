@@ -76,16 +76,28 @@ color: rgb(255, 240, 154);
   margin: auto;
 }
 
-.scrolling-wrapper {
+/* For browsers that support `scrollbar-*` properties for*/
+@supports (scrollbar-width: auto) {
+  .scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-bottom: 20px;  }
+}
 
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  margin-bottom: 20px;
-  -webkit-overflow-scrolling: touch;
-  &::-webkit-scrollbar {
-    display: none;
+/* Otherwise, use `::-webkit-scrollbar-*` pseudo-elements for browsers like Chrome and Edge */
+@supports selector(::-webkit-scrollbar) {
+  .scrolling-wrapper {
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
+
 }
 
 .button-home {
