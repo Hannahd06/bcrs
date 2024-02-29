@@ -94,7 +94,7 @@ export class GraphComponent implements OnInit {
               legend: {
                 labels: {
                   font: {
-                    size: 18
+                    size: 20
                   },
                   color: 'white'
                 }
