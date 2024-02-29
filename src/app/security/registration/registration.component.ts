@@ -136,7 +136,8 @@ ngOnInit(): void {
     address: this.registrationForm.controls['address'].value,
     selectedSecurityQuestions: selectedSecurityQuestions,
     role: "employee",
-    isDisabled: false // Set to false for all new users to ensures that they are active once created.
+    isDisabled: false,
+    lastSignin: Date.now() // Set to false for all new users to ensures that they are active once created.
   }
 
   //Verify that all fields have been filled out and display an error message in the event they are not

@@ -71,6 +71,17 @@ span{
   margin-top: 40px;
 }
 
-.alert-box{
+.alert{
   margin-top: 20px;
+}
+
+.title{
+  color: rgb(255, 240, 154);
+  margin-top: 2%;
+  font-size: 56px;
+}
+
+.timestamp{
+  color: rgb(255, 240, 154);
+  font-size: 24px;
 }
