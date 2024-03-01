@@ -88,15 +88,17 @@ export class GraphComponent implements OnInit {
             ],
 
           },
-          //plugin options to change font color and size
+          //plugin options to change position, font color, and and size
           options: {
             plugins: {
               legend: {
+                position: 'bottom',
                 labels: {
                   font: {
                     size: 20
                   },
-                  color: 'white'
+                  color: 'white',
+
                 }
               }
             }

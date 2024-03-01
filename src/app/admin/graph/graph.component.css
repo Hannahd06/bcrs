@@ -27,7 +27,8 @@ h2 {
   color: rgb(255, 240, 154);
   font-size: 60px;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-weight: 600;
 }
 
@@ -36,5 +37,6 @@ h2 {
   height: 500px;
   width: 500px;
   margin: 0 auto;
+  padding-bottom: 10px;
 }
 
