@@ -13,6 +13,7 @@
 }
 .container-fluid {
   background-color: #403F3C;
+  min-height: 100vh;
 }
 
 .text-align {
