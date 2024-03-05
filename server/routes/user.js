@@ -33,7 +33,8 @@ const userSchema = {
     address: { type: 'string'},
     selectedSecurityQuestions: { type: 'array' },
     role: {type: 'string'},
-    isDisabled: { type: 'boolean' }
+    isDisabled: { type: 'boolean' },
+    lastSignin: { type: 'number'}
   },
   required: [
     'empId',
