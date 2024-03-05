@@ -7,8 +7,9 @@
 -->
 
 <div class="container-fluid">
+  <h1>Create a Service Request</h1>
   <form #serviceRequestForm="ngForm" (submit)="createOrder(); serviceRequestForm.reset()">
-    <div class="row mx-auto">
+    <div class="row mx-auto pt-5">
        <!-- Creates an array of service cards -->
        <div class="col-lg-4 col-sm-8 mx-auto mb-3" *ngFor="let service of services">
         <div class="d-flex card shadow">

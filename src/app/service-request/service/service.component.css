@@ -7,7 +7,14 @@
 */
 
 .container-fluid {
-  padding: 10%;
+  padding: 5% 10%;
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: 700;
+  color: rgb(255, 240, 146);
+  text-align: center;
 }
 
 .service-card{

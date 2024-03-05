@@ -6,9 +6,15 @@
     Description: CSS styling for FAQs page for BCRS
 */
 
+h1 {
+  font-size: 60px;
+  font-weight: 700;
+  color: rgb(255, 240, 146);
+  text-align: center;
+}
 
 .accordion {
-  margin: 10%;
+  margin: 5% 10%;
   border: dashed #d5b514  5px;
 }
 
