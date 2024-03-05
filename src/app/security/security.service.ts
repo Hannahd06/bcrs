@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../admin/users/user';
 import { SecurityQuestionModel } from './security-question-model';
-import { Observable } from 'rxjs';
+import { UserModel } from './user-model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ export class SecurityService {
  }
 
   //Registration function that returns an http post request with a new user object
-  registerUser(user: User){
+  registerUser(user: UserModel){
     return this.http.post('/api/security/register', {user})
   }
 

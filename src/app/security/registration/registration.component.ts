@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SecurityService } from '../security.service';
-import { User } from 'src/app/admin/users/user';
+import { UserModel } from '../user-model';
 
 @Component({
   selector: 'app-registration',
@@ -126,7 +126,7 @@ ngOnInit(): void {
   const confirmPassword = this.registrationForm.controls['confirmPassword'].value
 
   //Create a user object based on user input
-  const user: User = {
+  const user: UserModel = {
     empId: 1111, //Temporary ID until the API sets it
     email: this.registrationForm.controls['email'].value,
     password: this.registrationForm.controls['password'].value,
@@ -137,7 +137,6 @@ ngOnInit(): void {
     selectedSecurityQuestions: selectedSecurityQuestions,
     role: "employee",
     isDisabled: false,
-    lastSignin: Date.now() // Set to false for all new users to ensures that they are active once created.
   }
 
   //Verify that all fields have been filled out and display an error message in the event they are not

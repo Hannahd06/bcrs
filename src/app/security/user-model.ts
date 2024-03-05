@@ -11,12 +11,14 @@ import { SecurityQuestionModel } from "./security-question-model";
 
 //Create and export the user model
 export interface UserModel {
+  empId: number;
   email: string;
   password: string;
   firstName: string;
   lastName: string;
   phoneNumber: string;
   address: string;
-  selectedSecurityQuestions: SecurityQuestionModel[];
-  lastSignin: string;
+  role: string;
+  selectedSecurityQuestions?:  SecurityQuestionModel[];
+  isDisabled: boolean;
 }
