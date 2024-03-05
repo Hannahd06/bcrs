@@ -1,3 +1,11 @@
+/**
+ * Title: service.component.ts
+ * Author: Professor Richard Krasso
+ * Modified by: Team Hufflepuff
+ *  Date: 02/28/24
+ * Description:  Service Request component for BCRS
+*/
+
 import { Component } from '@angular/core';
 import { ServiceItem } from '../service-item.interface';
 import { ServicesListService } from '../services.service';

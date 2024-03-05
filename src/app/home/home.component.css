@@ -77,14 +77,25 @@ color: rgb(255, 240, 154);
 }
 
 .scrolling-wrapper {
-
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
   margin-bottom: 20px;
-  -webkit-overflow-scrolling: touch;
-  &::-webkit-scrollbar {
-    display: none;
+}
+
+
+
+/* Otherwise, use `::-webkit-scrollbar-*` pseudo-elements for browsers like Chrome and Edge */
+@supports selector(::-webkit-scrollbar) {
+  .scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 
@@ -95,5 +106,4 @@ color: rgb(255, 240, 154);
   background-color: #EEBA35;
    font-family: 'Teko', sans-serif;
 }
-
 

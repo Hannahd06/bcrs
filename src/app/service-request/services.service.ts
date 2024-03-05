@@ -1,3 +1,10 @@
+/**
+ * Title: service.service.ts
+ * Author: Professor Richard Krasso
+ * Modified by: Team Hufflepuff
+ *  Date: 02/27/24
+ * Description: Services service for an array of services
+*/
 import { Injectable } from '@angular/core';
 import { ServiceItem } from './service-item.interface';
 
