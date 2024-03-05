@@ -6,6 +6,7 @@
     Description: create new user component
 */
 
+//Import statements
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -18,15 +19,21 @@ import { User } from '../user';
   styleUrls: ['./user-new.component.css']
 })
 
+//Create and export new user component
 export class UserNewComponent {
+  //Set the step variable for moving between registration steps
   step: string ='credentials';
+
+  //Declare a function to move step between form sections when called
   next(nextStep: string) {
     this.step = nextStep;
   };
 
+  //Set error message and isLoading variables
   errorMessage: string;
   isLoading: boolean = false;
 
+  //Create a new user form with all necessary fields
   createNewUserForm: FormGroup =  this.fb.group({
     empId: [null, Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])], //Validate as number
     email:  [null, Validators.compose([Validators.required, Validators.email ])], // validate email
@@ -39,11 +46,12 @@ export class UserNewComponent {
     isDisabled: false
   })
 
-
+//Declare a constructor with activated route, user service, router, and form builder as parameters
 constructor (private route: ActivatedRoute, private userService: UserService, private router: Router, private fb: FormBuilder) {
   this.errorMessage = ''
 }
 
+//Declare a function for creating a new user
 createNewUser() {
 
   // Grab from form input fields to be used to create new user
