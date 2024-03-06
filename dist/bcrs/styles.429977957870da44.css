@@ -1,4 +1,4 @@
-@charset "UTF-8";/*!
+@import"https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap";.yellow{background-color:#eeba35}html,main{background-color:#403f3c;font-family:Ubuntu,sans-serif}nav li{font-family:Teko,sans-serif}.text-align{text-align:center}html,body{height:100%}body{margin:0;font-family:Ubuntu,sans-serif}@charset "UTF-8";/*!
 * Bootstrap  v5.3.1 (https://getbootstrap.com/)
 * Copyright 2011-2023 The Bootstrap Authors
 * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
