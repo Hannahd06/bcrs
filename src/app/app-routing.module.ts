@@ -1,6 +1,7 @@
 /**
  * Title: app-routing.module.ts
  * Author: Professor Krasso
+ * modified by: Hannah Del Real, Jocelyn Dupuis, Kyle Hochdoefer
  * Date: 8/5/23
  */
 
@@ -11,6 +12,13 @@ import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
+import { authGuard } from './shared/auth.guard';
+import { UserListComponent } from './admin/users/user-list/user-list.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { DirectoryComponent } from './directory/directory.component';
+import { FaqComponent } from './faq/faq.component';
+import { ServiceComponent } from './service-request/service/service.component';
+import { InvoiceComponent } from './service-request/invoice/invoice.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -37,6 +45,33 @@ const routes: Routes = [
         path: 'contact',
         component: ContactComponent,
         title: 'BCRS: Contact Us'
+      },
+      {
+        path: 'directory',
+        component: DirectoryComponent,
+        title: 'BCRS: Directory'
+      },
+      {
+        path: 'user-profile',
+        component: UserProfileComponent,
+        title: 'BCRS: User Profile',
+        canActivate: [authGuard]
+      },
+      {
+        path: 'faq',
+        component: FaqComponent,
+        title: 'BCRS: FAQs'
+      },
+      {
+        path: 'service-request',
+        component: ServiceComponent,
+        title: 'BCRS: User Profile',
+        canActivate: [authGuard]
+      },
+      {
+        path: 'admin',
+        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+        canActivate: [authGuard]
       }
     ]
   },
@@ -44,6 +79,15 @@ const routes: Routes = [
     // path for the security module (e.g. login, register, forgot password, etc.)
     path: 'security',
     loadChildren: () => import('./security/security.module').then(m => m.SecurityModule)
+  },
+  {
+    path: 'invoice-summary',
+    component: InvoiceComponent,
+    title: 'BCRS: User Profile',
+  },
+  {
+    path: '**',
+    redirectTo: 'security/not-found'
   }
 ];
 

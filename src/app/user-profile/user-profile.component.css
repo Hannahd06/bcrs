@@ -1,0 +1,87 @@
+/**
+ * Title: user-profile.component.css
+ * Author: Professor Richard Krasso
+ * Modified by: Team Hufflepuff
+ *  Date: 02/17/24
+ * Description: User profile Styling for BCRS
+*/
+
+.profile-container{
+  margin-top: 3%;
+  border: dashed rgb(241, 197, 20) 5px;
+  background-color: #7F7E7D;
+  margin-bottom: 28%;
+}
+
+.user-info{
+  border-right: solid black 1px;
+}
+
+.main-body{
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+h1{
+  color: #EEBA35;
+  margin-top: 10px;
+}
+
+h2{
+  margin-bottom: 5%;
+}
+
+.user-info, .system-settings{
+  font-size: 24px;
+}
+
+.info-element{
+  margin-left: 40%;
+}
+
+span{
+  color: white;
+  margin-left: 1%;
+}
+
+.user-data{
+  color: white;
+}
+
+.button-edit {
+  font-weight: 600;
+  font-size: 30px;
+  background-color: #EEBA35;
+  font-family: 'Teko', sans-serif;
+  margin-top: 4%;
+  margin-bottom: 6%;
+}
+
+.button-back {
+  font-weight: 600;
+  font-size: 30px;
+  background-color: black;
+  color: #EEBA35;
+  font-family: 'Teko', sans-serif;
+  margin-top: 4%;
+  margin-bottom: 6%;
+}
+
+.phone{
+  margin-top: 40px;
+}
+
+.alert{
+  margin-top: 20px;
+}
+
+.title{
+  color: rgb(255, 240, 154);
+  margin-top: 2%;
+  font-size: 56px;
+}
+
+.timestamp{
+  color: rgb(255, 240, 154);
+  font-size: 24px;
+}

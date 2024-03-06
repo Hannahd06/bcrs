@@ -1,0 +1,66 @@
+/**
+    Title: about.component.css
+    Author: Professor Richard Krasso
+    Modified by: Hannah Del Real
+    Date: 01/15/24
+    Description: CSS styling for FAQs page for BCRS
+*/
+
+h1 {
+  font-size: 60px;
+  font-weight: 700;
+  color: rgb(255, 240, 146);
+  text-align: center;
+}
+
+.accordion {
+  margin: 5% 10%;
+  border: dashed #d5b514  5px;
+}
+
+.accordion-container {
+  margin: 2% 10%;
+
+}
+
+.accordion-body {
+  background-color: #74706c;
+  color: rgb(239, 239, 238);
+  font-size: 20px;
+}
+
+h3{
+  color: #fff2b1;
+  padding-top: 30px;
+  padding-bottom: 15px;
+}
+
+
+.accordion-item {
+  --bs-accordion-btn-bg:rgb(138, 131, 119);
+  --bs-accordion-border-color: rgb(45, 45, 45);
+  --bs-accordion-active-bg: #EEBA35 ;
+  --bs-accordion-active-color: rgb(18, 18, 18);
+
+}
+
+button {
+  font-size: 30px;
+  font-weight: 600;
+  font-family: 'Teko', sans-serif;
+  color: white;
+}
+
+.accordion-item {
+  margin: dashed 5px;
+}
+
+img {
+  width: 350px;
+  background-color: black;
+  padding: 10px;
+}
+
+.row {
+  padding-bottom: 20px;
+}

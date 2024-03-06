@@ -1,0 +1,17 @@
+/**
+    Title: footer.component.css
+    Author: Professor Richard Krasso
+    Modified by: Hannah Del Real
+    Date: 02/14/24
+    Description: CSS styling for footer of BCRS
+*/
+
+.footer-logo {
+  width: 90px;
+  padding: 20px;
+}
+
+.row {
+  font-family: "teko", sans-serif;
+  text-align: center;
+}

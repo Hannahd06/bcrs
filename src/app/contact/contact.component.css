@@ -1,0 +1,78 @@
+/**
+    Title: contact.component.css
+    Author: Jocelyn Dupuis
+    Date: 02/23/2024
+    Description: CSS styling for contact page for BCRS
+*/
+
+/*styling for container*/
+.container-fluid {
+  min-height: 500px;
+  padding-top: 25px;
+}
+
+/*styling for main card*/
+.card {
+  color: white;
+  background-color: #7F7E7D;
+  padding: 10px 50px;
+  max-width: 1400px;
+  margin: auto;
+  margin-bottom: 50px;
+  border: dashed rgb(241, 197, 20) 5px;
+}
+
+/*styling for card content*/
+.card-content {
+  padding: 30px;
+  padding-top: 2px;
+}
+
+/*styling for heading 1*/
+h1 {
+  color: rgb(255, 240, 154);
+  font-size: 60px;
+  text-align: center;
+  padding-top: 20px;
+  font-weight: 600;
+}
+
+/*styling for contact description*/
+.contact-description {
+  font-size: 28px;
+  text-align: center;
+  margin: 0 60px;
+  padding-top: 10px;
+}
+
+/*styling for p element*/
+p {
+  font-size: 18px;
+  color: white;
+}
+
+/*styling for a element*/
+a {
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+}
+
+/*styling for contact icons*/
+.material-icons {
+  font-size: 65px;
+  color: #EEBA35;
+}
+
+/*styling for google map*/
+.map-border {
+  background-color: #EEBA35;
+  margin: auto;
+  padding: 10px;
+  max-width: 650px;
+}
+
+/*styling for over element*/
+a:hover {
+  color: #EEBA35;
+}

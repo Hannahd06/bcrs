@@ -1,11 +1,79 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <h1>Home Component Works! <span class="material-icons">thumb_up</span></h1>
+<!--
+    Title: home.component.html
+    Author: Professor Richard Krasso
+    Modified by: Hannah Del Real, Jocelyn Dupuis, Kyle Hochdoefer
+    Date: 02/12/2024
+    Description:  Landing Page  for the BCRS.
+-->
+
+<div class="container-fluid pt-5">
+  <div class="card">
+    <div class="row d-flex home-card">
+      <div class="col-4 d-flex">
+        <img src="./assets/bcrs-home.png" class="img-fluid" style="width:550px;">
+      </div>
+      <div class="col home-content">
+        <h1>We Deliver Fast, Reliable, and Professional Computer Repair Services.<span class="material-icons">thumb_up</span></h1>
+        <button  class="btn btn-lg button-home" routerLink="/about">LEARN MORE ABOUT US</button>
+      </div>
+
     </div>
   </div>
 
-  <a routerLink="/security">Test Security Module</a>
+  <div class="services">
+    <h2>OUR SERVICES</h2>
+    <!-- Cards for each service offering -->
+  <div class="service-container row">
+    <div class="col-lg-1 col" style="margin: auto;">
+      <span class="material-icons service-icon d-flex">arrow_back_ios</span>
+    </div>
+    <div class="scrolling-wrapper col-lg-10">
+      <div class="card service-card">
+        <span class="material-icons service-icon">lock_reset</span>
+        <h3>Password Reset</h3>
+        <h4>$39.99</h4>
+        <p>Our experts will perform a safe and reliable password reset to unlock any of your important accounts.</p>
+      </div>
+      <div class="card service-card">
+        <span class="material-icons service-icon">visibility_off</span>
+        <h3>Spyware Removal</h3>
+        <h4>$99.99</h4>
+        <p>Our experts have the knowledge and tools to diagnose and remove a wide variety of viruses and spyware.</p>
+      </div>
+      <div class="card service-card">
+        <span class="material-icons service-icon">memory</span>
+        <h3>RAM Upgrade</h3>
+        <h4>$129.99</h4>
+        <p>Our experts will professionally install your new memory and run tests to ensure your upgrade was successful.</p>
+        </div>
+      <div class="card service-card">
+        <span class="material-icons service-icon">install_desktop</span>
+        <h3>Software Installation</h3>
+        <h4>$49.99</h4>
+        <p>Our experts will help you install software programs and help to customize them to meet your specific needs.</p>
+      </div>
+      <div class="card service-card">
+        <span class="material-icons service-icon">sync</span>
+        <h3>PC Tune-up</h3>
+        <h4>$89.99</h4>
+        <p>Our experts will scan, fix, and update your computer to increase speed and performance.</p>
+      </div>
+      <div class="card service-card">
+        <span class="material-icons service-icon">cleaning_services</span>
+        <h3>Disk Clean-Up</h3>
+        <h4>$129.99</h4>
+        <p>Our experts have the tools to clear unnecessary files from your computer's hard drive.</p>
+      </div>
+      <div class="card service-card">
+        <span class="material-icons service-icon">keyboard</span>
+        <h3>Keyboard Cleaning</h3>
+        <h4>$45.00</h4>
+        <p>Our experts will work to remove dust, debris, and germs without you having to worry about any damage.</p>
+      </div>
+    </div>
+    <div class="col-lg-1 col" style="margin:auto">
+      <span class="material-icons service-icon d-flex">arrow_forward_ios</span>
+    </div>
+  </div>
+  </div>
 </div>
-
-

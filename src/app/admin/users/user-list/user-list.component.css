@@ -1,0 +1,69 @@
+/**
+* Title: user-list.component.js
+* Author: Kyle Hochdoerfer
+* Date: 02/14/24
+* Description: User list css styling for BCRS
+*/
+
+.config-container{
+  margin-top: 3%;
+  min-height: 70vh;
+}
+
+h1{
+  color: #FFF09A;
+  font-size: 56px;
+}
+
+table.darkTable {
+  font-family: "Ubuntu", sans-serif;
+  border: dashed rgb(241, 197, 20) 5px;
+  background-color: #7F7E7D;
+  width: 75%;
+  text-align: center;
+  border-collapse: collapse;
+  margin-top: 2%;
+}
+table.darkTable td, table.darkTable th {
+  border: 2px solid #4A4A4A;
+  padding: 15px
+}
+table.darkTable tbody td {
+  font-size: 16px;
+  color: #FFF09A;
+}
+table.darkTable tr:nth-child(even) {
+  background: #888888;
+}
+table.darkTable thead {
+  background: #372E29;
+  border-bottom: 3px solid #000000;
+}
+table.darkTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFF09A;
+  text-align: center;
+  border-left: 2px solid #4A4A4A;
+}
+table.darkTable thead th:first-child {
+  border-left: none;
+}
+
+table.darkTable tfoot td {
+  font-size: 12px;
+}
+
+.btn{
+  color:#FFF09A
+}
+
+.button-home {
+  margin-left: 12%;
+  font-weight: 600;
+  font-size: 30px;
+  margin-top: 3%;
+  background-color: #EEBA35;
+   font-family: 'Teko', sans-serif;
+   color: black
+}

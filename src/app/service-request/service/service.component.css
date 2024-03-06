@@ -1,0 +1,71 @@
+/**
+* Title: service.component.css
+ * Author: Hannah Del Real
+ * Date: 02/26/24
+ * Description: CSS Styling for Service Request Page
+ * Source: Code for sizing for checkbox was obtained from Stack overflow :  https://stackoverflow.com/questions/306924/can-i-change-the-checkbox-size-using-css
+*/
+
+.container-fluid {
+  padding: 5% 10%;
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: 700;
+  color: rgb(255, 240, 146);
+  text-align: center;
+}
+
+.service-card{
+  height: 325px;
+}
+
+legend {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.card {
+  background-color: #7F7E7D;
+  color: white;
+  text-align: center;
+  border: 5px dashed #EEBA35;
+}
+
+.service-icon {
+  color: rgb(245, 244, 181);
+  font-size: 80px;
+}
+
+.price input {
+  margin: 20px;
+
+}
+
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  padding: 10px;
+}
+
+label {
+  font-size: 20px;
+}
+
+p {
+  color: #ffda7b;
+}
+
+.button-register {
+  font-weight: 600;
+  font-size: 30px;
+  background-color: #EEBA35;
+  font-family: 'Teko', sans-serif;
+}

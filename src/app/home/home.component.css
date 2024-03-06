@@ -1,0 +1,109 @@
+/**
+    Title: home.component.css
+    Author: Professor Richard Krasso
+    Modified by: Hannah Del Real
+    Date: 01/15/24
+    Description: CSS styling for landing page BCRS
+*/
+
+.card {
+  background-color: #7F7E7D;
+  color: white;
+  padding: 30px;
+}
+
+.home-card {
+  padding: 2%;
+}
+.home-content {
+  margin-left: 70px;
+}
+
+@media (max-width: 800px ) {
+  .home-card {
+    flex-direction: column;
+  }
+  img {
+    max-width: 400px;
+  }
+  .service-container {
+    flex-direction: row;
+  }
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: 700;
+  padding: 30px 50px;
+
+}
+
+h2, h3 {
+color: rgb(255, 240, 154);
+}
+ h2 {
+  font-size: 50px;
+  text-align: center;
+  padding-top: 50px;
+  font-weight: 600;
+  text-decoration: underline;
+ }
+
+.service-container {
+  padding: 30px 60px;
+}
+
+.service-icon {
+  font-size: 100px;
+}
+
+.service-card {
+    display: inline-block;
+    padding: 30px;
+    margin: auto;
+    margin-right: 20px;
+    text-align: center;
+    border: dashed rgb(241, 197, 20) 5px;
+    width: 400px;
+    white-space: normal;
+    height: 400px;
+}
+
+.service-card p {
+  font-size: 18px;
+}
+.services {
+  margin: auto;
+}
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin-bottom: 20px;
+}
+
+
+
+/* Otherwise, use `::-webkit-scrollbar-*` pseudo-elements for browsers like Chrome and Edge */
+@supports selector(::-webkit-scrollbar) {
+  .scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.button-home {
+  margin-left: 30%;
+  font-weight: 600;
+  font-size: 30px;
+  background-color: #EEBA35;
+   font-family: 'Teko', sans-serif;
+}
+

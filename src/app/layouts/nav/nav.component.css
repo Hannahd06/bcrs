@@ -1,0 +1,13 @@
+/**
+    Title: nav.component.css
+    Author: Professor Richard Krasso
+    Modified by: Hannah Del Real
+    Date: 01/15/24
+    Description: CSS styling for about page BCRS navbar
+*/
+
+li {
+  font-size: 24px;
+  padding-right: 20px;
+  font-weight: 600;
+}

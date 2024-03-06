@@ -2,22 +2,52 @@
  * Title: app.js
  * Author: Professor Krasso
  * Date: 8/5/2023
+ * Modified by: Team Hufflpuff - Hannah Del Real, Jocelyn Dupuis, and Kyle Hochdoerfer
  */
 'use strict'
 
 // Require statements
-const express = require('express')
-const createServer = require('http-errors')
-const path = require('path')
+const express = require('express');
+const createServer = require('http-errors');
+const path = require('path');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJSDoc = require('swagger-jsdoc');
+
+const userRoute = require("./routes/user")
+const securityRoute = require("./routes/security");
+const invoiceRoute = require('./routes/invoices');
 
 // Create the Express app
-const app = express()
+const app = express();
+
+// Initiate Swagger API documentation
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'BCRS API',
+      version: '1.0.0',
+      description: 'API Documentation for managing all users and invoices for BCRS'
+    },
+  },
+  // This indicates the files containing annotations for OpenAPI specification
+  apis: ['./swaggerDoc.js'],
+};
+
+const openApiSpecification = swaggerJSDoc(options);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiSpecification));
 
 // Configure the app
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, '../dist/bcrs')))
 app.use('/', express.static(path.join(__dirname, '../dist/bcrs')))
+
+
+app.use("/api/users", userRoute);
+app.use("/api/security", securityRoute);
+app.use("/api/invoices", invoiceRoute)
 
 // error handler for 404 errors
 app.use(function(req, res, next) {

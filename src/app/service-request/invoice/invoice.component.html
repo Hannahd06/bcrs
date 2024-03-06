@@ -1,0 +1,96 @@
+<!--
+    Title: invoice.component.html
+    Author: Professor Richard Krasso
+    Modified by: Hannah Del Real, Jocelyn Dupuis, Kyle Hochdoefer
+    Date: 02/28/2024
+    Description:  Invoice Summary Page  for BCRS.
+-->
+
+<div class="container-fluid">
+
+  <div *ngIf="errorMessage" class="row text-align">
+    <div class="col-12">
+      <div class="alert alert-danger w-50 mx-auto mt-5">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row invoice-container pb-5">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <div *ngIf="isLoading" class="d-flex mt-5">
+        <div class="spinner-border spinner-lg" role="status" aria-hidden="true">
+          <span class="visually-hidden"> Loading...</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mx-auto" *ngIf="!isLoading" id="invoice-summary">
+      <div class="card-title">
+        <div class="row" >
+          <div class="d-flex">
+            <img src="../assets/bcrs-home.png" class="img-fluid" style="height: 120px; padding-right: 15px;">
+            <h1 style="font-family: 'Teko', sans-serif; width: 300px; font-size: 50px; text-align: left; font-weight: 600;">BOB'S COMPUTER REPAIR SHOP</h1>
+          </div>
+          <h2> Invoice</h2>
+          <div class="row">
+            <div class="header"><strong>Order #: </strong>{{order.id}}</div>
+            <div class="header"><strong>Date: </strong>{{ order.date | date  }}</div>
+            <div class="header pt-">{{order.fullName}}</div>
+            <div class="header">{{order.email}}</div>
+            <br>
+            <br>
+            <hr>
+          </div>
+        </div>
+      </div>
+      <!-- Display table summary of service items and prices -->
+      <div class="card-body">
+        <table class="col-lg-10">
+          <tr >
+            <th>Items</th>
+            <th>Qty</th>
+            <th>Price</th>
+          </tr>
+          <tr *ngFor="let item of order.lineItems">
+            <td>{{ item.title }}</td>
+            <td> 1 </td>
+            <td>{{ item.price | currency }}</td>
+          </tr>
+          <tr>
+            <td>Additional Parts</td>
+            <td>  </td>
+            <td>{{order.partsAmount | currency }}</td>
+          </tr>
+
+          <tr>
+            <td>Labor ($50/hour)</td>
+            <td>  </td>
+            <td>{{order.laborAmount | currency }}</td>
+          </tr>
+        </table>
+        <br>
+        <hr>
+        <!-- Display table summary of service items and prices -->
+
+        <!--Total -->
+        <div class="float-end total">
+          <div class="row">
+            <div class="col">
+              <div class="label"><strong>Order Total:</strong></div>
+              <div class="value">{{order.invoiceTotal | currency }}</div>
+            </div>
+          </div>
+          <!--Print Invoice-->
+          <div class="col mt-2">
+            <button (click)="printInvoice()" class="btn button-register hide-print">Print</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Link back to Service REquest Page-->
+  <div class="pt-3">
+    <a routerLink="/service-request" class="hide-print">Create a new Service Request</a>
+  </div>
+ </div>
+</div>

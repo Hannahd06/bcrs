@@ -1,0 +1,185 @@
+<!--
+    Title: user-new.component.html
+    Author: Professor Richard Krasso
+    Modified by: Jocelyn Dupuis
+    Date: 02/17/2024
+    Description:  HTML file for creating a new user
+-->
+
+<!--main container for create new user page-->
+<div class="container-fluid pt-5">
+  <div class="row justify-content-center">
+    <div class="new-user-container col-lg-6 col-md-10 col-sm-12">
+
+      <!--main card for page-->
+      <div class="card">
+
+          <div class="card-title pt-5">
+            <h2>Create New User</h2>
+          </div>
+
+
+
+          <div class="m-5">
+            <!--form to create new user-->
+          <form [formGroup]="createNewUserForm" (ngSubmit)="createNewUser()">
+            <fieldset class="form-group">
+              <legend>Please fill out all fields below</legend>
+
+              <div class="row d-grid form-content">
+
+                <div *ngIf="step === 'credentials'">
+                  <!--validation required field for empId -->
+                  <div *ngIf="createNewUserForm.controls['empId'].touched && createNewUserForm.controls['empId'].hasError('required')">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>Please enter a valid employee ID!</strong>
+                      <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  </div>
+
+                  <!--new user's employee ID -->
+                  <div class=" col-12 my-3 w-75 text">
+                    <label for="empId">Employee ID</label>
+                    <input class="form-control" id="empId" type="text" formControlName="empId">
+                  </div>
+
+                  <!--validation required field for email -->
+                  <div *ngIf="createNewUserForm.controls['email'].touched && createNewUserForm.controls['email'].hasError('required')">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>Please enter a valid email!</strong>
+                      <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  </div>
+
+                  <!--new user's email -->
+                  <div class="col-12 my-3 w-75 text">
+                    <label for="email">Email</label>
+                    <input class="form-control" id="email" type="text" formControlName="email">
+                  </div>
+
+                  <!--validation required field for password -->
+                  <div *ngIf="createNewUserForm.controls['password'].touched && createNewUserForm.controls['password'].hasError('required')">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>Please enter a valid password!</strong>
+                      <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  </div>
+
+                  <!--validation length and required character types for password -->
+                  <div *ngIf="createNewUserForm.controls['password'].touched && createNewUserForm.controls['password'].hasError('pattern')">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>Password must be at least 8 characters long and contain at a minimum on one upper case, one lower case, and number!</strong>
+                      <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  </div>
+
+                  <!--new user's password-->
+                  <div class="col-12 my-3 w-75 text">
+                    <label for="password">Password</label>
+                    <input class="form-control" id="email" type="password" formControlName="password">
+                  </div>
+
+                  <!--validation required field for role -->
+                  <div *ngIf="createNewUserForm.controls['role'].touched && createNewUserForm.controls['role'].hasError('required')">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>Please select a role for new user!</strong>
+                      <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  </div>
+                  <div class="col-12 my-3 mb-3 w-50 pb-3">
+                    <!--new user's role-->
+                    <label for="role">Role</label>
+                    <br />
+                    <select name="role" id="role" formControlName="role" class="form-select">
+                      <option value="" disabled>select a role</option>
+                      <option value="admin"> Admin </option>
+                      <option value="standard">Standard</option>
+                    </select>
+                  </div>
+                  <div class="row w-50 text-align mx-auto pt-3">
+                    <button class="btn button-home mx-auto" (click)="next('personalInfo')">
+                      Continue
+                    </button>
+                  </div>
+                </div>
+
+                <div *ngIf="step ==='personalInfo'">
+                  <!--validation required field for firstName -->
+                  <div *ngIf="createNewUserForm.controls['firstName'].touched && createNewUserForm.controls['firstName'].hasError('required')">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>Please enter first Name!</strong>
+                      <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  </div>
+
+                  <!--new user's first Name-->
+                  <div class="col-12 my-3 w-75 text">
+                    <label for="firstName">First Name</label>
+                    <input class="form-control" id="firstName" type="text" formControlName="firstName">
+                  </div>
+
+                  <!-- validation required field for lastName -->
+                  <div *ngIf="createNewUserForm.controls['lastName'].touched && createNewUserForm.controls['lastName'].hasError('required')">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>Please enter Last Name!</strong>
+                      <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  </div>
+
+                  <!--Edit selected user's Last Name-->
+                  <div class="col-12 my-3 w-75">
+                    <label for="lastName">Last Name</label>
+                    <input id="lastName" class="form-control" type="text" formControlName="lastName">
+                  </div>
+
+                  <!-- validation required field for address -->
+                  <div *ngIf="createNewUserForm.controls['address'].touched && createNewUserForm.controls['address'].hasError('required')">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>Please enter address!</strong>
+                      <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  </div>
+
+                  <!--new user's address-->
+                  <div class="col-12 my-3 w-75 text">
+                    <label for="address">Address</label>
+                    <input class="form-control" id="address" type="text" formControlName="address">
+                  </div>
+
+                  <!--validation required field for phoneNumber -->
+                  <div *ngIf="createNewUserForm.controls['phoneNumber'].touched && createNewUserForm.controls['phoneNumber'].hasError('required')">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>Phone Number is required!</strong>
+                      <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  </div>
+
+                  <!--new user's phone number-->
+                  <div class="col-12 my-3 w-75 text">
+                    <label for="phoneNumber">Phone</label>
+                    <input class="form-control" id="phoneNumber" type="text" formControlName="phoneNumber">
+                    <br />
+                  </div>
+                  <!--submit button -->
+                  <div class="row w-75 column-gap-3 text-align mx-auto pt-3">
+                    <button class="col btn btn-dark mx-auto w-25 button-back" (click)="next('credentials')" >Back</button>
+                    <button class=" col btn button-home mx-auto w-50" id="submit" value="submit">Create New User</button>
+                  </div>
+                </div>
+
+            </div>
+            </fieldset>
+
+
+          </form>
+          <!--form ends-->
+
+          </div>
+      </div>
+      <!--anchor link to return user to user config page-->
+      <a routerLink="/admin/users" class="return-btn">Return</a>
+    </div>
+  </div>
+</div>
+
+

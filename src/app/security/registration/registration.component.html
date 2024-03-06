@@ -1,0 +1,198 @@
+<!--
+    Title: registration.component.html
+    Authors: Hannah Del Real, Jocelyn Dupuis, Kyle Hochdoefer
+    Date: 02/19/2024
+    Description:  Registration page for BCRS.
+-->
+  <div class="config-container pt-5 pb-5">
+  <div class="row justify-content-center mt-5 text-center">
+
+    <h1>Register New Employee</h1>
+    <div class="row">
+      <div *ngIf="step === 'personalInfo'" class="stepper-wrapper mx-auto pb-5 pt-3">
+        <div class="stepper-item done">
+          <div class="step-counter"></div>
+          <div class="step-name">Personal Information</div>
+        </div>
+        <div class="stepper-item">
+          <div class="step-counter"></div>
+          <div class="step-name"></div>
+        </div>
+        <div class="stepper-item">
+          <div class="step-counter"></div>
+          <div class="step-name"></div>
+        </div>
+      </div>
+
+      <div *ngIf="step === 'credentials'" class="stepper-wrapper mx-auto pb-5 pt-3">
+        <div class="stepper-item completed">
+          <div class="step-counter"></div>
+          <div class="step-name"></div>
+        </div>
+        <div class="stepper-item done">
+          <div class="step-counter"></div>
+          <div class="step-name">User Credentials</div>
+        </div>
+        <div class="stepper-item">
+          <div class="step-counter"></div>
+          <div class="step-name"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf="step === 'securityQuestions'" class="stepper-wrapper row mx-auto">
+      <div class="stepper-item completed">
+        <div class="step-counter"></div>
+        <div class="step-name"></div>
+      </div>
+      <div class="stepper-item completed">
+        <div class="step-counter"></div>
+        <div class="step-name"></div>
+      </div>
+      <div class="stepper-item done">
+        <div class="step-counter"></div>
+        <div class="step-name">Security Questions</div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+
+    </div>
+    <br>
+
+
+    <div class="card col-lg-6 col-md-10 col-sm-11">
+
+     <form class="row justify-content-center" [formGroup]="registrationForm" (ngSubmit)="register()">
+
+      <div *ngIf="errorMessage">
+        <div class="alert alert-danger font" role="alert">
+          {{ errorMessage }}
+        </div>
+      </div>
+      <!--Personal Information-->
+      <div *ngIf="step === 'personalInfo'">
+        <div class="row justify-content-center">
+          <div class="col-lg-4">
+            <label for="firstName">First Name:</label>
+            <input id="firstName" class="form-control" type="text" formControlName="firstName">
+          </div>
+
+          <div class="col-lg-4">
+            <label for="lastName">Last Name:</label>
+            <input id="lastName" class="form-control" type="text" formControlName="lastName">
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-4">
+            <label for="address">Address:</label>
+            <input id="address" class="form-control" type="text" formControlName="address">
+          </div>
+
+          <div class="col-lg-4">
+            <label for="phoneNumber">Phone Number:</label>
+            <input id="phoneNumber" class="form-control" type="text" formControlName="phoneNumber">
+          </div>
+        </div>
+        <div class="row justify-content-center w-50 text-align mx-auto pt-3">
+          <button class="btn btn-lg mx-auto button-register" (click)="next('credentials')">Next</button>
+        </div>
+      </div>
+      <!--End Personal Information-->
+
+      <!--Employee Credentials-->
+      <div *ngIf="step === 'credentials'">
+        <div class="row justify-content-center">
+          <div class="col-lg-4">
+            <label for="email">Email:</label>
+            <input id="email" class="form-control" type="text" formControlName="email">
+          </div>
+          <div class="col-lg-4">
+            <label for="password">Password:</label>
+            <input id="password" class="form-control" type="password" formControlName="password">
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input id="confirmPassword" class="form-control" type="password" formControlName="confirmPassword">
+          </div>
+        </div>
+        <div class="row column-gap-3 justify-content-center w-50 text-align mx-auto pt-3">
+          <button class="col btn btn-dark mx-auto button-back w-25" (click)="next('personalInfo')" >Back</button>
+          <button class="btn btn-lg mx-auto button-register w-50" (click)="next('securityQuestions')">Next</button>
+        </div>
+      </div>
+      <!--End Employee Credentials-->
+
+      <!--Security  Questions-->
+      <div *ngIf="step === 'securityQuestions'">
+        <h2> Please select and answer security questions below.</h2>
+
+        <div class="center-form row pb-3">
+           <!--Security Question 1-->
+          <div class="row justify-content-left">
+            <div class="col-lg-7">
+              <label for="questionOne">Security Question #1:</label><br>
+              <select id="questionOne" name="questionOne" formControlName="questionOne">
+                <option *ngFor="let question of qArr1" [value]="question">{{ question }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row justify-content-left">
+            <div class="col-lg-5">
+              <label for="answerOne" class="answer-label">Answer:</label>
+              <input id="answerOne" class="form-control answer-input" type="text" formControlName="answerOne">
+            </div>
+          </div>
+
+          <!--Security Question 2-->
+          <div class="row justify-content-left">
+            <div class="col-lg-7">
+              <label for="questionTwo">Security Question #2:</label><br>
+              <select id="questionTwo" name="questionTwo" formControlName="questionTwo">
+                <option *ngFor="let question of qArr2" [value]="question">{{ question }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row justify-content-left">
+            <div class="col-lg-5">
+              <label for="answerTwo" class="answer-label">Answer:</label>
+              <input id="answerTwo" class="form-control answer-input" type="text" formControlName="answerTwo">
+            </div>
+          </div>
+
+          <!--Security Question 3-->
+          <div class="row justify-content-left">
+            <div class="col-lg-7">
+              <label for="questionThree">Security Question #3:</label><br>
+              <select id="questionThree" name="questionThree" formControlName="questionThree">
+                <option *ngFor="let question of qArr3" [value]="question">{{ question }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row justify-content-left">
+            <div class="col-lg-5">
+              <label for="answerThree">Answer:</label>
+              <input id="answerThree" class="form-control answer-input" type="text" formControlName="answerThree">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row column-gap-3 justify-content-center w-50 text-align mx-auto pt-3">
+          <button class="col btn btn-dark mx-auto w-25 button-back" (click)="next('credentials')" >Back</button>
+          <button class="col btn button-register w-50" id="submit" value="submit">SUBMIT</button>
+         </div>
+      </div>
+      <!--End Security  Questions-->
+    </form>
+    </div>
+  </div>
+</div>

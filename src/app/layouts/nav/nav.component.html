@@ -1,1 +1,103 @@
-<nav></nav>
+<!--
+    Title: nav.component.html
+    Author: Professor Richard Krasso
+    Modified by: Hannah Del Real, Jocelyn Dupuis, Kyle Hochdoefer
+    Date: 02/12/2024
+    Description:  Navigation  for the BCRS.
+-->
+
+<nav class="navbar ps-3 navbar-expand-sm d-flex primary fixed-top yellow">
+  <!--Logo for BCRS acts as link back to home page-->
+  <a routerLink="/" class="navbar-brand">
+    <img src="./assets/bcrs-logo.png" alt="laptop with image of badger next to Bob's computer repair shop text" style="height: 90px;">
+  </a>
+<!-- Navigation links-->
+  <button
+  class="navbar-toggler"
+  type="button"
+  data-bs-toggle="collapse"
+  data-bs-target="#navbarResponsive"
+  aria-controls="navbarResponsive"
+  aria-expanded="false"
+  aria-label="Toggle navigation"
+  >
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav ms-auto pt-2">
+
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/contact">Contact Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/directory">Directory</a>
+      </li>
+      <li *ngIf="isSignedIn" class="nav-item">
+        <a class="nav-link" routerLink="/faq">FAQs</a>
+      </li>
+
+      <!-- When no user is logged in, display employee dropdown for FAQs and Login Page  -->
+      <li *ngIf="!isSignedIn" class="nav-item dropdown">
+        <a href="#"
+        class="nav-link pe-3"
+        id="navbarDropdown"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        >
+        Employees
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <li class="dropdown-item">
+            <a class="nav-link" routerLink="security/signin">Sign In</a>
+          </li>
+          <li  class="dropdown-item">
+            <a class="nav-link" routerLink="/faq">FAQs</a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- User Icon display for signed on user with navigation to  task page -->
+      <li *ngIf="isSignedIn" class="nav-item dropdown">
+        <a href="#"
+        class="nav-link pe-3"
+        id="navbarDropdown"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        >
+          <span class="material-icons">
+            person
+          </span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <li class="dropdown-item">
+            Signed in as {{ appUser.fullName }}
+          </li>
+          <li class="dropdown-item">
+            <a routerLink="user-profile" class="dropdown-item link">My profile</a>
+          </li>
+          <li class="dropdown-item">
+            <a routerLink="service-request" class="dropdown-item link">Create Service Request</a>
+          </li>
+          <li *ngIf="appUser.role == 'admin'" class="dropdown-item">
+            <a routerLink="/admin/users" class="dropdown-item link">User Configuration</a>
+          </li>
+          <li *ngIf="appUser.role == 'admin'" class="dropdown-item">
+            <a routerLink="/admin/graph" class="dropdown-item link">Purchases by Service Graph</a>
+          </li>
+          <li class="dropdown-item">
+            <a (click)="signout()" class="dropdown-item link">Sign out</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+

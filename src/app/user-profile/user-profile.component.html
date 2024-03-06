@@ -1,0 +1,115 @@
+
+<!--
+ * Title: user.ts
+ * Author: Professor Richard Krasso
+ * Modified by: Team Hufflepuff
+ *  Date: 02/17/24
+ * Description: Edit Profile Page  for signed in users
+ -->
+
+<div class="row justify-content-center text-center">
+  <h1 class="title">User Profile</h1>
+  <div class="profile-container col-lg-10">
+    <div class="col-sm-6 text-align w-50 mx-auto" style="margin: auto;">
+      <div *ngIf="errorMessage">
+        <div class="alert alert-danger font" role="alert">
+          {{ errorMessage }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 text-align" style="margin: auto;">
+      <div class="justify-content-center alert-box" class=" alert alert-success" *ngIf="successMessage" role="alert">
+        {{ successMessage }}
+      </div>
+    </div>
+
+    <div class="row username text-center">
+      <div class="col">
+
+        <div class="row"><h1>{{user.email}}</h1></div>
+        <div class="row justify-content-center timestamp">Last Sign-In: {{ date }}</div>
+
+      </div>
+    </div>
+
+    <div class="row main-body">
+      <div class="col-8 user-info text-start" *ngIf="!isEditing">
+
+        <div class="row column-heading text-center">
+          <h2>User Information</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-4">
+            <p class="info-element">Full Name:</p> <br>
+            <p class="info-element">Email:</p> <br>
+            <p class="info-element">Address:</p> <br>
+            <p class="info-element">Phone Number:</p> <br>
+          </div>
+
+          <div class="col-8 user-data">
+            <p>{{user.firstName}} {{user.lastName}}</p> <br>
+            <p>{{user.email}}</p> <br>
+            <p>{{user.address}}</p> <br>
+            <p>{{user.phoneNumber}}</p> <br>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="row w-50 text-align mx-auto pt-3">
+            <button class="btn button-lg button-edit" (click)="editForm()">Edit</button>
+        </div>
+        </div>
+      </div>
+
+      <form [formGroup]="profileForm" class="col-8 user-info text-start" *ngIf="isEditing" (ngSubmit)="editProfile()">
+
+        <div class="row column-heading text-center">
+          <h2>User Information</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-4">
+            <p class="info-element">Full Name:</p> <br>
+            <p class="info-element">Email:</p> <br>
+            <label for="address" class="info-element">Address:</label> <br>
+            <label class="info-element phone" for="phoneNumber">Phone Number:</label> <br>
+          </div>
+
+          <div class="col-8 user-data">
+            <p>{{user.firstName}} {{user.lastName}}</p> <br>
+            <p>{{user.email}}</p> <br>
+            <input id="address" class="form-control" type="text" formControlName="address"> <br>
+            <input id="phoneNumber" class="form-control" type="text" formControlName="phoneNumber"> <br>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="row w-50 text-align mx-auto pt-3">
+            <button class="btn button-lg button-edit" id="submit">Submit</button>
+            <button class="btn button-lg button-back" (click)="editForm()">Back</button>
+        </div>
+        </div>
+      </form>
+
+      <div class="col-4 system-settings">
+        <div class="row column-heading text-center">
+          <h2>System Settings</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-5">
+            <p class="info-element">Role:</p>
+            <p class="info-element">Status:</p>
+          </div>
+
+          <div class="col-6 user-data">
+            <p>{{ user.role}}</p>
+            <p>{{ userStatus }}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
