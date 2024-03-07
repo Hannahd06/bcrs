@@ -34,6 +34,7 @@ h4 {
 .about-offering {
   padding: 30px;
   background-color: #7F7E7D;
+  border: dashed rgb(241, 197, 20) 5px;
 
 }
 
