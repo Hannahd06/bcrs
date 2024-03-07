@@ -172,3 +172,9 @@ input{
 .answer-input{
   margin-bottom: 20%;
 }
+
+.nav-link{
+  color: white;
+  font-size: 18px;
+  text-decoration: underline;
+}
