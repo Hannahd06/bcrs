@@ -32,7 +32,7 @@ h4 {
 
 
 .about-offering {
-  padding: 30px;
+  padding: 40px;
   background-color: #7F7E7D;
   border: dashed rgb(241, 197, 20) 5px;
 
@@ -42,5 +42,26 @@ h4 {
   font-size: 100px;
   color: rgb(255, 240, 154);
   margin-right: 20px;
+
+}
+
+@media (max-width: 600px ) {
+  .material-icons {
+    font-size: 60px;
+    color: rgb(255, 240, 154);
+    margin-right: 20px;
+
+  }
+  .about-offering {
+    padding: 20px;
+    background-color: #7F7E7D;
+    border: dashed rgb(241, 197, 20) 5px;
+  }
+  h4 {
+    font-size: 28px;
+  }
+  .container-about {
+    font-size: 18px;
+  }
 
 }
